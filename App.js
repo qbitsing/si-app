@@ -2,16 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Icon } from 'native-base'
 import { TabNavigator, TabBarBottom } from 'react-navigation'
-
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
+import Home from './views/Home'
 
 class SettingsScreen extends React.Component {
   render() {
@@ -25,7 +16,7 @@ class SettingsScreen extends React.Component {
 
 export default TabNavigator(
   {
-    Home: { screen: HomeScreen },
+    Home: { screen: Home },
     Categories: { screen: SettingsScreen },
     New: { screen: SettingsScreen },
     Sales: { screen: SettingsScreen },
@@ -53,7 +44,7 @@ export default TabNavigator(
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeTintColor: 'tomato',
+      activeTintColor: 'blue',
       inactiveTintColor: 'gray',
     },
     animationEnabled: false,
