@@ -8,11 +8,15 @@ import {
   Text,
   Button
 } from 'native-base'
+import api from '../utils/http'
+import loginQuery from '../utils/queries/login'
+
 class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
       username: null,
+      password: null,
       sesion: null
     }
   }
@@ -21,16 +25,25 @@ class Profile extends Component {
       username
     })
   }
-  submit = () => {
+  changePassword = (password) => {
+    this.setState({
+      password
+    })
+  }
+  submit = async () => {
     // console.warn(this.state)
-    let sesion = {
-      username: this.state.username
+    let data = {
+      email: this.state.username,
+      password: this.state.password
     }
-    sesion = JSON.stringify(sesion)
-    console.warn(sesion)
-    AsyncStorage.setItem('sesion', sesion)
+    let res = await api('query', loginQuery(data))
+    res = await res.json()
+    if(!res.erros) {
+      console.warn(res.data.singin)
+    }
   }
   async componentWillMount() {
+    await AsyncStorage.removeItem('sesion')
     let sesion = await AsyncStorage.getItem('sesion')
     sesion = JSON.parse(sesion)
     console.warn(sesion.username)
@@ -47,6 +60,11 @@ class Profile extends Component {
           placeholder="Username"
           value={this.state.username}
           onChangeText={this.changeUSername}
+          />
+          <TextInput 
+          placeholder="Password"
+          value={this.state.password}
+          onChangeText={this.changePassword}
           onSubmitEditing={this.submit}
           />
         </View>
