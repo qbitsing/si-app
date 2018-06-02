@@ -6,10 +6,11 @@ import {
 } from 'react-native'
 import {
   Text,
+  Icon,
   Button
 } from 'native-base'
-import api from '../utils/http'
-import loginQuery from '../utils/queries/login'
+import api from '../../utils/http'
+import loginQuery from '../../utils/queries/login'
 
 class Profile extends Component {
   constructor(props) {
@@ -39,17 +40,28 @@ class Profile extends Component {
     let res = await api('query', loginQuery(data))
     res = await res.json()
     if(!res.erros) {
-      console.warn(res.data.singin)
+      let sesion = JSON.stringify(res.data.singin)
+      AsyncStorage.setItem('sesion', sesion)
+      console.warn('sesion guardada')
+    } else {
+      console.warn(res.erros)
     }
   }
   async componentWillMount() {
-    await AsyncStorage.removeItem('sesion')
-    let sesion = await AsyncStorage.getItem('sesion')
-    sesion = JSON.parse(sesion)
-    console.warn(sesion.username)
-    this.setState({
-      sesion
-    })
+    try {
+      let sesion = await AsyncStorage.getItem('sesion')
+      sesion = JSON.parse(sesion)
+      this.setState({
+        sesion
+      })
+    } catch (e) {
+      console.warn(e)
+    }
+  }
+  static navigationOptions = {
+    tabBarIcon: ({tintColor}) => (
+      <Icon name="person" style={{color: tintColor}} />
+    )
   }
   render() {
     if (!this.state.sesion) {
