@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { Icon } from 'native-base'
 import { TabNavigator, TabBarBottom } from 'react-navigation'
 import Home from './views/Home'
+import Profile from './views/Profile'
 
 class SettingsScreen extends React.Component {
   render() {
@@ -20,7 +21,7 @@ export default TabNavigator(
     Categories: { screen: SettingsScreen },
     New: { screen: SettingsScreen },
     Sales: { screen: SettingsScreen },
-    Profile: { screen: SettingsScreen },
+    Profile: { screen: Profile },
   },
   {
     navigationOptions: ({ navigation }) => ({
