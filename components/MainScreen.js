@@ -6,10 +6,10 @@ import ProfileTab from './tabs/Profile'
 
 const AppTabNavigator = TabNavigator(
   {
-    HomeTab: {
+    Home: {
       screen: HomeTab
     },
-    ProfileTab: {
+    Profile: {
       screen: ProfileTab
     }
   },
@@ -24,15 +24,4 @@ const AppTabNavigator = TabNavigator(
   }
 )
 
-class MainScreen extends Component {
-  static navigationOptions = {
-    title: 'Subasta Inversa'
-  }
-  render() {
-    return (
-      <AppTabNavigator/>
-    )
-  }
-}
-
-export default MainScreen
+export default AppTabNavigator

@@ -32,25 +32,26 @@ class Profile extends Component {
     })
   }
   submit = async () => {
-    // console.warn(this.state)
-    let data = {
-      email: this.state.username,
-      password: this.state.password
-    }
-    let res = await api('query', loginQuery(data))
-    res = await res.json()
-    if(!res.erros) {
-      let sesion = JSON.stringify(res.data.singin)
-      AsyncStorage.setItem('sesion', sesion)
-      console.warn('sesion guardada')
-    } else {
-      console.warn(res.erros)
-    }
+    this.props.navigation.navigate('Login')
+    // let data = {
+    //   email: this.state.username,
+    //   password: this.state.password
+    // }
+    // let res = await api('query', loginQuery(data))
+    // res = await res.json()
+    // if(!res.erros) {
+    //   let sesion = JSON.stringify(res.data.singin)
+    //   AsyncStorage.setItem('sesion', sesion)
+    //   console.warn('sesion guardada')
+    // } else {
+    //   console.warn(res.erros)
+    // }
   }
-  async componentWillMount() {
+  componentDidMount = async () =>  {
     try {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
+      console.warn(sesion)
       this.setState({
         sesion
       })
@@ -65,6 +66,9 @@ class Profile extends Component {
   }
   render() {
     if (!this.state.sesion) {
+      this.props.navigation.navigate('Login')
+      return (<View></View>)
+    } else {
       return (
         <View>
           <Text>Login</Text>
@@ -79,12 +83,6 @@ class Profile extends Component {
           onChangeText={this.changePassword}
           onSubmitEditing={this.submit}
           />
-        </View>
-      )
-    } else {
-      return (
-        <View>
-          <Text>Hola</Text>
         </View>
       )
     }

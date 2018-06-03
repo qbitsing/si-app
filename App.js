@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Text, View, AsyncStorage } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import MainScreen from './components/MainScreen'
+import LoginScreen from './components/loginScreen'
 
 async function getSesion () {
   const sesion = await AsyncStorage.getItem('sesion')
@@ -10,9 +11,8 @@ async function getSesion () {
 }
 
 const AppStackNavigator = StackNavigator({
-  Main: {
-    screen: MainScreen
-  }
+  Main: MainScreen,
+  Login: LoginScreen
 })
 
 export default class App extends Component {
