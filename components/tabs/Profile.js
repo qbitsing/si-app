@@ -59,11 +59,21 @@ class Profile extends Component {
       console.warn(e)
     }
   }
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) =>{
+    return {
+      tabBarOnPress: ev => {
+        console.warn('123')
+      // navigation.dispatch(NavigationActions.navigate({ routeName: 'Login' }))
+      // navigation.navigate('Login')
+      ev.jumpToIndex(ev.scene.index)
+      // this.props.navigation.navigate('Login')
+    },
     tabBarIcon: ({tintColor}) => (
       <Icon name="person" style={{color: tintColor}} />
     )
+    }
   }
+  hola = 123
   render() {
     if (!this.state.sesion) {
       // this.props.navigation.navigate('Login')

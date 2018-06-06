@@ -11,8 +11,8 @@ async function getSesion () {
 }
 
 const AppStackNavigator = StackNavigator({
+  Login: LoginScreen,
   Main: MainScreen,
-  Login: LoginScreen
 },
 {
   navigationOptions: {

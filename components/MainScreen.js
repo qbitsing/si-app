@@ -6,12 +6,8 @@ import ProfileTab from './tabs/Profile'
 
 const AppTabNavigator = TabNavigator(
   {
-    Home: {
-      screen: HomeTab
-    },
-    Profile: {
-      screen: ProfileTab
-    }
+    Home: HomeTab,
+    Profile: ProfileTab
   },
   {
     tabBarComponent: TabBarBottom,
