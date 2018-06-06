@@ -13,6 +13,11 @@ async function getSesion () {
 const AppStackNavigator = StackNavigator({
   Main: MainScreen,
   Login: LoginScreen
+},
+{
+  navigationOptions: {
+    title: 'AppName'
+  }
 })
 
 export default class App extends Component {

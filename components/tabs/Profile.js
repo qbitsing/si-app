@@ -66,23 +66,12 @@ class Profile extends Component {
   }
   render() {
     if (!this.state.sesion) {
-      this.props.navigation.navigate('Login')
-      return (<View></View>)
+      // this.props.navigation.navigate('Login')
+      return (<View><Text>Go to login</Text></View>)
     } else {
       return (
         <View>
-          <Text>Login</Text>
-          <TextInput 
-          placeholder="Username"
-          value={this.state.username}
-          onChangeText={this.changeUSername}
-          />
-          <TextInput 
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={this.changePassword}
-          onSubmitEditing={this.submit}
-          />
+          <Text>Profile View</Text>
         </View>
       )
     }
