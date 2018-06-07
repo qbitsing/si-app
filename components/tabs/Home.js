@@ -5,20 +5,17 @@ import {
   Content,
   Icon
 } from 'native-base'
+import Footer from './../FooterTabs'
 import CardComponent from './../CardComponent'
 
 class Home extends Component {
-  static navigationOptions = {
-    tabBarIcon: ({tintColor}) => (
-      <Icon name="home" style={{color: tintColor}} />
-    )
-  }
   render() {
     return (
       <Container style={styles.container}>
         <Content>
           <CardComponent/>
         </Content>
+        <Footer navigation={this.props.navigation}/>
       </Container>
     )
   }

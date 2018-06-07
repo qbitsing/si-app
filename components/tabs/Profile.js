@@ -9,8 +9,9 @@ import {
   Icon,
   Button
 } from 'native-base'
-import api from '../../utils/http'
-import loginQuery from '../../utils/queries/login'
+
+import api from './../../utils/http'
+import loginQuery from './../../utils/queries/login'
 
 class Profile extends Component {
   constructor(props) {
