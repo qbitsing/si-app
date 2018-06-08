@@ -17,21 +17,23 @@ export default class FooterTabs extends Component {
       { icon: 'home', routeName: 'Home', badges: 0 },
       { icon: 'apps', routeName: 'Categories', badges: 0 },
       { icon: 'add', routeName: 'Create', badges: 0 },
-      { icon: 'cart', routeName: 'Saler', badges: 3 },
+      { icon: 'cart', routeName: 'Saler', badges: 5 },
       { icon: 'person', routeName: 'Profile', badges: 0 },
     ]
   }
   go = async (to) => {
-    const actualRoute = this.props.navigation.state.routeName
+    const { navigation } = this.props
+    const actualRoute = navigation.state.routeName
     if (to === actualRoute) return
     if (to === 'Profile') {
       try {
+        const data = {uuid: '123d-dsd-123da', name: 'Lucho Arias'}
+        // await AsyncStorage.removeItem('sesion')
+        // await AsyncStorage.setItem('sesion', JSON.stringify(data))
         let sesion = await AsyncStorage.getItem('sesion')
-        console.log('estamos aqui')
         sesion = JSON.parse(sesion)
-        console.log(sesion)
-        if (sesion) this.props.navigation.navigate('Profile')
-        else this.props.navigation.navigate('Login')
+        if (sesion) navigation.navigate('Profile', {sesion})
+        else navigation.navigate('Login')
         return
       } catch(e) {
         console.log(e)
@@ -47,10 +49,10 @@ export default class FooterTabs extends Component {
           let badgeItem
           const actualRoute = this.props.navigation.state.routeName          
           if (tab.badges) {
-            badgeItem = <Badge><Text>2</Text></Badge>
+            badgeItem = <Badge><Text>{tab.badges}</Text></Badge>
           }
           return (
-          <Button 
+          <Button
           key={i}
           active={tab.routeName == actualRoute}
           badge={tab.badges ? true : false}
