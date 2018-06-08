@@ -2,17 +2,17 @@ import React, {Component} from 'react'
 import { Text, View, AsyncStorage } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import HomeTab from './components/tabs/Home'
-import LoginScreen from './components/stack/loginScreen'
-
-async function getSesion () {
-  const sesion = await AsyncStorage.getItem('sesion')
-  console.warn(sesion)
-  return sesion
-}
+import ProfileTab from './components/tabs/Profile'
+import SalerTab from './components/tabs/Saler'
+import CategoriesTab from './components/tabs/Categories'
+import Login from './components/stack/loginScreen'
 
 const AppStackNavigator = StackNavigator({
   Home: HomeTab,
-  Login: LoginScreen,
+  Profile: ProfileTab,
+  Categories: CategoriesTab,
+  Saler: SalerTab,
+  Login
 },
 {
   navigationOptions: {

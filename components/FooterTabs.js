@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { AsyncStorage } from 'react-native'
 import { 
   Footer,
   FooterTab,
@@ -20,8 +21,23 @@ export default class FooterTabs extends Component {
       { icon: 'person', routeName: 'Profile', badges: 0 },
     ]
   }
-  go = (to) => {
-    console.log(to)
+  go = async (to) => {
+    const actualRoute = this.props.navigation.state.routeName
+    if (to === actualRoute) return
+    if (to === 'Profile') {
+      try {
+        let sesion = await AsyncStorage.getItem('sesion')
+        console.log('estamos aqui')
+        sesion = JSON.parse(sesion)
+        console.log(sesion)
+        if (sesion) this.props.navigation.navigate('Profile')
+        else this.props.navigation.navigate('Login')
+        return
+      } catch(e) {
+        console.log(e)
+      }
+    }
+    this.props.navigation.navigate(to)
   }
   render() {
   return (
@@ -29,14 +45,16 @@ export default class FooterTabs extends Component {
         <FooterTab>
           {this.tabs.map((tab, i) => {
           let badgeItem
+          const actualRoute = this.props.navigation.state.routeName          
           if (tab.badges) {
             badgeItem = <Badge><Text>2</Text></Badge>
           }
           return (
           <Button 
           key={i}
+          active={tab.routeName == actualRoute}
           badge={tab.badges ? true : false}
-          onPress={this.go(tab.routeName)} 
+          onPress={() => this.go(tab.routeName)} 
           vertical
           >
             {badgeItem}
