@@ -51,7 +51,7 @@ class CardComponent extends Component {
           <Left>
             <Body style={{flex: 1, flexDirection: 'row'}}>
               <Button transparent>
-                <Icon name="logo-facebook" style={{color: '#3B5998'}}/>
+                <Icon type="FontAwesome" name="facebook" style={{color: '#3B5998'}}/>
               </Button>
               <Button transparent>
                 <Icon name="logo-twitter" style={{color: '#00aced'}}/>

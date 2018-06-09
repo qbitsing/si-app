@@ -12,7 +12,6 @@ import {
 export default class FooterTabs extends Component {
   constructor (props) {
     super(props)
-    console.log(props)
     this.tabs = [
       { icon: 'home', routeName: 'Home', badges: 0 },
       { icon: 'apps', routeName: 'Categories', badges: 0 },
@@ -27,10 +26,11 @@ export default class FooterTabs extends Component {
     if (to === actualRoute) return
     if (to === 'Profile') {
       try {
-        const data = {uuid: '123d-dsd-123da', name: 'Lucho Arias'}
+        const data = {uuid: '123d-dsd-123da', name: 'Nicolás Arias'}
         // await AsyncStorage.removeItem('sesion')
-        // await AsyncStorage.setItem('sesion', JSON.stringify(data))
+        await AsyncStorage.setItem('sesion', JSON.stringify(data))
         let sesion = await AsyncStorage.getItem('sesion')
+        console.log(sesion)
         sesion = JSON.parse(sesion)
         if (sesion) navigation.navigate('Profile', {sesion})
         else navigation.navigate('Login')
