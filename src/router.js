@@ -16,7 +16,8 @@ const config = {
     title: 'AppName'
   }
 }
-export default {
+
+export {
   router,
   config
 }

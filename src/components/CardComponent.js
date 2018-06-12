@@ -5,9 +5,7 @@ import {
 } from 'react-native'
 import {
   Card,
-  View,
   CardItem,
-  Thumbnail,
   Body,
   Left,
   H3,

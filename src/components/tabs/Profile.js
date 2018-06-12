@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Text,
-  Icon,
   Container,
   Content
 } from 'native-base'
@@ -10,6 +10,7 @@ import Footer from '../FooterTabs'
 
 class Profile extends Component {
   render() {
+    console.log(this.props)
     const { navigation } = this.props
     const sesion = navigation.getParam('sesion')
     return (
@@ -23,4 +24,11 @@ class Profile extends Component {
   }
 }
 
-export default Profile
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    redux: state
+  }
+}
+
+export default connect(mapStateToProps)(Profile)
