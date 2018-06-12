@@ -1,70 +1,73 @@
 import React, { Component } from 'react'
 import {
   Image,
+  TouchableOpacity,
+  View,
   StyleSheet
 } from 'react-native'
 import {
   Card,
   CardItem,
-  Body,
   Left,
   H3,
   Text,
   Button,
-  Icon,
-  Content,
-  Right
+  Icon
 } from 'native-base'
 
 class CardComponent extends Component {
   render() {
+    const { data } = this.props
     const source = {
-      uri: "https://store.storeimages.cdn-apple.com/4666/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/x/iphone-x-silver-select-2017?wid=305&hei=358&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1515602510472"
+      uri: data.image
     }
     return (
-      <Card>
-        <CardItem>
-          <Left>
-            <Text note>Cierra en 11h</Text>
-          </Left>
-        </CardItem>
-        <CardItem cardBody>
-          <Left>
-            <Image style={styles.image} source={source}/>
-          </Left>
-          <Body>
-            <Content>
-                <Text>Tecnología > Celulares</Text>
-            </Content>
-            <Content>
-                <Text note>Quiero un phone X con 124 gb de almacenamiento, 8gb de RAM y color blanco.</Text>
-            </Content>
-            <Body style={styles.content}>
-              <H3>$2'500.000</H3>
-              <Text>narias</Text>
-            </Body>
-          </Body>
-        </CardItem>
-        <CardItem>
-          <Left>
-            <Body style={{flex: 1, flexDirection: 'row'}}>
-              <Button transparent>
-                <Icon type="FontAwesome" name="facebook" style={{color: '#3B5998'}}/>
-              </Button>
-              <Button transparent>
-                <Icon name="logo-twitter" style={{color: '#00aced'}}/>
-              </Button>
-            </Body>
-          </Left>
-          <Right style={styles.buttonRight}>
-            <Body style={styles.buttonRight}>
-              <Button transparent>
-                <Icon name="clipboard" style={{color: 'orange'}}/>
-              </Button>
-            </Body>
-          </Right>
-        </CardItem>
-      </Card>
+      <View>
+        <TouchableOpacity>
+          <Card>
+            <CardItem>
+              <Left>
+                <Text note>Cierra en {data.timeToClose}</Text>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <View style={styles.body}>
+                <View>
+                  <Image style={styles.image} source={source}/>
+                </View>
+                <View style={styles.info}>
+                    <View>
+                        <Text>{data.category} > {data.subcategory}</Text>
+                        <Text note>{data.description}</Text>
+                        <Text>Cantidad: {data.quantity}</Text>
+                    </View>
+                    <View style={styles.content}>
+                      <H3>{data.bestPrize}</H3>
+                      <Text>{data.bestBider}</Text>
+                    </View>
+                </View>
+              </View>
+            </CardItem>
+            <CardItem>
+              <View style={styles.buttonsContainer}>
+                <View style={styles.row}>
+                  <Button transparent>
+                    <Icon type="FontAwesome" name="facebook" style={{color: '#3B5998'}}/>
+                  </Button>
+                  <Button transparent>
+                    <Icon name="logo-twitter" style={{color: '#00aced'}}/>
+                  </Button>
+                </View>
+                <View>
+                  <Button transparent>
+                    <Icon name="clipboard" style={{color: 'orange'}}/>
+                  </Button>
+                </View>
+              </View>
+            </CardItem>
+          </Card>
+        </TouchableOpacity>
+      </View>
     )
   }
 }
@@ -72,19 +75,31 @@ class CardComponent extends Component {
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    width: null,
+    width: 130,
     height: 200
   },
-  buttonRight: {
+  body: {
     flex: 1,
-    flexDirection: 'row', 
-    justifyContent: 'flex-end'
+    paddingHorizontal: 5,
+    flexDirection: 'row'
+  },
+  info: {
+    flex: 1,
+    paddingLeft: 20
   },
   content: {
-    flex: 1,
+    flex: 3,
     alignItems: 'center',
-    justifyContent: 'center',
-    // backgroundColor: 'red'
+    justifyContent: 'center'
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  buttonsContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   }
 })
 

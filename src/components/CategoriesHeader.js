@@ -43,7 +43,7 @@ class CategoriesHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 90,
+    height: 80,
     paddingTop: 4,
     paddingLeft: 5,
     paddingRight: 5
@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
     borderColor:'rgba(0,0,0,0.2)',
     alignItems:'center',
     justifyContent:'center',
-    width:80,
-    height:80,
+    width:70,
+    height:70,
     backgroundColor:'#bdc3c7',
     borderRadius:100
   },
   Icon: {
-    fontSize: 65,
+    fontSize: 50,
     color: "#7f8c8d"
   }
 })
