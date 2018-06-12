@@ -15,6 +15,8 @@ import {
   Icon
 } from 'native-base'
 
+import { blueFacebook, copy, blueTwitter } from './colors'
+
 class CardComponent extends Component {
   render() {
     const { data } = this.props
@@ -52,15 +54,15 @@ class CardComponent extends Component {
               <View style={styles.buttonsContainer}>
                 <View style={styles.row}>
                   <Button transparent>
-                    <Icon type="FontAwesome" name="facebook" style={{color: '#3B5998'}}/>
+                    <Icon type="FontAwesome" name="facebook" style={{color: blueFacebook}}/>
                   </Button>
                   <Button transparent>
-                    <Icon name="logo-twitter" style={{color: '#00aced'}}/>
+                    <Icon name="logo-twitter" style={{color: blueTwitter}}/>
                   </Button>
                 </View>
                 <View>
                   <Button transparent>
-                    <Icon name="clipboard" style={{color: 'orange'}}/>
+                    <Icon name="clipboard" style={{color: copy}}/>
                   </Button>
                 </View>
               </View>
