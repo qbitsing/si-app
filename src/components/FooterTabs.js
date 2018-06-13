@@ -28,12 +28,14 @@ export default class FooterTabs extends Component {
       try {
         const data = {uuid: '123d-dsd-123da', name: 'Nicolás Arias'}
         console.log(data)
-        // await AsyncStorage.removeItem('sesion')
+        await AsyncStorage.removeItem('sesion')
         // await AsyncStorage.setItem('sesion', JSON.stringify(data))
-        // let sesion = await AsyncStorage.getItem('sesion')
-        // console.log(sesion)
-        // sesion = JSON.parse(sesion)
-        if (true) navigation.navigate('Profile', {sesion: data})
+        let sesion = await AsyncStorage.getItem('sesion')
+        console.log(sesion)
+        sesion = JSON.parse(sesion)
+        if (sesion) {
+          navigation.navigate('Profile')
+        }
         else navigation.navigate('Login')
         return
       } catch(e) {
