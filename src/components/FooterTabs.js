@@ -8,8 +8,9 @@ import {
   Text,
   Badge
 } from 'native-base'
+import { connect } from 'react-redux'
 
-export default class FooterTabs extends Component {
+class FooterTabs extends Component {
   constructor (props) {
     super(props)
     this.tabs = [
@@ -19,6 +20,9 @@ export default class FooterTabs extends Component {
       { icon: 'cart', routeName: 'Saler', badges: 5 },
       { icon: 'person', routeName: 'Profile', badges: 0 },
     ]
+  }
+  componentWillMount() {
+    console.log(this.props.activeTab)
   }
   go = async (to) => {
     const { navigation } = this.props
@@ -36,7 +40,7 @@ export default class FooterTabs extends Component {
         if (sesion) {
           navigation.navigate('Profile')
         }
-        else navigation.navigate('Login')
+        else navigation.navigate('BeforeLogin')
         return
       } catch(e) {
         console.log(e)
@@ -71,3 +75,20 @@ export default class FooterTabs extends Component {
     )
   }
 }
+
+function mapStateToProps(state = {}, props) {
+  return {
+    ...props,
+    changueTab: (activeTab) => {
+      state.dispatch({
+        type: 'SET_ACTIVE_TAB',
+        payload: {
+          activeTab
+        }
+      })
+    },
+    activeTab: state.activeTab
+  }
+}
+
+export default connect(mapStateToProps)(FooterTabs)

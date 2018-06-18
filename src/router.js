@@ -4,12 +4,14 @@ import SalerTab from './components/tabs/Saler'
 import CategoriesTab from './components/tabs/Categories'
 import Login from './components/stack/loginScreen'
 import SaleDetail from './components/SaleDetail'
+import BeforeLogin from './components/stack/beforeLogin'
 
 const router = {
   Home: HomeTab,
   Profile: ProfileTab,
   Categories: CategoriesTab,
   Saler: SalerTab,
+  BeforeLogin,
   Login,
   SaleDetail
 }
