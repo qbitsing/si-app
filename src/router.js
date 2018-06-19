@@ -16,8 +16,8 @@ const router = {
   SaleDetail
 }
 const config = {
-  navigationOptions: {
-    title: 'AppName'
+  navigationOptions: { 
+    headerMode: 'screen' 
   }
 }
 
