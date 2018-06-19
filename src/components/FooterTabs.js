@@ -30,6 +30,7 @@ class FooterTabs extends Component {
     if (to === actualRoute) return
     if (to === 'Profile') {
       try {
+        navigation.navigate('BeforeLogin')
         const data = {uuid: '123d-dsd-123da', name: 'Nicolás Arias'}
         console.log(data)
         await AsyncStorage.removeItem('sesion')

@@ -12,10 +12,19 @@ import {
   Input,
   Label,
 } from 'native-base';
+import http from './../../utils/http'
+import loginQuery from './../../utils/queries/login'
 
 import {blueFacebook} from './../colors'
 
 class LoginScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: null,
+      password: null
+    }
+  }
   static navigationOptions = ({navigation}) => {
     return {
       headerTintColor: 'white',
@@ -29,6 +38,18 @@ class LoginScreen extends Component {
       }
     }
   }
+  changeText = (e, element) => {
+    const state = {}
+    state[element] = e
+    this.setState(state)
+  }
+  logIn = async () => {
+    const email = this.state.email
+    const password = this.state.password
+    let res = await http('query', loginQuery({email, password}))
+    res = await res.json()
+    console.log(res)
+  }
   render() {
     const logo = 'https://www.iteffect.dk/wp-content/uploads/2018/01/skype-logo.png'
     return (
@@ -41,14 +62,24 @@ class LoginScreen extends Component {
           }}/>
           <FormItem floatingLabel last>
             <Label style={{color: '#eee'}}>Email</Label>
-            <Input  style={{color: '#eee'}} selectionColor="#eee"/>
+            <Input  
+            onChangeText={(e) => this.changeText(e, 'email')}
+            value={this.state.email}
+            style={{color: '#eee'}}
+            selectionColor="#eee"/>
           </FormItem>
           <FormItem floatingLabel last>
             <Label style={{color: '#eee'}}>Password</Label>
-            <Input style={{color: '#eee'}} selectionColor="#eee" secureTextEntry={true} />
+            <Input
+            onChangeText={(e) => this.changeText(e, 'password')}
+            value={this.state.password}
+            onSubmitEditing={this.logIn}
+            style={{color: '#eee'}} 
+            selectionColor="#eee" 
+            secureTextEntry={true} />
           </FormItem>
 
-          <Button style={styles.button} rounded full light>
+          <Button onPress={this.logIn} style={styles.button} full light>
             <Text> Login </Text>
           </Button>
         </Form>
