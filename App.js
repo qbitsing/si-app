@@ -8,14 +8,6 @@ import {Provider} from 'react-redux'
 const AppStackNavigator = StackNavigator(router, config)
 
 class App extends Component {
-  componentWillMount() {
-    store.dispatch({
-      type: 'SET_ACTIVE_TAB',
-      payload: {
-        activeTab: 'Categories'
-      }
-    })
-  }
   render() {
     console.log(store.getState())
     return (

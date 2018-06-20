@@ -11,8 +11,7 @@ import Footer from '../FooterTabs'
 class Profile extends Component {
   render() {
     const {navigation} = this.props
-    const {sesion} = this.props
-    console.log(this.props.redux)
+    const {sesion} = this.props.redux
     return (
       <Container>
         <Content>

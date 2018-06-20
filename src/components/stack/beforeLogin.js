@@ -10,13 +10,28 @@ import {
   Button,
   Icon
 } from 'native-base'
+import {connect} from 'react-redux'
 
 import {blueFacebook} from '../colors'
 
 class BeforeLogin extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      headerLeft: <Icon onPress={() => navigation.navigate('Home')} style={{color: '#fff'}} name="close"/>,
+      headerLeft: <Icon
+      onPress={() => {
+        const dispatch = navigation.getParam('dispatch')
+        if (dispatch) {
+          dispatch({
+            type: 'SET_ACTIVE_TAB',
+            payload: {
+              activeTab: 'Home'
+            }
+          })
+        }
+        navigation.navigate('Home')
+      }}
+      style={{color: '#fff'}}
+      name="close"/>,
       headerStyle: {
         position: 'absolute',
         paddingHorizontal: 15,
@@ -27,6 +42,9 @@ class BeforeLogin extends Component {
         right: 0
       }
     }
+  }
+  componentDidMount() {
+    this.props.navigation.setParams({ dispatch: this.props.dispatch });
   }
   go = (to) => this.props.navigation.navigate(to)
   render() {
@@ -101,4 +119,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default BeforeLogin
+export default connect()(BeforeLogin)

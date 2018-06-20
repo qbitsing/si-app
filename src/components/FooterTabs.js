@@ -21,33 +21,29 @@ class FooterTabs extends Component {
       { icon: 'person', routeName: 'Profile', badges: 0 },
     ]
   }
-  componentWillMount() {
-    console.log(this.props.activeTab)
-  }
   go = async (to) => {
     const { navigation } = this.props
     const actualRoute = navigation.state.routeName
     if (to === actualRoute) return
     if (to === 'Profile') {
       try {
-        navigation.navigate('BeforeLogin')
-        const data = {uuid: '123d-dsd-123da', name: 'Nicolás Arias'}
-        console.log(data)
-        await AsyncStorage.removeItem('sesion')
-        // await AsyncStorage.setItem('sesion', JSON.stringify(data))
-        let sesion = await AsyncStorage.getItem('sesion')
-        console.log(sesion)
-        sesion = JSON.parse(sesion)
-        if (sesion) {
-          navigation.navigate('Profile')
-        }
-        else navigation.navigate('BeforeLogin')
+        const sesion = false
+        if (!sesion) navigation.navigate('BeforeLogin')
         return
       } catch(e) {
         console.log(e)
       }
     }
-    this.props.navigation.navigate(to)
+    this.setTab(to)
+    navigation.navigate(to)
+  }
+  setTab = (activeTab) => {
+    this.props.dispatch({
+      type: 'SET_ACTIVE_TAB',
+      payload: {
+        activeTab
+      }
+    })
   }
   render() {
   return (
@@ -62,7 +58,7 @@ class FooterTabs extends Component {
           return (
           <Button
           key={i}
-          active={tab.routeName == actualRoute}
+          active={tab.routeName == this.props.activeTab}
           badge={tab.badges ? true : false}
           onPress={() => this.go(tab.routeName)} 
           vertical
@@ -78,17 +74,11 @@ class FooterTabs extends Component {
 }
 
 function mapStateToProps(state = {}, props) {
+  const {sesion, activeTab} = state
   return {
     ...props,
-    changueTab: (activeTab) => {
-      state.dispatch({
-        type: 'SET_ACTIVE_TAB',
-        payload: {
-          activeTab
-        }
-      })
-    },
-    activeTab: state.activeTab
+    activeTab,
+    sesion
   }
 }
 
