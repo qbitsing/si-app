@@ -14,7 +14,7 @@ import {
 } from 'native-base';
 import http from './../../utils/http'
 import loginQuery from './../../utils/queries/login'
-
+import { connect } from 'react-redux'
 import {blueFacebook} from './../colors'
 
 class LoginScreen extends Component {
@@ -44,11 +44,19 @@ class LoginScreen extends Component {
     this.setState(state)
   }
   logIn = async () => {
-    const email = this.state.email
+    const email = this.state.email.toLowerCase()
     const password = this.state.password
     let res = await http('query', loginQuery({email, password}))
     res = await res.json()
-    console.log(res)
+    const { data, errors } = res
+    if (errors) console.log(errors)
+    else {
+      this.props.dispatch({
+        type: 'SET_SESION',
+        payload: data.singin
+      })
+      this.props.navigation.navigate('Profile')
+  }
   }
   render() {
     const logo = 'https://www.iteffect.dk/wp-content/uploads/2018/01/skype-logo.png'
@@ -100,4 +108,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LoginScreen
+export default connect()(LoginScreen)

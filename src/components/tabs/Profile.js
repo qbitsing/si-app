@@ -10,9 +10,9 @@ import Footer from '../FooterTabs'
 
 class Profile extends Component {
   render() {
-    console.log(this.props)
-    const { navigation } = this.props
-    const sesion = navigation.getParam('sesion')
+    const {navigation} = this.props
+    const {sesion} = this.props
+    console.log(this.props.redux)
     return (
       <Container>
         <Content>

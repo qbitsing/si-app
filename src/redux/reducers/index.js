@@ -1,7 +1,10 @@
 function rootReducer (state = {}, action) {
   switch (action.type) {
     case 'SET_SESION':
-      return {...state, ...action.payload}
+      return {
+        ...state, 
+        sesion: action.payload
+      }
       break
     case 'SET_HOME':
       return {...state, ...action.payload}
