@@ -7,9 +7,12 @@ import {
   Picker,
   Icon,
   Textarea,
-  Button
+  Button,
+  Item,
+  Input
 } from 'native-base'
 import http from './../../utils/http'
+import mutation from './../../utils/mutations/createSale'
 import ImagePicker from 'react-native-image-picker'
 import {StyleSheet} from 'react-native'
 import Footer from './../FooterTabs'
@@ -21,8 +24,11 @@ class newSale extends Component {
     this.state = {
       subcategories: [],
       categories: this.props.categories,
-      subcategoriesSelected: null,
-      selected: null
+      subcategoriesSelected: "",
+      selected: "",
+      description: "",
+      quantity: 0,
+      brand: ""
     }
   }
   onCategorieChange(value) {
@@ -72,10 +78,14 @@ class newSale extends Component {
     })
   }
 
-  create() {
-
+  async create() {
+    
   }
-
+  changeText = (e, element) => {
+    const state = {}
+    state[element] = e
+    this.setState(state)
+  }
   render() {
     const {categories} = this.state
     const {subcategories} = this.state
@@ -118,7 +128,26 @@ class newSale extends Component {
                 })
               }
             </Picker>
-            <Textarea rowSpan={5} bordered placeholder="Descripcion" />
+            <Item regular>
+              <Input
+              onChangeText={(e) => this.changeText(e, 'brand')}
+              value={this.state.brand}
+              placeholder="Marca"
+              selectionColor="#eee" />
+            </Item>
+            <Textarea
+            value={this.state.description}
+            rowSpan={5}
+            onChangeText={(e) => this.changeText(e, 'quantity')}
+            bordered 
+            placeholder="Descripcion" />
+            <Item regular>
+              <Input
+                placeholder="Cantidad"
+                onChangeText={(e) => this.changeText(e, 'quantity')}
+                value={this.state.quantity}
+                selectionColor="#eee" />
+            </Item>
             <Button onPress={this.selectImage} light>
               <Text> Subir Foto </Text>
             </Button>
