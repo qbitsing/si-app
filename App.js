@@ -13,14 +13,32 @@ class App extends Component {
     try {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
-      console.log(sesion)
-      store.dispatch({
-        type: 'SET_SESION',
-        payload: sesion
-      })
+      this.dispatch('SET_SESION', sesion)
+      let categories = await AsyncStorage.getItem('categories')
+      if(!categories) {
+        console.log('entra')
+        categories = await fetch('https://api.mercadolibre.com/sites/MLC/categories')
+        categories = await categories.json()
+        for ([i, categorie] of categories.entries()) {
+          let categorieDetail = await fetch(`https://api.mercadolibre.com/categories/${categorie.id}`)
+          categorieDetail = await categorieDetail.json()
+          categories[i] = categorieDetail
+        }
+        await AsyncStorage.setItem('categories', JSON.stringify(categories))
+      } else {
+        categories = JSON.parse(categories)
+      }
+      this.dispatch('SET_SCATEGORIES', categories)
+      console.log(categories,sesion)
     } catch (e) {
       console.log(e)
     }
+  }
+  dispatch (type, payload) {
+    store.dispatch({
+      type,
+      payload
+    })
   }
   render() {
     console.log(store.getState())

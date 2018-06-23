@@ -9,6 +9,9 @@ function rootReducer (state = {}, action) {
     case 'SET_HOME':
       return {...state, ...action.payload}
       break
+    case 'SET_CATEGORIES':
+      return {...state, ...action.payload}
+    break
     default: return state
   }
 }

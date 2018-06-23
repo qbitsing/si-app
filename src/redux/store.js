@@ -2,7 +2,8 @@ import {createStore} from 'redux'
 import reducer from './reducers'
 
 const initialState = {
-  sesion: null
+  sesion: null,
+  categories: []
 }
 
 const store = createStore(
