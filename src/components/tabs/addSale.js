@@ -5,8 +5,11 @@ import {
   Text,
   Form,
   Picker,
-  Icon
+  Icon,
+  Textarea,
+  Button
 } from 'native-base'
+import ImagePicker from 'react-native-image-picker'
 import {StyleSheet} from 'react-native'
 import Footer from './../FooterTabs'
 import {connect} from 'react-redux'
@@ -36,6 +39,35 @@ class newSale extends Component {
   onSubcategorieChange(value) {
     this.setState({
       subcategoriesSelected: value
+    })
+  }
+  selectImage() {
+    console.log(ImagePicker)
+    let options = {
+      title: 'Select Avatar',
+      customButtons: [
+        {name: 'fb', title: 'Choose Photo from Facebook'},
+      ],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    }
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response)
+    
+      if (response.didCancel) {
+        console.log('User cancelled image picker')
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error)
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton)
+      }
+      else {
+        console.log(response)
+      }
     })
   }
   render() {
@@ -80,6 +112,10 @@ class newSale extends Component {
                 })
               }
             </Picker>
+            <Textarea rowSpan={5} bordered placeholder="Descripcion" />
+            <Button onPress={this.selectImage} light>
+              <Text> Subir Foto </Text>
+            </Button>
           </Form>
         </Content>
         <Footer activeTab="newSale" navigation={navigation}/>
