@@ -27,7 +27,7 @@ class Home extends Component {
           <CategoriesHeader/>
           <CardComponent data={data}/>
         </Content>
-        <Footer navigation={this.props.navigation}/>
+        <Footer activeTab="Home" navigation={this.props.navigation}/>
       </Container>
     )
   }

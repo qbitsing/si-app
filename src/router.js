@@ -5,6 +5,7 @@ import CategoriesTab from './components/tabs/Categories'
 import Login from './components/stack/loginScreen'
 import SaleDetail from './components/SaleDetail'
 import BeforeLogin from './components/stack/beforeLogin'
+import newSale from './components/tabs/addSale'
 
 const router = {
   Home: HomeTab,
@@ -13,7 +14,8 @@ const router = {
   Saler: SalerTab,
   BeforeLogin,
   Login,
-  SaleDetail
+  SaleDetail,
+  newSale
 }
 const config = {
   navigationOptions: { 

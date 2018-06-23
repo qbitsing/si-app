@@ -2,10 +2,7 @@ import {createStore} from 'redux'
 import reducer from './reducers'
 
 const initialState = {
-  sesion: {
-    username: 'nmarias'
-  },
-  activeTab: 'Home'
+  sesion: null
 }
 
 const store = createStore(

@@ -40,7 +40,7 @@ class Saler extends Component {
           {this.state.seg === 2 && <Text>Segment 2</Text>}
         </Content>
         </Content>
-        <Footer navigation={this.props.navigation}/>
+        <Footer activeTab="Saler" navigation={this.props.navigation}/>
       </Container>
     )
   }

@@ -12,12 +12,13 @@ class Profile extends Component {
   render() {
     const {navigation} = this.props
     const {sesion} = this.props.redux
+    console.log(sesion)
     return (
       <Container>
         <Content>
           <Text>Hola {sesion.name}</Text>
         </Content>
-        <Footer navigation={navigation}/>
+        <Footer activeTab="Profile" navigation={navigation}/>
       </Container>
     )
   }

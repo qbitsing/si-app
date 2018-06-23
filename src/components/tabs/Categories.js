@@ -23,7 +23,7 @@ class Categories extends Component {
           renderRow={(item) => <ListItem item={item}/>}>
           </List>
         </Content>
-        <Footer navigation={this.props.navigation}/>
+        <Footer activeTab="Categories" navigation={this.props.navigation}/>
       </Container>
     )
   }

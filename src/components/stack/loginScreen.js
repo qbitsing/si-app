@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Image
+  Image,
+  AsyncStorage
 } from 'react-native'
 import {
   Container,
@@ -51,6 +52,8 @@ class LoginScreen extends Component {
     const { data, errors } = res
     if (errors) console.log(errors)
     else {
+      const res = await AsyncStorage.setItem('sesion', JSON.stringify(data.singin))
+      console.log(res)
       this.props.dispatch({
         type: 'SET_SESION',
         payload: data.singin
@@ -86,10 +89,12 @@ class LoginScreen extends Component {
             selectionColor="#eee" 
             secureTextEntry={true} />
           </FormItem>
-
           <Button onPress={this.logIn} style={styles.button} full light>
             <Text> Login </Text>
           </Button>
+          <Text>¿Has olvidado tu contraseña?</Text>
+
+
         </Form>
       </Container>
     );
