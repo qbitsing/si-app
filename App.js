@@ -28,7 +28,7 @@ class App extends Component {
       } else {
         categories = JSON.parse(categories)
       }
-      this.dispatch('SET_SCATEGORIES', categories)
+      this.dispatch('SET_CATEGORIES', {categories})
       console.log(categories,sesion)
     } catch (e) {
       console.log(e)
