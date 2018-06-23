@@ -9,6 +9,7 @@ import {
   Textarea,
   Button
 } from 'native-base'
+import http from './../../utils/http'
 import ImagePicker from 'react-native-image-picker'
 import {StyleSheet} from 'react-native'
 import Footer from './../FooterTabs'
@@ -70,6 +71,11 @@ class newSale extends Component {
       }
     })
   }
+
+  create() {
+
+  }
+
   render() {
     const {categories} = this.state
     const {subcategories} = this.state
@@ -115,6 +121,9 @@ class newSale extends Component {
             <Textarea rowSpan={5} bordered placeholder="Descripcion" />
             <Button onPress={this.selectImage} light>
               <Text> Subir Foto </Text>
+            </Button>
+            <Button onPress={this.create} full light>
+              <Text> Crear Subasta </Text>
             </Button>
           </Form>
         </Content>
