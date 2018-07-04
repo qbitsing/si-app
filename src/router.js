@@ -15,20 +15,11 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 const TabsNavigator = createMaterialBottomTabNavigator(
 {
-  Home: {
-    key: 'ht',
-    screen: HomeTab
-  },
-  Categories: {
-    key: 'ct',
-    screen: CategoriesTab
-  },
+  Home: HomeTab,
+  Categories: CategoriesTab,
   newSale,
   Saler: SalerTab,
-  Profile: {
-    key: 'pt',
-    screen: ProfileTab
-  }
+  Profile: ProfileTab
 },
 {
   initialRouteName: 'Home',

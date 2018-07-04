@@ -20,6 +20,14 @@ import {connect} from 'react-redux'
 class newSale extends Component {
   static navigationOptions = ({navigation}) => {
     return {
+      tabBarOnPress: () => {
+        const sesion = navigation.getParam('sesion')
+        if (sesion) {
+          navigation.navigate('newSale')
+        } else {
+          navigation.navigate('BeforeLogin')
+        }
+      },
       title: 'Subastar',
       tabBarIcon: ({focused, tintColor}) => {
         return <Icon name="add" style={{color: '#fff'}}/>
@@ -34,7 +42,7 @@ class newSale extends Component {
       subcategoriesSelected: "",
       selected: "",
       description: "",
-      quantity: 0,
+      quantity: "",
       brand: ""
     }
   }
@@ -56,9 +64,8 @@ class newSale extends Component {
     })
   }
   selectImage() {
-    console.log(ImagePicker)
     let options = {
-      title: 'Select Avatar',
+      title: 'Selecciona una foto',
       customButtons: [
         {name: 'fb', title: 'Choose Photo from Facebook'},
       ],
@@ -124,7 +131,7 @@ class newSale extends Component {
               iosHeader="Subcategoría"
               placeholder="Subcategoría"
               iosIcon={<Icon name="arrow-dropdown-circle"
-                  style={{ color: "#007aff", fontSize: 25 }} />}
+              style={{ color: "#007aff", fontSize: 25 }} />}
               style={{ width: undefined }}
               selectedValue={this.state.subcategoriesSelected}
               onValueChange={this.onSubcategorieChange.bind(this)}
