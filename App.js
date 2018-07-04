@@ -13,8 +13,9 @@ class App extends Component {
     try {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
-      this.dispatch('SET_SESION', sesion)
+      this.dispatch('SET_SESION', null)
       let categories = await AsyncStorage.getItem('categories')
+      categories = { hola: "s" }
       if(!categories) {
         console.log('entra')
         categories = await fetch('https://api.mercadolibre.com/sites/MLC/categories')
