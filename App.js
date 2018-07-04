@@ -3,6 +3,7 @@ import AppNavigator from './src/app-navigator-with-state'
 import store from './src/redux/store'
 import {Provider} from 'react-redux'
 import {AsyncStorage} from 'react-native'
+import { NavigationActions } from 'react-navigation';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -10,7 +11,12 @@ class App extends Component {
     try {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
-      this.dispatch('SET_SESION', null)
+      const setParamsAction = NavigationActions.setParams({
+        params: { sesion: sesion },
+        key: 'Profile',
+      })
+      store.dispatch(setParamsAction)
+      this.dispatch('SET_SESION', {name: 'Nicolás Arias'})
       let categories = await AsyncStorage.getItem('categories')
       categories = { hola: "s" }
       if(!categories) {

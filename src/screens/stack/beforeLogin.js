@@ -18,18 +18,7 @@ class BeforeLogin extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerLeft: <Icon
-      onPress={() => {
-        const dispatch = navigation.getParam('dispatch')
-        if (dispatch) {
-          dispatch({
-            type: 'SET_ACTIVE_TAB',
-            payload: {
-              activeTab: 'Home'
-            }
-          })
-        }
-        navigation.navigate('Home')
-      }}
+      onPress={() => navigation.goBack()}
       style={{color: '#fff'}}
       name="close"/>,
       headerStyle: {

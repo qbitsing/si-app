@@ -7,27 +7,34 @@ import {
   Icon
 } from 'native-base'
 
-import Footer from '../../components/FooterTabs'
 
 class Profile extends Component {
   static navigationOptions = ({navigation}) => {
     return {
+      tabBarOnPress: () => {
+        console.log(navigation.getParam('sesion'))
+       navigation.navigate('Profile')
+      },
       title: 'Perfil',
       tabBarIcon: ({focused, tintColor}) => {
         return <Icon name="person" style={{color: '#fff'}}/>
       }
     }
   }
+  // componentWillMount () {
+  //   console.log('hola')
+  //   this.props.navigation.setParams({
+  //     sesion: this.props.redux.sesion
+  //   })
+  // }
   render() {
-    const {navigation} = this.props
     const {sesion} = this.props.redux
-    console.log(sesion)
+    const {navigation} = this.props
     return (
       <Container>
         <Content>
-          <Text>Hola {sesion.name}</Text>
+          <Text>Hola {sesion ? sesion.name : 'Desconocido'}</Text>
         </Content>
-        <Footer activeTab="Profile" navigation={navigation}/>
       </Container>
     )
   }

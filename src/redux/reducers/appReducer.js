@@ -1,6 +1,7 @@
 function rootReducer (state = {}, action) {
   switch (action.type) {
     case 'SET_SESION':
+    console.log('se está seteando la sesion...')
       return {
         ...state, 
         sesion: action.payload
