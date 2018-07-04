@@ -1,13 +1,19 @@
 import React, {Component} from 'react'
-import {Container, Content, Text, Segment, Button} from 'native-base'
-import Footer from './../../components/FooterTabs'
-
+import {Container, Content, Text, Segment, Button, Icon} from 'native-base'
 
 class Saler extends Component {
   constructor(props) {
     super(props);
     this.state = {
       seg: 1
+    }
+  }
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Proveedor',
+      tabBarIcon: ({focused, tintColor}) => {
+        return <Icon name="cart" style={{color: '#fff'}}/>
+      }
     }
   }
 
@@ -40,7 +46,6 @@ class Saler extends Component {
           {this.state.seg === 2 && <Text>Segment 2</Text>}
         </Content>
         </Content>
-        <Footer activeTab="Saler" navigation={this.props.navigation}/>
       </Container>
     )
   }

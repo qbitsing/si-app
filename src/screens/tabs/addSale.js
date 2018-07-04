@@ -22,8 +22,7 @@ class newSale extends Component {
     return {
       title: 'Subastar',
       tabBarIcon: ({focused, tintColor}) => {
-        
-        return <Icon name="add" />
+        return <Icon name="add" style={{color: '#fff'}}/>
       }
     }
   } 

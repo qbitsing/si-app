@@ -2,14 +2,18 @@ import React, {Component} from 'react'
 import {
   Container,
   Content,
-  List
+  List,
+  Icon
 } from 'native-base';
 import ListItem from './../../components/listItem'
 
 class Categories extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Categorías'
+      title: 'Categorías',
+      tabBarIcon: ({focused, tintColor}) => {
+        return <Icon name="apps" style={{color: '#fff'}}/>
+      }
     }
   } 
   render() {

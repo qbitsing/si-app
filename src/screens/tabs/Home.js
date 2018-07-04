@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {StyleSheet} from 'react-native'
 import {
   Container,
-  Content
+  Content,
+  Icon
 } from 'native-base'
 import CardComponent from './../../components/Card'
 import CategoriesHeader from './../../components/CategoriesHeader'
@@ -10,7 +11,10 @@ import CategoriesHeader from './../../components/CategoriesHeader'
 class Home extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Inicio'
+      title: 'Inicio',
+      tabBarIcon: ({focused, tintColor}) => {
+        return <Icon name="home" style={{color: '#fff'}}/>
+      }
     }
   } 
   render() {
