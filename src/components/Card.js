@@ -15,7 +15,7 @@ import {
   Icon
 } from 'native-base'
 
-import { blueFacebook, copy, blueTwitter } from './colors'
+import { blueFacebook, copy, blueTwitter } from './../colors'
 
 class CardComponent extends Component {
   render() {

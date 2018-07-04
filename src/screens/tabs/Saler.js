@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Content, Text, Segment, Button} from 'native-base'
-import Footer from './../FooterTabs'
+import Footer from './../../components/FooterTabs'
 
 
 class Saler extends Component {

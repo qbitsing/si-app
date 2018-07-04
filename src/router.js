@@ -1,13 +1,18 @@
-import HomeTab from './components/tabs/Home'
-import ProfileTab from './components/tabs/Profile'
-import SalerTab from './components/tabs/Saler'
-import CategoriesTab from './components/tabs/Categories'
-import Login from './components/stack/loginScreen'
-import SaleDetail from './components/SaleDetail'
-import BeforeLogin from './components/stack/beforeLogin'
-import newSale from './components/tabs/addSale'
+import HomeTab from './screens/tabs/Home'
+import ProfileTab from './screens/tabs/Profile'
+import SalerTab from './screens/tabs/Saler'
+import CategoriesTab from './screens/tabs/Categories'
+import Login from './screens/stack/loginScreen'
+import SaleDetail from './screens/SaleDetail'
+import BeforeLogin from './screens/stack/beforeLogin'
+import newSale from './screens/tabs/addSale'
 
-const router = {
+import {
+  createStackNavigator
+} from 'react-navigation'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+
+const StackNavigator = createStackNavigator({
   Home: HomeTab,
   Profile: ProfileTab,
   Categories: CategoriesTab,
@@ -16,14 +21,10 @@ const router = {
   Login,
   SaleDetail,
   newSale
-}
-const config = {
+},
+{
   navigationOptions: { 
     headerMode: 'screen' 
   }
-}
-
-export {
-  router,
-  config
-}
+})
+export default StackNavigator

@@ -16,7 +16,7 @@ import {
 import http from './../../utils/http'
 import loginQuery from './../../utils/queries/login'
 import { connect } from 'react-redux'
-import {blueFacebook} from './../colors'
+import {blueFacebook} from './../../colors'
 
 class LoginScreen extends Component {
   constructor(props) {

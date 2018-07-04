@@ -4,8 +4,8 @@ import {
   Content,
   List
 } from 'native-base';
-import ListItem from './../listItem'
-import Footer from './../FooterTabs'
+import ListItem from './../../components/listItem'
+import Footer from './../../components/FooterTabs'
 
 class Categories extends Component {
   render() {

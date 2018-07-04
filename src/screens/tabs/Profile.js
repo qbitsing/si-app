@@ -6,7 +6,7 @@ import {
   Content
 } from 'native-base'
 
-import Footer from '../FooterTabs'
+import Footer from '../../components/FooterTabs'
 
 class Profile extends Component {
   render() {

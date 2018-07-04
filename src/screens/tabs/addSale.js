@@ -15,7 +15,7 @@ import http from './../../utils/http'
 import mutation from './../../utils/mutations/createSale'
 import ImagePicker from 'react-native-image-picker'
 import {StyleSheet} from 'react-native'
-import Footer from './../FooterTabs'
+import Footer from './../../components/FooterTabs'
 import {connect} from 'react-redux'
 
 class newSale extends Component {

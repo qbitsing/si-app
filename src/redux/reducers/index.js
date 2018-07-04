@@ -1,19 +1,3 @@
-function rootReducer (state = {}, action) {
-  switch (action.type) {
-    case 'SET_SESION':
-      return {
-        ...state, 
-        sesion: action.payload
-      }
-      break
-    case 'SET_HOME':
-      return {...state, ...action.payload}
-      break
-    case 'SET_CATEGORIES':
-      return {...state, ...action.payload}
-    break
-    default: return state
-  }
-}
+import appReducer from './appReducer'
 
-export default rootReducer
+export default appReducer

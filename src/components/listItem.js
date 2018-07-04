@@ -1,5 +1,5 @@
 import React from 'react'
-import {gray} from './colors'
+import {gray} from '../colors'
 import {
   TouchableOpacity,
   View,

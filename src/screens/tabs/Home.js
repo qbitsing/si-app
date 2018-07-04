@@ -4,9 +4,9 @@ import {
   Container,
   Content
 } from 'native-base'
-import Footer from './../FooterTabs'
-import CardComponent from './../CardComponent'
-import CategoriesHeader from './../CategoriesHeader'
+import Footer from './../../components/FooterTabs'
+import CardComponent from './../../components/Card'
+import CategoriesHeader from './../../components/CategoriesHeader'
 
 class Home extends Component {
   render() {

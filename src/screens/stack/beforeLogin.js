@@ -12,7 +12,7 @@ import {
 } from 'native-base'
 import {connect} from 'react-redux'
 
-import {blueFacebook} from '../colors'
+import {blueFacebook} from '../../colors'
 
 class BeforeLogin extends Component {
   static navigationOptions = ({navigation}) => {
