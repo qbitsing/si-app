@@ -4,11 +4,15 @@ import {
   Container,
   Content
 } from 'native-base'
-import Footer from './../../components/FooterTabs'
 import CardComponent from './../../components/Card'
 import CategoriesHeader from './../../components/CategoriesHeader'
 
 class Home extends Component {
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Inicio'
+    }
+  } 
   render() {
     const data = {
       image: 'https://store.storeimages.cdn-apple.com/4666/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/x/iphone-x-silver-select-2017?wid=305&hei=358&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1515602510472',
@@ -27,7 +31,6 @@ class Home extends Component {
           <CategoriesHeader/>
           <CardComponent data={data}/>
         </Content>
-        <Footer activeTab="Home" navigation={this.props.navigation}/>
       </Container>
     )
   }

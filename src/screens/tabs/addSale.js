@@ -15,10 +15,18 @@ import http from './../../utils/http'
 import mutation from './../../utils/mutations/createSale'
 import ImagePicker from 'react-native-image-picker'
 import {StyleSheet} from 'react-native'
-import Footer from './../../components/FooterTabs'
 import {connect} from 'react-redux'
 
 class newSale extends Component {
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Subastar',
+      tabBarIcon: ({focused, tintColor}) => {
+        
+        return <Icon name="add" />
+      }
+    }
+  } 
   constructor(props) {
     super(props)
     this.state = {
@@ -156,7 +164,6 @@ class newSale extends Component {
             </Button>
           </Form>
         </Content>
-        <Footer activeTab="newSale" navigation={navigation}/>
       </Container>
     )
   }
@@ -170,7 +177,7 @@ function mapStateToProps(state, props) {
   console.log(state)
   return {
     ...props,
-    categories: state.categories
+    categories: state.app.categories
   }
 }
 

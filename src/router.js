@@ -12,15 +12,25 @@ import {
 } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
-const StackNavigator = createStackNavigator({
+const TabsNavigator = createMaterialBottomTabNavigator(
+{
   Home: HomeTab,
-  Profile: ProfileTab,
   Categories: CategoriesTab,
+  newSale,
   Saler: SalerTab,
+  Profile: ProfileTab
+},
+{
+  activeTintColor: '#f0edf6',
+  inactiveTintColor: '#3e2465',
+}
+)
+
+const StackNavigator = createStackNavigator({
+  TabsNavigator,
   BeforeLogin,
   Login,
-  SaleDetail,
-  newSale
+  SaleDetail
 },
 {
   navigationOptions: { 

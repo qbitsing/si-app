@@ -1,14 +1,28 @@
-import {createStore} from 'redux'
+import {
+  createStore,
+  applyMiddleware
+} from 'redux'
 import reducer from './reducers'
+import {
+  createReactNavigationReduxMiddleware
+} from 'react-navigation-redux-helpers'
 
 const initialState = {
-  sesion: null,
-  categories: []
+  app: {
+    sesion: null,
+    categories: []
+  }
 }
+
+const navigationMiddleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.navigation
+)
 
 const store = createStore(
   reducer,
-  initialState
+  initialState,
+  applyMiddleware(navigationMiddleware),
 )
 
 export default store

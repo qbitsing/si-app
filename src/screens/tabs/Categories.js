@@ -5,9 +5,13 @@ import {
   List
 } from 'native-base';
 import ListItem from './../../components/listItem'
-import Footer from './../../components/FooterTabs'
 
 class Categories extends Component {
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Categorías'
+    }
+  } 
   render() {
     const categories = [
       {name: 'Tecnología', icon: 'mobile-phone'},
@@ -23,7 +27,6 @@ class Categories extends Component {
           renderRow={(item) => <ListItem item={item}/>}>
           </List>
         </Content>
-        <Footer activeTab="Categories" navigation={this.props.navigation}/>
       </Container>
     )
   }

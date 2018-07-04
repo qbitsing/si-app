@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
-import AppNavigator from './src/router'
+import AppNavigator from './src/app-navigator-with-state'
 import store from './src/redux/store'
 import {Provider} from 'react-redux'
 import {AsyncStorage} from 'react-native'
 
 class App extends Component {
   componentDidMount = async () => {
+    console.log(store.getState())
     try {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
@@ -32,6 +33,7 @@ class App extends Component {
     }
   }
   dispatch (type, payload) {
+    console.log(store)
     store.dispatch({
       type,
       payload
