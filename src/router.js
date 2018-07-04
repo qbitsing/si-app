@@ -13,7 +13,7 @@ import {
 } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
-const TabsNavigator = createBottomTabNavigator(
+const TabsNavigator = createMaterialBottomTabNavigator(
 {
   Home: {
     key: 'ht',

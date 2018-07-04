@@ -12,7 +12,7 @@ class App extends Component {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
       const setParamsAction = NavigationActions.setParams({
-        params: { sesion: sesion },
+        params: { sesion: null },
         key: 'Profile',
       })
       store.dispatch(setParamsAction)

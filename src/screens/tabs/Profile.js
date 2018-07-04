@@ -12,8 +12,12 @@ class Profile extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       tabBarOnPress: () => {
-        console.log(navigation.getParam('sesion'))
-       navigation.navigate('Profile')
+      const sesion = navigation.getParam('sesion')
+      if (sesion) {
+        navigation.navigate('Profile')
+      } else {
+        navigation.navigate('BeforeLogin')
+      }
       },
       title: 'Perfil',
       tabBarIcon: ({focused, tintColor}) => {
@@ -21,12 +25,6 @@ class Profile extends Component {
       }
     }
   }
-  // componentWillMount () {
-  //   console.log('hola')
-  //   this.props.navigation.setParams({
-  //     sesion: this.props.redux.sesion
-  //   })
-  // }
   render() {
     const {sesion} = this.props.redux
     const {navigation} = this.props
