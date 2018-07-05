@@ -23,14 +23,14 @@ class newSale extends Component {
       tabBarOnPress: () => {
         const sesion = navigation.getParam('sesion')
         if (sesion) {
-          navigation.navigate('newSale')
+          navigation.navigate('Steeper')
         } else {
           navigation.navigate('BeforeLogin')
         }
       },
       title: 'Subastar',
       tabBarIcon: ({focused, tintColor}) => {
-        return <Icon name="add" style={{color: '#fff'}}/>
+        return <Icon name="add" style={{color: tintColor}}/>
       }
     }
   } 
@@ -43,7 +43,8 @@ class newSale extends Component {
       selected: "",
       description: "",
       quantity: "",
-      brand: ""
+      brand: "",
+      textInputValue: null
     }
   }
   onCategorieChange(value) {
@@ -102,6 +103,7 @@ class newSale extends Component {
   }
   render() {
     const {categories} = this.state
+    console.log(categories)
     const {subcategories} = this.state
     const {navigation} = this.props
     return (

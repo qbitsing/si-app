@@ -12,7 +12,7 @@ class Saler extends Component {
     return {
       title: 'Proveedor',
       tabBarIcon: ({focused, tintColor}) => {
-        return <Icon name="cart" style={{color: '#fff'}}/>
+        return <Icon name="cart" style={{color: tintColor}}/>
       }
     }
   }

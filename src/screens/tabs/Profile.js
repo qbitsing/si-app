@@ -21,7 +21,7 @@ class Profile extends Component {
       },
       title: 'Perfil',
       tabBarIcon: ({focused, tintColor}) => {
-        return <Icon name="person" style={{color: '#fff'}}/>
+        return <Icon name="person" style={{color: tintColor}}/>
       }
     }
   }

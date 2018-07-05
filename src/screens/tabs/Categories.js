@@ -12,7 +12,7 @@ class Categories extends Component {
     return {
       title: 'Categorías',
       tabBarIcon: ({focused, tintColor}) => {
-        return <Icon name="apps" style={{color: tintColor}}/>
+        return <Icon name="apps" style={{color:tintColor}}/>
       }
     }
   } 

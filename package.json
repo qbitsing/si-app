@@ -11,6 +11,7 @@
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-image-picker": "0.26.10",
+    "react-native-stager": "^1.0.0",
     "react-navigation": "2.5.3",
     "react-navigation-material-bottom-tabs": "0.3.0",
     "react-navigation-redux-helpers": "2.0.2",

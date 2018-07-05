@@ -6,6 +6,7 @@ import Login from './screens/stack/loginScreen'
 import SaleDetail from './screens/SaleDetail'
 import BeforeLogin from './screens/stack/beforeLogin'
 import newSale from './screens/tabs/addSale'
+import Steeper from './screens/stack/addSaleSteeper'
 
 import {
   createStackNavigator,
@@ -23,18 +24,18 @@ const TabsNavigator = createMaterialBottomTabNavigator(
 },
 {
   initialRouteName: 'Home',
-  // labeled: false,
-  activeTintColor: '#3498db',
-  inactiveTintColor: '#3e2465',
-  barStyle: { backgroundColor: '#eee' },
+  activeTintColor: '#2c3e50',
+  inactiveTintColor: '#bdc3c7',
+  barStyle: { backgroundColor: '#ecf0f1' },
 }
 )
 
 const StackNavigator = createStackNavigator({
   TabsNavigator,
+  Steeper,
   BeforeLogin,
   Login,
-  SaleDetail
+  SaleDetail,
 },
 {
   navigationOptions: { 

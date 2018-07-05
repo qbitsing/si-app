@@ -13,7 +13,7 @@ class Home extends Component {
     return {
       title: 'Inicio',
       tabBarIcon: ({focused, tintColor}) => {
-        return <Icon name="home" style={{color: '#fff'}}/>
+        return <Icon name="home" style={{color: tintColor}}/>
       }
     }
   } 
