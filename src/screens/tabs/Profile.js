@@ -4,8 +4,19 @@ import {
   Text,
   Container,
   Content,
-  Icon
-} from 'native-base'
+  Tab,
+  Tabs,
+  List,
+  ListItem,
+  Icon,
+  Body,
+  Right,
+  Thumbnail,
+} from 'native-base';
+import {
+  StyleSheet,
+  View
+} from 'react-native'
 
 
 class Profile extends Component {
@@ -30,13 +41,62 @@ class Profile extends Component {
     const {navigation} = this.props
     return (
       <Container>
-        <Content>
-          <Text>Hola {sesion ? sesion.name : 'Desconocido'}</Text>
+        <Content style={{backgroundColor: '#fff'}}>
+          <View style={styles.PhotoCard}>  
+              <Text style={styles.name}>{sesion.name}</Text>
+              <Thumbnail style={{height:180,width:180, borderRadius:100}} source={{uri: 'http://cdn.revistagq.com/uploads/images/thumbs/201501/brad_pitt_8257_645x485.jpg'}} />
+          </View>
+        <Tabs initialPage={0}>
+          <Tab heading="INFORMACION">
+          <List style={{marginTop:0}}>
+            <ListItem icon>
+              <Body >
+                <Text style={{fontSize:17}}>{sesion.email}</Text>
+              </Body>
+              <Right>
+                <Icon style={{fontSize:20, color:'blue' }} name="plane"/>
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Body >
+                <Text style={{fontSize:17}}>{sesion.email}</Text>
+              </Body>
+              <Right>
+                <Icon style={{fontSize:20, color:'blue' }} name="plane"/>
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Body >
+                <Text style={{fontSize:17}}>{sesion.email}</Text>
+              </Body>
+              <Right>
+                <Icon style={{fontSize:20, color:'blue' }} name="plane"/>
+              </Right>
+            </ListItem>
+          </List>
+          </Tab>  
+          <Tab heading="MIS SUBASTAS">  
+              <Text>Hola user</Text>
+          </Tab>  
+        </Tabs>
         </Content>
       </Container>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  PhotoCard: {
+    height:300,
+    backgroundColor:'#3B5998',
+    alignItems:'center',
+    justifyContent: 'center'
+  },
+  name: {
+    color:'white',
+    fontSize:20
+  }
+})
 
 function mapStateToProps(state, props) {
   return {

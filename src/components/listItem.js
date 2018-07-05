@@ -6,9 +6,7 @@ import {
   StyleSheet
 } from 'react-native'
 import {
-  ListItem,
   Left,
-  Body,
   Text,
   Icon,
   Right
@@ -16,16 +14,19 @@ import {
 
 function listItem (props) {
   const {item} = props
+  console.log(item)
   return (
-    <ListItem>
-      <Left>
-          <Icon style={styles.icon} type="FontAwesome" name={item.icon} />
-          <Text style={styles.text}>{item.name}</Text>
-      </Left>
-      <Right>
-        <Icon name="arrow-forward" />
-      </Right>
-    </ListItem>
+    <TouchableOpacity>
+      <View style={styles.listItem}>
+        <View style={{flexDirection: 'row'}}>
+            <Icon style={styles.icon} type="FontAwesome" name='plane' />
+            <Text style={styles.text}>{item.name}</Text>
+        </View>
+        <Right>
+          <Icon name="arrow-forward" />
+        </Right>
+      </View>
+    </TouchableOpacity>
   )
 }
 
@@ -35,6 +36,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     width: 40,
     color: gray
+  },
+  listItem: {
+    flex: 1,
+    backgroundColor: '#ecf0f1',
+    flexDirection: 'row',
+    borderBottomColor: '#000',
+    padding: 10
   },
   text: {
     color: 'gray'

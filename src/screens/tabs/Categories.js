@@ -4,7 +4,8 @@ import {
   Content,
   List,
   Icon
-} from 'native-base';
+} from 'native-base'
+import {connect} from 'react-redux'
 import ListItem from './../../components/listItem'
 
 class Categories extends Component {
@@ -17,13 +18,7 @@ class Categories extends Component {
     }
   } 
   render() {
-    const categories = [
-      {name: 'Tecnología', icon: 'mobile-phone'},
-      {name: 'Categoría 2', icon: 'mobile-phone'},
-      {name: 'Tecnología', icon: 'facebook'},
-      {name: 'Tecnología', icon: 'github'},
-      {name: 'Tecnología', icon: 'clipboard'},
-    ]
+    const {categories} = this.props
     return(
       <Container style={{backgroundColor: 'white'}}>
         <Content>
@@ -36,4 +31,12 @@ class Categories extends Component {
   }
 }
 
-export default Categories
+function mapStateToProps(state, props) {
+  console.log(state)
+  return {
+    ...props,
+    categories: state.app.categories
+  }
+}
+
+export default connect(mapStateToProps)(Categories)
