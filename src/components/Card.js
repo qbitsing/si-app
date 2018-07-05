@@ -24,47 +24,19 @@ class CardComponent extends Component {
       uri: data.image
     }
     return (
-      <View>
+      <View style={styles.container}>
         <TouchableOpacity>
           <Card>
-            <CardItem>
-              <Left>
-                <Text note>Cierra en {data.timeToClose}</Text>
-              </Left>
-            </CardItem>
             <CardItem cardBody>
-              <View style={styles.body}>
-                <View>
-                  <Image style={styles.image} source={source}/>
-                </View>
-                <View style={styles.info}>
-                    <View>
-                        <Text>{data.category} > {data.subcategory}</Text>
-                        <Text note>{data.description}</Text>
-                        <Text>Cantidad: {data.quantity}</Text>
-                    </View>
-                    <View style={styles.content}>
-                      <H3>{data.bestPrize}</H3>
-                      <Text>{data.bestBider}</Text>
-                    </View>
-                </View>
-              </View>
+              <Image style={styles.image} source={source}/>
             </CardItem>
             <CardItem>
-              <View style={styles.buttonsContainer}>
-                <View style={styles.row}>
-                  <Button transparent>
-                    <Icon type="FontAwesome" name="facebook" style={{color: blueFacebook}}/>
-                  </Button>
-                  <Button transparent>
-                    <Icon name="logo-twitter" style={{color: blueTwitter}}/>
-                  </Button>
-                </View>
+              <View>
                 <View>
-                  <Button transparent>
-                    <Icon name="clipboard" style={{color: copy}}/>
-                  </Button>
+                  <Text style={{fontSize: 16}}>{data.bestPrize}</Text>
+                  <Text style={{fontSize: 13,lineHeight: 13}}>{data.bestBider}</Text>
                 </View>
+                <Text note>{data.description}</Text>
               </View>
             </CardItem>
           </Card>
@@ -75,15 +47,14 @@ class CardComponent extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: '50%',
+  },
   image: {
     flex: 1,
-    width: 130,
-    height: 200
-  },
-  body: {
-    flex: 1,
-    paddingHorizontal: 5,
-    flexDirection: 'row'
+    resizeMode: 'contain',
+    width: null,
+    height: 140
   },
   info: {
     flex: 1,

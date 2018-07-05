@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {
   Container,
   Content,
@@ -33,7 +33,11 @@ class Home extends Component {
       <Container style={styles.container}>
         <Content>
           <CategoriesHeader/>
-          <CardComponent data={data}/>
+          <View style={styles.layout}>
+            <CardComponent data={data}/>
+            <CardComponent data={data}/>
+            <CardComponent data={data}/>
+          </View>
         </Content>
       </Container>
     )
@@ -41,6 +45,13 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  layout: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'flex-start',
+    flexWrap: 'wrap',
+  },
   container: {
     flex: 1,
     backgroundColor: 'white'
