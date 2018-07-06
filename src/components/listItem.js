@@ -6,7 +6,6 @@ import {
   StyleSheet
 } from 'react-native'
 import {
-  Left,
   Text,
   Icon,
   Right

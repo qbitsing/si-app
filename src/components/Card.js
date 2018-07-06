@@ -8,11 +8,7 @@ import {
 import {
   Card,
   CardItem,
-  Left,
-  H3,
-  Text,
-  Button,
-  Icon
+  Text
 } from 'native-base'
 
 import { blueFacebook, copy, blueTwitter } from './../colors'
