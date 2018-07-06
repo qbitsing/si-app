@@ -14,7 +14,6 @@ import {
 
 function listItem (props) {
   const {item} = props
-  console.log(item)
   return (
     <TouchableOpacity>
       <View style={styles.listItem}>

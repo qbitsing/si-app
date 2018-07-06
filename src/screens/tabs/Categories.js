@@ -32,7 +32,6 @@ class Categories extends Component {
 }
 
 function mapStateToProps(state, props) {
-  console.log(state)
   return {
     ...props,
     categories: state.app.categories

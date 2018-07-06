@@ -8,10 +8,7 @@ import BeforeLogin from './screens/stack/beforeLogin'
 import newSale from './screens/tabs/addSale'
 import Steeper from './screens/stack/addSaleSteeper'
 
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
 const TabsNavigator = createMaterialBottomTabNavigator(
@@ -42,4 +39,5 @@ const StackNavigator = createStackNavigator({
     headerMode: 'screen' 
   }
 })
+
 export default StackNavigator

@@ -1,13 +1,34 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import AppNavigator from './src/app-navigator-with-state'
 import store from './src/redux/store'
 import {Provider} from 'react-redux'
-import {AsyncStorage} from 'react-native'
+import {AsyncStorage, BackHandler} from 'react-native'
 import { NavigationActions } from 'react-navigation';
+import Loader from './src/components/loader'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loader: false
+    }
+  }
+  handleBack () {
+    store.dispatch(NavigationActions.back())
+    return true
+  }
+  setLoader(to) {
+    this.dispatch('SET_LOADER', to)
+    this.setState({
+      loader: to
+    })
+  }
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBack)
+  }
   componentDidMount = async () => {
-    console.log(store.getState())
+    this.setLoader(true)
+    BackHandler.addEventListener('hardwareBackPress', this.handleBack)
     try {
       let sesion = await AsyncStorage.getItem('sesion')
       sesion = JSON.parse(sesion)
@@ -33,6 +54,7 @@ class App extends Component {
     } catch (e) {
       console.log(e)
     }
+    this.setLoader(false)
   }
   dispatchNavigation = (key, params) => {
     const setParamsAction = NavigationActions.setParams({
@@ -51,7 +73,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator/>
+        <Fragment>
+          <AppNavigator/>
+          {this.state.loader && <Loader/>}
+        </Fragment>
       </Provider>
     )
   }

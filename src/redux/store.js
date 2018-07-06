@@ -10,6 +10,7 @@ import {
 const initialState = {
   app: {
     sesion: null,
+    loader: false,
     categories: []
   }
 }

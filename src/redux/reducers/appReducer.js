@@ -10,6 +10,9 @@ function rootReducer (state = {}, action) {
     case 'SET_HOME':
       return {...state, ...action.payload}
       break
+    case 'SET_LOADER':
+      return {...state, loader: action.payload}
+      break
     case 'SET_CATEGORIES':
       return {...state, ...action.payload}
     break
