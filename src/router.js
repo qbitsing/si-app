@@ -6,10 +6,11 @@ import Login from './screens/stack/loginScreen'
 import SaleDetail from './screens/SaleDetail'
 import BeforeLogin from './screens/stack/beforeLogin'
 import newSale from './screens/tabs/addSale'
-import Steeper from './screens/stack/addSaleSteeper'
+import Steeper from './screens/saleSteeper'
 
 import {createStackNavigator} from 'react-navigation'
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
+
 
 const TabsNavigator = createMaterialBottomTabNavigator(
 {
@@ -29,8 +30,9 @@ const TabsNavigator = createMaterialBottomTabNavigator(
 
 const StackNavigator = createStackNavigator({
   TabsNavigator,
-  Steeper,
+  steeperSaleNavigator,
   BeforeLogin,
+  Steeper,
   Login,
   SaleDetail,
 },

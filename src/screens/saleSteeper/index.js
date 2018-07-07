@@ -1,5 +1,12 @@
 import React, {Component} from 'react'
 import {Text} from 'react-native'
+import {
+  createBottomTabNavigator
+} from 'react-navigation'
+
+const steeperNavigator = createBottomTabNavigator({
+
+})
 
 class Steeper extends Component {
   static navigationOptions = ({navigation}) => {
@@ -8,7 +15,7 @@ class Steeper extends Component {
     }
   }
   render() {
-    return <Text>Steeper view</Text>
+    return <steeperNavigator/>
   }
 }
 
