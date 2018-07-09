@@ -34,8 +34,8 @@ const transitionConfig = () => {
 
 const SteeperNavigator = StackNavigator(
 {
-  CategorieSelect,
   LeftData,
+  CategorieSelect,
   SubCategorieSelect
 },
 {

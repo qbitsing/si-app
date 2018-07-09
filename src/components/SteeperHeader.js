@@ -16,7 +16,7 @@ function SteeperHeader (props) {
       androidStatusBarColor="#2c3e50">
           <Left>
             <Button transparent onPress={props.handleLeftButton}>
-              <Icon name={props.leftIcon || 'arrow-back'} />
+              <Icon type='FontAwesome' name={props.icon || 'chevron-left'} />
             </Button>
           </Left>
           <Body>

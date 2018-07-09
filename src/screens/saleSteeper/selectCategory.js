@@ -23,7 +23,7 @@ class CategoriesSelection extends Component {
     const {categories} = this.props
     return (
       <Container style={{backgroundColor: 'white'}}>
-        <Header title='Selecciona la Categoría'/>
+        <Header icon='times' title='Selecciona la Categoría'/>
         <Content>
           <List dataArray={categories} 
           renderRow={(item) => <ListItem select={this.goToSubCategorie} item={item}/>}>
