@@ -6,6 +6,7 @@ import {Icon} from 'native-base'
 import {Animated, Easing} from 'react-native'
 import CategorieSelect from './selectCategory'
 import SubCategorieSelect from './selectSubcategory'
+import LeftData from './leftData'
 
 const transitionConfig = () => {
   return {
@@ -34,6 +35,7 @@ const transitionConfig = () => {
 const SteeperNavigator = StackNavigator(
 {
   CategorieSelect,
+  LeftData,
   SubCategorieSelect
 },
 {

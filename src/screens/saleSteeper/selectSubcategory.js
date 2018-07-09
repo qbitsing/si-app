@@ -2,41 +2,27 @@ import React, {Component} from 'react'
 import {
   Container,
   Content,
-  List,
-  Header,
-  Button,
-  Left,
-  Icon,
-  Title,
-  Body
+  List
 } from 'native-base'
 import ListItem from './../../components/listItem'
-
+import Header from './../../components/SteeperHeader'
 import {connect} from 'react-redux'
 
 class CategoriesSelection extends Component {
-  next (item) {
+  next = (item) => {
     this.props.dispatch({
       type: 'SET_NEWSALE_ITEM',
       payload: {
         subcategorie: item
       }
     })
+    this.props.navigation.navigate('LeftData')
   }
   render () {
     const {name, children_categories} = this.props.newSale.categorie
     return (
       <Container style={{backgroundColor: 'white'}}>
-        <Header style={{ backgroundColor: '#34495e' }}androidStatusBarColor="#2c3e50">
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title style={{fontSize: 14}}>{name}</Title>
-          </Body>
-        </Header>
+        <Header title={name}/>
         <Content>
           <List dataArray={children_categories} 
           renderRow={(item) => <ListItem select={this.next} item={item}/>}>

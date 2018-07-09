@@ -2,14 +2,9 @@ import React, {Component} from 'react'
 import {
   Container,
   Content,
-  List,
-  Header,
-  Button,
-  Left,
-  Icon,
-  Title,
-  Body
+  List
 } from 'native-base'
+import Header from './../../components/SteeperHeader'
 import ListItem from './../../components/listItem'
 
 import {connect} from 'react-redux'
@@ -28,16 +23,7 @@ class CategoriesSelection extends Component {
     const {categories} = this.props
     return (
       <Container style={{backgroundColor: 'white'}}>
-        <Header style={{ backgroundColor: '#34495e' }}androidStatusBarColor="#2c3e50">
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title style={{fontSize: 14}}>Selecciona la Categoría</Title>
-          </Body>
-        </Header>
+        <Header title='Selecciona la Categoría'/>
         <Content>
           <List dataArray={categories} 
           renderRow={(item) => <ListItem select={this.goToSubCategorie} item={item}/>}>

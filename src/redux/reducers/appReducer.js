@@ -11,7 +11,7 @@ function rootReducer (state = {}, action) {
     case 'SET_NEWSALE_ITEM':
       return {
         ...state,
-        newSale: { ...payload }
+        newSale: { ...state.newSale, ...payload }
       }
     case 'SET_NEWSALE': 
       return { ...state, ...payload }
