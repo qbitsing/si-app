@@ -5,8 +5,7 @@ import CategoriesTab from './screens/tabs/Categories'
 import Login from './screens/stack/loginScreen'
 import SaleDetail from './screens/SaleDetail'
 import BeforeLogin from './screens/stack/beforeLogin'
-import newSale from './screens/tabs/addSale'
-import Steeper from './screens/saleSteeper'
+import newSale from './screens/saleSteeper'
 
 import {createStackNavigator} from 'react-navigation'
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
@@ -29,10 +28,9 @@ const TabsNavigator = createMaterialBottomTabNavigator(
 )
 
 const StackNavigator = createStackNavigator({
+  newSale,
   TabsNavigator,
-  steeperSaleNavigator,
   BeforeLogin,
-  Steeper,
   Login,
   SaleDetail,
 },

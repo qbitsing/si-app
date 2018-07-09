@@ -1,11 +1,18 @@
 import React, {Component} from 'react'
-import {Text} from 'react-native'
 import {
   createBottomTabNavigator
 } from 'react-navigation'
 
-const steeperNavigator = createBottomTabNavigator({
+import CategorieSelect from './selectCategory'
 
+const SteeperNavigator = createBottomTabNavigator(
+{
+  CategorieSelect
+},
+{
+  navigationOptions: {
+    tabBarVisible: false
+  }
 })
 
 class Steeper extends Component {
@@ -15,7 +22,7 @@ class Steeper extends Component {
     }
   }
   render() {
-    return <steeperNavigator/>
+    return <SteeperNavigator/>
   }
 }
 

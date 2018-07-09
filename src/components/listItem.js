@@ -14,15 +14,11 @@ import {
 function listItem (props) {
   const {item} = props
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => props.select(item)}>
       <View style={styles.listItem}>
         <View style={{flexDirection: 'row'}}>
-            <Icon style={styles.icon} type="FontAwesome" name='plane' />
-            <Text style={styles.text}>{item.name}</Text>
+          <Text style={styles.text}>{item.name}</Text>
         </View>
-        <Right>
-          <Icon name="arrow-forward" />
-        </Right>
       </View>
     </TouchableOpacity>
   )
@@ -40,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
     flexDirection: 'row',
     borderBottomColor: '#000',
-    padding: 10
+    padding: 13
   },
   text: {
     color: 'gray'
