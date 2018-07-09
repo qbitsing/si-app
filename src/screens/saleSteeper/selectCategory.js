@@ -16,7 +16,7 @@ import {connect} from 'react-redux'
 
 class CategoriesSelection extends Component {
   goToSubCategorie (item) {
-    console.log(item)
+    
   }
   render () {
     const {categories} = this.props

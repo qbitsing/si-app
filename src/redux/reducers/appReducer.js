@@ -1,21 +1,24 @@
 function rootReducer (state = {}, action) {
-  switch (action.type) {
+  const {type, payload} = action
+  switch (type) {
     case 'SET_SESION':
-    console.log('se está seteando la sesion...')
       return {
         ...state, 
-        sesion: action.payload
+        sesion: payload
       }
-      break
     case 'SET_HOME':
-      return {...state, ...action.payload}
-      break
+      return {...state, ...payload}
+    case 'SET_NEWSALE_ITEM':
+      return {
+        ...state,
+        newSale: { ...payload }
+      }
+    case 'SET_NEWSALE': 
+      return { ...state, ...payload }
     case 'SET_LOADER':
-      return {...state, loader: action.payload}
-      break
+      return {...state, loader: payload}
     case 'SET_CATEGORIES':
-      return {...state, ...action.payload}
-    break
+      return {...state, ...payload}
     default: return state
   }
 }

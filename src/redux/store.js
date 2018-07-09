@@ -11,6 +11,7 @@ const initialState = {
   app: {
     sesion: null,
     loader: false,
+    newSale: {},
     categories: []
   }
 }
