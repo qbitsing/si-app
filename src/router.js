@@ -15,7 +15,7 @@ const TabsNavigator = createMaterialBottomTabNavigator(
 {
   Home: HomeTab,
   Categories: CategoriesTab,
-  newSale,
+  newSaleTab: newSale,
   Saler: SalerTab,
   Profile: ProfileTab
 },

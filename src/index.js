@@ -6,7 +6,8 @@ import AppNavigator from './app-navigator-with-state'
 import Loader from './components/loader'
 
 class Main extends Component {
-  handleBack () {
+  handleBack = () => {
+    console.log(AppNavigator)
     this.props.dispatch(NavigationActions.back())
     return true
   }

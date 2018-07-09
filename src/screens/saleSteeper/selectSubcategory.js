@@ -15,17 +15,16 @@ import ListItem from './../../components/listItem'
 import {connect} from 'react-redux'
 
 class CategoriesSelection extends Component {
-  goToSubCategorie = (item) => {
+  next (item) {
     this.props.dispatch({
       type: 'SET_NEWSALE_ITEM',
       payload: {
-        categorie: item
+        subcategorie: item
       }
     })
-    this.props.navigation.navigate('SubCategorieSelect')
   }
   render () {
-    const {categories} = this.props
+    const {name, children_categories} = this.props.newSale.categorie
     return (
       <Container style={{backgroundColor: 'white'}}>
         <Header style={{ backgroundColor: '#34495e' }}androidStatusBarColor="#2c3e50">
@@ -35,12 +34,12 @@ class CategoriesSelection extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{fontSize: 14}}>Selecciona la Categoría</Title>
+            <Title style={{fontSize: 14}}>{name}</Title>
           </Body>
         </Header>
         <Content>
-          <List dataArray={categories} 
-          renderRow={(item) => <ListItem select={this.goToSubCategorie} item={item}/>}>
+          <List dataArray={children_categories} 
+          renderRow={(item) => <ListItem select={this.next} item={item}/>}>
           </List>
         </Content>
       </Container>
@@ -51,7 +50,7 @@ class CategoriesSelection extends Component {
 function mapStateToProps(state, props) {
   return {
     ...props,
-    categories: state.app.categories
+    newSale: state.app.newSale
   }
 }
 
