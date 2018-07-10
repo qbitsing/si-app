@@ -11,8 +11,10 @@ import {
   Item,
   Input,
   Textarea,
-  Label
+  Label,
+  View
 } from 'native-base'
+import {StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 import Header from './../../components/SteeperHeader'
 import NumericInput from 'react-native-numeric-input'
@@ -31,31 +33,46 @@ class LeftData extends Component {
     state[key] = value
     this.setState(state)
   }
+  handleCreate = () => {
+    console.log({...this.props.newSale, ...this.state})
+  }
   render() {
     return (
       <Container>
         <Header title='Descripción'/>
         <Content>
-          <Form style={{marginHorizontal: 10, marginRight: 15}}>
+          <Form style={styles.Form}>
             <Item floatingLabel>
               <Label>Marca</Label>
               <Input onChangeText={(e) => this.changueText('brand', e)} />
             </Item>
             <Textarea 
-            style={{marginLeft: 10, marginTop: 10}} 
+            onChangeText={(e) => this.changueText('description', e)}
+            style={styles.Textarea} 
             rowSpan={5} bordered placeholder="Descripción" />
-            <NumericInput onChange={value => this.changueText('quantity' ,value)} />
+            <View style={styles.Textarea}>
+              <Text style={{marginBottom: 10}}>Cantidad</Text>
+              <View>
+                <NumericInput
+                onChange={value => this.changueText('quantity' ,value)}
+                rounded
+                iconStyle={{ color: 'white' }}
+                rightButtonBackgroundColor='#34495e' 
+                leftButtonBackgroundColor='#2c3e50'
+                />
+              </View>
+            </View>
           </Form>
         </Content>
         <Footer style={{backgroundColor: '#34495e'}}>
           <Left>
           <Button transparent>
-              <Text style={{color: '#fff', fontSize: 14}}>Cancelar</Text>
+              <Text style={styles.FooterButtons}>Cancelar</Text>
             </Button>
           </Left>
           <Right>
-            <Button transparent>
-              <Text style={{color: '#fff', fontSize: 14}}>Crear</Text>
+            <Button transparent onPress={this.handleCreate}>
+              <Text style={styles.FooterButtons}>Crear</Text>
             </Button>
           </Right>
         </Footer>
@@ -64,4 +81,26 @@ class LeftData extends Component {
   }
 }
 
-export default connect()(LeftData)
+const styles = StyleSheet.create({
+  FooterButtons: {
+    color: '#fff',
+    fontSize: 14
+  },
+  Form: {
+    marginHorizontal: 10,
+    marginRight: 15
+  },
+  Textarea: {
+    marginLeft: 10,
+    marginTop: 10
+  }
+})
+
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    newSale: state.app.newSale
+  }
+}
+
+export default connect(mapStateToProps)(LeftData)
