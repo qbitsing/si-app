@@ -14,6 +14,8 @@ import {
   Label,
   View
 } from 'native-base'
+import http from './../../utils/http'
+import mutation from './../../utils/mutations/createSale'
 import {StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 import Header from './../../components/SteeperHeader'
@@ -33,8 +35,33 @@ class LeftData extends Component {
     state[key] = value
     this.setState(state)
   }
-  handleCreate = () => {
-    console.log({...this.props.newSale, ...this.state})
+  handleCreate = async () => {
+    this.props.dispatch({
+      type: 'SET_LOADER',
+      payload: true
+    })
+    const {brand, description, quantity} = this.state
+    const query = mutation({
+      brand,
+      description,
+      quantity,
+      subcategory: this.props.newSale.subcategory.id,
+      photos: '[]',
+      uuidUser: this.props.sesion.uuid
+    })
+    try {
+      console.log(query)
+      let res = await http('mutation', query)
+      console.log(res)
+      res = await res.json()
+      console.log(res)
+    } catch(e) {
+      console.log(e)
+    }
+    this.props.dispatch({
+      type: 'SET_LOADER',
+      payload: false
+    })
   }
   render() {
     return (
@@ -99,7 +126,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, props) {
   return {
     ...props,
-    newSale: state.app.newSale
+    newSale: state.app.newSale,
+    sesion: state.app.sesion
   }
 }
 

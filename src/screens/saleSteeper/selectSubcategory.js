@@ -13,7 +13,7 @@ class CategoriesSelection extends Component {
     this.props.dispatch({
       type: 'SET_NEWSALE_ITEM',
       payload: {
-        subcategorie: item
+        subcategory: item
       }
     })
     this.props.navigation.navigate('LeftData')

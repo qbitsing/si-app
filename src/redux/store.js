@@ -12,7 +12,8 @@ const initialState = {
     sesion: null,
     loader: false,
     newSale: {
-      categorie: {}
+      categorie: {},
+      subcateogory: {}
     },
     categories: []
   }

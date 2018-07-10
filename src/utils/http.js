@@ -7,9 +7,14 @@ export default function (type, query) {
     baseURL += `?query=${query}`
   } else {
     method = 'POST'
-    body = query
+    body = JSON.stringify({query})
   }
+  console.log(method, body)
   return fetch(baseURL, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     method,
     body
   })
