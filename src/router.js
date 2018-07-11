@@ -28,8 +28,8 @@ const TabsNavigator = createMaterialBottomTabNavigator(
 )
 
 const StackNavigator = createStackNavigator({
-  newSale,
   TabsNavigator,
+  newSale,
   BeforeLogin,
   Login,
   SaleDetail,
