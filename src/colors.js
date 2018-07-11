@@ -3,7 +3,6 @@ const blueTwitter = '#00aced'
 const copy = 'orange'
 const gray = 'gray'
 
-
 export {
   blueFacebook,
   blueTwitter,

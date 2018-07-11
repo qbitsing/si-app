@@ -13,26 +13,26 @@ class CategoriesHeader extends Component {
       <View style={styles.container}>
         <View style={styles.categoriesContainer}>
           <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
+            horizontal
+            showsHorizontalScrollIndicator={false}
           >
             <TouchableOpacity style={styles.button}>
-              <Icon type="FontAwesome" name="mobile-phone" style={styles.Icon}/>
+              <Icon type='FontAwesome' name='mobile-phone' style={styles.Icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Icon type="FontAwesome" name="mobile-phone" style={styles.Icon}/>
+              <Icon type='FontAwesome' name='mobile-phone' style={styles.Icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Icon type="FontAwesome" name="mobile-phone" style={styles.Icon}/>
+              <Icon type='FontAwesome' name='mobile-phone' style={styles.Icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Icon type="FontAwesome" name="mobile-phone" style={styles.Icon}/>
+              <Icon type='FontAwesome' name='mobile-phone' style={styles.Icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Icon type="FontAwesome" name="mobile-phone" style={styles.Icon}/>
+              <Icon type='FontAwesome' name='mobile-phone' style={styles.Icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Icon type="FontAwesome" name="mobile-phone" style={styles.Icon}/>
+              <Icon type='FontAwesome' name='mobile-phone' style={styles.Icon} />
             </TouchableOpacity>
           </ScrollView>
         </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   Icon: {
     fontSize: 50,
-    color: "#7f8c8d"
+    color: '#7f8c8d'
   }
 })
 export default CategoriesHeader

@@ -18,11 +18,14 @@ class CategoriesSelection extends Component {
     })
     this.props.navigation.navigate('LeftData')
   }
+
+  handleBack = () => this.props.navigation.goBack()
+
   render () {
     const {name, children_categories} = this.props.newSale.categorie
     return (
       <Container style={{backgroundColor: 'white'}}>
-        <Header title={name}/>
+        <Header handleBack={this.handleBack} title={name}/>
         <Content>
           <List dataArray={children_categories} 
           renderRow={(item) => <ListItem select={this.next} item={item}/>}>

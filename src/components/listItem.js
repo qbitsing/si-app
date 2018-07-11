@@ -3,15 +3,11 @@ import {gray} from '../colors'
 import {
   TouchableOpacity,
   View,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native'
-import {
-  Text,
-  Icon,
-  Right
-} from 'native-base'
 
-function listItem (props) {
+function listItem(props) {
   const {item} = props
   return (
     <TouchableOpacity onPress={() => props.select(item)}>

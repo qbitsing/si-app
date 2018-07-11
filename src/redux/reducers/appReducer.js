@@ -1,9 +1,9 @@
-function rootReducer (state = {}, action) {
+function rootReducer(state = {}, action) {
   const {type, payload} = action
   switch (type) {
     case 'SET_SESION':
       return {
-        ...state, 
+        ...state,
         sesion: payload
       }
     case 'SET_HOME':
@@ -13,7 +13,7 @@ function rootReducer (state = {}, action) {
         ...state,
         newSale: { ...state.newSale, ...payload }
       }
-    case 'SET_NEWSALE': 
+    case 'SET_NEWSALE':
       return { ...state, ...payload }
     case 'SET_LOADER':
       return {...state, loader: payload}

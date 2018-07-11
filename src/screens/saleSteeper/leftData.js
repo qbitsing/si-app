@@ -16,11 +16,15 @@ import {
 } from 'native-base'
 import http from './../../utils/http'
 import mutation from './../../utils/mutations/createSale'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Alert} from 'react-native'
 import {connect} from 'react-redux'
 import Header from './../../components/SteeperHeader'
 import NumericInput from 'react-native-numeric-input'
+import {NavigationActions} from 'react-navigation'
+
+
 class LeftData extends Component {
+
   constructor() {
     super()
     this.state = {
@@ -29,13 +33,16 @@ class LeftData extends Component {
       quantity: null,
     }
   }
+
   changueText(key, value) {
-    console.log(key,value)
     let state = {}
     state[key] = value
     this.setState(state)
   }
+
   handleCreate = async () => {
+    let success = true
+    let message = {}
     this.props.dispatch({
       type: 'SET_LOADER',
       payload: true
@@ -46,27 +53,50 @@ class LeftData extends Component {
       description,
       quantity,
       subcategory: this.props.newSale.subcategory.id,
-      photos: '[]',
+      photos: '',
       uuidUser: this.props.sesion.uuid
     })
     try {
-      console.log(query)
       let res = await http('mutation', query)
-      console.log(res)
       res = await res.json()
-      console.log(res)
+      message.title = 'Excelente'
+      message.message = 'Subasta creada con éxito'
     } catch(e) {
       console.log(e)
+      success = false
+      message.title = 'Ooops...'
+      message.message = 'Error al crear la subasta'
     }
+    Alert.alert(
+      message.title,
+      message.message,
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]
+    )
     this.props.dispatch({
       type: 'SET_LOADER',
       payload: false
     })
+    if (success) {
+      this.handleCancel()
+    }
   }
+
+  handleBack = () => this.props.navigation.goBack()
+
+  handleCancel = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ 
+        routeName: 'TabsNavigator' 
+      })
+    )
+  }
+
   render() {
     return (
       <Container>
-        <Header title='Descripción'/>
+        <Header handleBack={this.handleBack} title='Descripción'/>
         <Content>
           <Form style={styles.Form}>
             <Item floatingLabel>
@@ -93,7 +123,7 @@ class LeftData extends Component {
         </Content>
         <Footer style={{backgroundColor: '#34495e'}}>
           <Left>
-          <Button transparent>
+          <Button onPress={this.handleCancel} transparent>
               <Text style={styles.FooterButtons}>Cancelar</Text>
             </Button>
           </Left>

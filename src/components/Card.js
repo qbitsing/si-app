@@ -11,8 +11,6 @@ import {
   Text
 } from 'native-base'
 
-import { blueFacebook, copy, blueTwitter } from './../colors'
-
 class CardComponent extends Component {
   render() {
     const { data } = this.props
@@ -24,13 +22,13 @@ class CardComponent extends Component {
         <TouchableOpacity>
           <Card>
             <CardItem cardBody>
-              <Image style={styles.image} source={source}/>
+              <Image style={styles.image} source={source} />
             </CardItem>
             <CardItem>
               <View>
                 <View>
                   <Text style={{fontSize: 16}}>{data.bestPrize}</Text>
-                  <Text style={{fontSize: 13,lineHeight: 13}}>{data.bestBider}</Text>
+                  <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
                 </View>
                 <Text note>{data.description}</Text>
               </View>
@@ -44,7 +42,7 @@ class CardComponent extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '50%',
+    width: '50%'
   },
   image: {
     flex: 1,

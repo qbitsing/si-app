@@ -1,17 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import AppNavigator from './router';
+import React from 'react'
+import { connect } from 'react-redux'
+import AppNavigator from './router'
 import {
   createReactNavigationReduxMiddleware,
-  reduxifyNavigator,
-} from 'react-navigation-redux-helpers';
+  reduxifyNavigator
+} from 'react-navigation-redux-helpers'
 
 const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigation
 )
 
-const ReduxifyApp = reduxifyNavigator(AppNavigator, 'root');
+const ReduxifyApp = reduxifyNavigator(AppNavigator, 'root')
 
 class AppNavigatorWithState extends ReduxifyApp {
 

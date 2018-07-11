@@ -6,10 +6,11 @@ import {
 } from 'native-base'
 import Header from './../../components/SteeperHeader'
 import ListItem from './../../components/listItem'
-
+import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 
 class CategoriesSelection extends Component {
+
   goToSubCategorie = (item) => {
     this.props.dispatch({
       type: 'SET_NEWSALE_ITEM',
@@ -19,11 +20,16 @@ class CategoriesSelection extends Component {
     })
     this.props.navigation.navigate('SubCategorieSelect')
   }
+
+  handleBack = () => {
+    this.props.dispatch(NavigationActions.back())
+  }
+
   render () {
     const {categories} = this.props
     return (
       <Container style={{backgroundColor: 'white'}}>
-        <Header icon='times' title='Selecciona la Categoría'/>
+        <Header handleBack={this.handleBack} icon='times' title='Selecciona la Categoría'/>
         <Content>
           <List dataArray={categories} 
           renderRow={(item) => <ListItem select={this.goToSubCategorie} item={item}/>}>

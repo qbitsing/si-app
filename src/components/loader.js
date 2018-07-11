@@ -8,8 +8,8 @@ import {
 const loader = () => (
   <View style={styles.container}>
     <ActivityIndicator
-    size='large'
-    color='blue'/>
+      size='large'
+      color='blue' />
   </View>
 )
 

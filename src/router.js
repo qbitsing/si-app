@@ -10,7 +10,6 @@ import newSale from './screens/saleSteeper'
 import {createStackNavigator} from 'react-navigation'
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 
-
 const TabsNavigator = createMaterialBottomTabNavigator(
 {
   Home: HomeTab,
@@ -23,7 +22,7 @@ const TabsNavigator = createMaterialBottomTabNavigator(
   initialRouteName: 'Home',
   activeTintColor: '#2c3e50',
   inactiveTintColor: '#bdc3c7',
-  barStyle: { backgroundColor: '#ecf0f1' },
+  barStyle: { backgroundColor: '#ecf0f1' }
 }
 )
 
@@ -32,11 +31,11 @@ const StackNavigator = createStackNavigator({
   newSale,
   BeforeLogin,
   Login,
-  SaleDetail,
+  SaleDetail
 },
 {
-  navigationOptions: { 
-    headerMode: 'screen' 
+  navigationOptions: {
+    header: null
   }
 })
 
