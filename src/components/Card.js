@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Image,
   TouchableOpacity,
@@ -10,35 +10,33 @@ import {
   CardItem,
   Text
 } from 'native-base'
-
-class CardComponent extends Component {
-  render() {
-    const { data } = this.props
-    const source = {
-      uri: data.image
-    }
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity>
-          <Card>
-            <CardItem cardBody>
-              <Image style={styles.image} source={source} />
-            </CardItem>
-            <CardItem>
-              <View>
-                <View>
-                  <Text style={{fontSize: 16}}>{data.bestPrize}</Text>
-                  <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
-                </View>
-                <Text note>{data.description}</Text>
-              </View>
-            </CardItem>
-          </Card>
-        </TouchableOpacity>
-      </View>
-    )
+function CardComponent (props) {
+  const { data } = props
+  const source = {
+    uri: data.image
   }
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={props.pressed}>
+        <Card>
+          <CardItem cardBody>
+            <Image style={styles.image} source={source} />
+          </CardItem>
+          <CardItem>
+            <View>
+              <View>
+                <Text style={{fontSize: 16}}>{data.bestPrize}</Text>
+                <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
+              </View>
+              <Text note>{data.description}</Text>
+            </View>
+          </CardItem>
+        </Card>
+      </TouchableOpacity>
+    </View>
+  )
 }
+
 
 const styles = StyleSheet.create({
   container: {

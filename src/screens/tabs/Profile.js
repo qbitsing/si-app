@@ -12,6 +12,7 @@ import {
   Body,
   Right,
   Thumbnail,
+  Header
 } from 'native-base';
 import {
   StyleSheet,
@@ -41,10 +42,11 @@ class Profile extends Component {
     const {navigation} = this.props
     return (
       <Container>
+        <Header/>
         <Content style={{backgroundColor: '#fff'}}>
           <View style={styles.PhotoCard}>  
               <Text style={styles.name}>{sesion.name}</Text>
-              <Thumbnail style={{height:180,width:180, borderRadius:100}} source={{uri: 'http://cdn.revistagq.com/uploads/images/thumbs/201501/brad_pitt_8257_645x485.jpg'}} />
+              <Thumbnail style={{height:100,width:100, borderRadius:100}} source={{uri: 'http://cdn.revistagq.com/uploads/images/thumbs/201501/brad_pitt_8257_645x485.jpg'}} />
           </View>
         <Tabs initialPage={0}>
           <Tab heading="INFORMACION">
@@ -87,7 +89,7 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
   PhotoCard: {
-    height:300,
+    height:190,
     backgroundColor:'#3B5998',
     alignItems:'center',
     justifyContent: 'center'
