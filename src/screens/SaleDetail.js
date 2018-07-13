@@ -3,10 +3,13 @@ import Swiper from 'react-native-swiper'
 import http from '../utils/http'
 import {
   StyleSheet,
+  TouchableOpacity,
   View,
-  Image
+  Image,
+  StatusBar,
 } from 'react-native'
-import {Text,Container, Content, Header} from 'native-base'
+import {Text,Container, Content, Icon} from 'native-base'
+import LinearGradient from 'react-native-linear-gradient'
 
 class SaleDetail extends Component {
   constructor(props) {
@@ -31,26 +34,11 @@ class SaleDetail extends Component {
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate ducimus ad quidem, ullam exercitationem atque itaque aliquam, praesentium beatae consequuntur nisi totam suscipit repellendus a? Laudantium accusamus',
       timeLeft: '4h',
       bids: [
-        {
-          user: 'narias',
-          values: [
-            { value: 1800000, date: '5 min' },
-            { value: 2000000, date: '60 min' }
-          ]
-        },
-        {
-          user: 'appleco',
-          values: [
-            { value: 1820000, date: '20 min' }
-          ]
-        },
-        {
-          user: 'otherman',
-          values: [
-            { value: 1920000, date: '50 min' },
-            { value: 2100000, date: '82 min' }
-          ]
-        }
+        { name: 'nmrias', value: 1800000, date: '5 min' },
+        { name: 'appleco', value: 2000000, date: '60 min' },
+        { name: 'nmarias', value: 1820000, date: '20 min' },
+        { name: 'alkosto', value: 1920000, date: '50 min' },
+        { name: 'appleco', value: 2100000, date: '82 min' }
       ]
     }
     this.setState({
@@ -69,15 +57,11 @@ class SaleDetail extends Component {
       uri: 'https://www.apple.com/v/iphone-x/e/images/meta/og.png?201803282100'
     }
     return (
-      <Container style={styles.wrapper} noShadow>
-        <Header 
-        androidStatusBarColor='transparent'
-        androidStatusBar ={{
-          barStyle: "light-content",
-          backgroundColor: "#334393",
-          position: 'absolute'
-        }}
-        style={{backgroundColor: 'transparent', position: 'absolute'}}/>
+      <Container style={styles.wrapper}>
+        <StatusBar
+          backgroundColor="transparent"
+          translucent
+        />
         <Content>
           <Swiper style={{height: 250, width: '100%'}}>
             <View style={styles.slide1}>
@@ -90,20 +74,73 @@ class SaleDetail extends Component {
               <Image style={styles.image} source={source3} />
             </View>
           </Swiper>
-          <Text style={styles.category}>Categoría > Subcategoría > Marca</Text>
+          <View style={styles.categoryContainer}>
+            <Text style={styles.category}>Categoría > Subcategoría > Marca</Text>
+            <Text note>Cierra en 10 horas</Text>
+          </View>
           <Text style={styles.description}>
           El nuevo iPhone X es todo pantalla. Tiene Face ID, que convierte tu cara en tu contraseña, y el chip más potente usado en un smartphone hasta ahora
           </Text>
           <View style={styles.biddersTitleContent}>
             <Text style={styles.biddersTitle}>OFERTANTES</Text>
           </View>
+          <TouchableOpacity>
+            <View style={styles.ListItem}>
+              <Text style={styles.category}>$1.800.000</Text>
+              <View style={styles.info}>
+                <Text style={styles.name}>nmarias</Text>
+                <Text note>hace 50m</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </Content>
+        <View style={styles.header}>
+          <LinearGradient colors={['rgba(0,0,0,.5)', 'transparent']} style={styles.header}/>
+          <View style={styles.headerBox}>
+            <TouchableOpacity style={styles.backButton} onPress={this.goBack}>
+              <Icon style={{fontSize: 25,color: '#fff'}} type='FontAwesome' name="chevron-left" />
+            </TouchableOpacity>
+          </View>
+        </View>
       </Container>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  ListItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    margin: 8,
+    borderRadius: 15,
+    elevation: 1
+  },
+  info: {
+    alignItems: 'center'
+  },
+  name: {
+    fontWeight: 'bold',
+    color: 'orange'
+  },
+  header: {
+    height: 80,
+    position: 'absolute',
+    width: '100%',
+    flexDirection: 'row',
+    top: 0
+  },
+  headerBox: {
+    marginTop: 15,
+  },
+  backButton: {
+    padding: 15
+  },
   wrapper: {
     backgroundColor: '#fff'
   },
@@ -121,12 +158,14 @@ const styles = StyleSheet.create({
     padding: 10,
     color: 'grey'
   },
+  categoryContainer: {
+    paddingVertical: 8,
+    marginHorizontal: 10,
+  },
   category: {
     fontWeight: 'bold',
     color: '#222',
     fontSize: 16,
-    paddingVertical: 8,
-    marginHorizontal: 10,
   },
   image: {
     width: '100%',
