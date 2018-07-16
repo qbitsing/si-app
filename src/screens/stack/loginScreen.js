@@ -45,21 +45,37 @@ class LoginScreen extends Component {
     this.setState(state)
   }
   logIn = async () => {
+    this.props.dispatch({
+      type: 'SET_LOADER',
+      payload: true
+    })
     const email = this.state.email.toLowerCase()
     const password = this.state.password
-    let res = await http('query', loginQuery({email, password}))
-    res = await res.json()
-    const { data, errors } = res
-    if (errors) console.log(errors)
-    else {
-      const res = await AsyncStorage.setItem('sesion', JSON.stringify(data.singin))
-      console.log(res)
-      this.props.dispatch({
-        type: 'SET_SESION',
-        payload: data.singin
-      })
-      this.props.navigation.navigate('Profile')
-  }
+    let res = false
+    try {
+      res = await http('query', loginQuery({email, password}))
+      res = await res.json()
+    } catch (e) {
+      console.log(e)
+    }
+    if (res) {
+      const { data, errors } = res
+      if (errors) console.log(errors)
+      else {
+        const res = await AsyncStorage.setItem('sesion', JSON.stringify(data.singin))
+        console.log(this.props.sesion)
+        this.props.dispatch({
+          type: 'SET_SESION',
+          payload: data.singin
+        })
+        console.log(this.props.sesion)
+        this.props.navigation.navigate('Profile')
+      }
+    }
+    this.props.dispatch({
+      type: 'SET_LOADER',
+      payload: false
+    })
   }
   render() {
     const logo = 'https://www.iteffect.dk/wp-content/uploads/2018/01/skype-logo.png'
@@ -71,7 +87,7 @@ class LoginScreen extends Component {
           source={{
             uri: logo
           }}/>
-          <FormItem floatingLabel last>
+          <FormItem floatingLabel>
             <Label style={{color: '#eee'}}>Email</Label>
             <Input  
             onChangeText={(e) => this.changeText(e, 'email')}
@@ -113,4 +129,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(LoginScreen)
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    sesion: state.app.sesion
+  }
+}
+
+export default connect(mapStateToProps)(LoginScreen)

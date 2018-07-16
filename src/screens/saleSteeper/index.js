@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  StackNavigator
+  createStackNavigator
 } from 'react-navigation'
 import {Icon} from 'native-base'
 import {Animated, Easing} from 'react-native'
@@ -32,7 +32,7 @@ const transitionConfig = () => {
   }
 }
 
-const SteeperNavigator = StackNavigator(
+const SteeperNavigator = createStackNavigator(
 {
   CategorieSelect,
   LeftData,

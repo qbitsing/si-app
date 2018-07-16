@@ -3,7 +3,10 @@ import {
   Container,
   Content,
   List,
-  Icon
+  Icon,
+  Header,
+  Text,
+  Body
 } from 'native-base'
 import {connect} from 'react-redux'
 import ListItem from './../../components/listItem'
@@ -18,9 +21,15 @@ class Categories extends Component {
     }
   } 
   render() {
+    console.log(this.props.sesion)
     const {categories} = this.props
     return(
       <Container style={{backgroundColor: 'white'}}>
+        <Header>
+          <Body>
+            <Text>{this.props.sesion ? this.props.sesion.name : 'hola'}</Text>
+          </Body>
+        </Header>
         <Content>
           <List dataArray={categories} 
           renderRow={(item) => <ListItem item={item}/>}>
@@ -34,7 +43,8 @@ class Categories extends Component {
 function mapStateToProps(state, props) {
   return {
     ...props,
-    categories: state.app.categories
+    categories: state.app.categories,
+    sesion: state.app.sesion
   }
 }
 

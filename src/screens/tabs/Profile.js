@@ -12,13 +12,15 @@ import {
   Body,
   Right,
   Thumbnail,
-  Header
+  Header,
+  Button,
 } from 'native-base';
 import {
   StyleSheet,
+  AsyncStorage,
   View
 } from 'react-native'
-
+import {NavigationActions, StackActions} from 'react-navigation'
 
 class Profile extends Component {
   static navigationOptions = ({navigation}) => {
@@ -37,12 +39,36 @@ class Profile extends Component {
       }
     }
   }
+
+  signOut = async () => {
+    let x = await AsyncStorage.removeItem('sesion')
+    const resetAction = StackActions.reset({
+      index: 1,
+      actions: [
+        NavigationActions.navigate({ routeName: 'TabsNavigator' }),
+        NavigationActions.navigate({ routeName: 'BeforeLogin' })
+      ],
+    })
+    this.props.dispatch({
+      type: 'SET_SESION', 
+      payload: null
+    })
+    this.props.dispatch(resetAction)
+  }
+
   render() {
-    const {sesion} = this.props.redux
+    let {sesion} = this.props.redux
+    sesion = sesion === null ? {} : sesion
     const {navigation} = this.props
     return (
       <Container>
-        <Header/>
+        <Header>
+          <Right>
+            <Button onPress={this.signOut}>
+              <Icon type='FontAwesome' name="sign-out"/>
+            </Button>
+          </Right>
+        </Header>
         <Content style={{backgroundColor: '#fff'}}>
           <View style={styles.PhotoCard}>  
               <Text style={styles.name}>{sesion.name}</Text>

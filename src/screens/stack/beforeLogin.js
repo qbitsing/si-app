@@ -33,7 +33,9 @@ class BeforeLogin extends Component {
     }
   }
   componentDidMount() {
-    this.props.navigation.setParams({ dispatch: this.props.dispatch });
+    console.log(this.props.sesion)
+    
+    this.props.navigation.setParams({dispatch: this.props.dispatch })
   }
   go = (to) => this.props.navigation.navigate(to)
   render() {
@@ -108,4 +110,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(BeforeLogin)
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    sesion: state.app.sesion
+  }
+}
+
+export default connect(mapStateToProps)(BeforeLogin)
