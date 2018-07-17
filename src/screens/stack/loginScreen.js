@@ -17,6 +17,7 @@ import http from './../../utils/http'
 import loginQuery from './../../utils/queries/login'
 import { connect } from 'react-redux'
 import {blueFacebook} from './../../colors'
+import {NavigationActions} from 'react-navigation'
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -63,12 +64,14 @@ class LoginScreen extends Component {
       if (errors) console.log(errors)
       else {
         const res = await AsyncStorage.setItem('sesion', JSON.stringify(data.singin))
-        console.log(this.props.sesion)
+        const sesion = data.singin
         this.props.dispatch({
           type: 'SET_SESION',
-          payload: data.singin
+          payload: sesion
         })
-        console.log(this.props.sesion)
+        console.log(sesion)
+        this.setNavigationSesion('Profile', {sesion})
+        this.setNavigationSesion('newSale', {sesion})
         this.props.navigation.navigate('Profile')
       }
     }
@@ -76,6 +79,14 @@ class LoginScreen extends Component {
       type: 'SET_LOADER',
       payload: false
     })
+  }
+
+  setNavigationSesion = (key, params) => {
+    const setParamsAction = NavigationActions.setParams({
+      params,
+      key
+    })
+    this.props.dispatch(setParamsAction)
   }
   render() {
     const logo = 'https://www.iteffect.dk/wp-content/uploads/2018/01/skype-logo.png'
@@ -129,11 +140,4 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(state, props) {
-  return {
-    ...props,
-    sesion: state.app.sesion
-  }
-}
-
-export default connect(mapStateToProps)(LoginScreen)
+export default connect()(LoginScreen)

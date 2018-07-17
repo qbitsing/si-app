@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {
   StyleSheet,
   View,
-  Image
+  Image,
+  StatusBar
 } from 'react-native'
 import {
   Container,
@@ -11,8 +12,8 @@ import {
   Icon
 } from 'native-base'
 import {connect} from 'react-redux'
-
 import {blueFacebook} from '../../colors'
+import { GoogleSignin } from 'react-native-google-signin';
 
 class BeforeLogin extends Component {
   static navigationOptions = ({navigation}) => {
@@ -32,15 +33,24 @@ class BeforeLogin extends Component {
       }
     }
   }
-  componentDidMount() {
-    console.log(this.props.sesion)
-    
-    this.props.navigation.setParams({dispatch: this.props.dispatch })
-  }
   go = (to) => this.props.navigation.navigate(to)
+
+  _googleSignIn = async () => {
+    console.log('in')
+    try {
+      await GoogleSignin.hasPlayServices({ autoResolve: true })
+      console.log('Yes have google services')
+    } catch (error) {
+      console.log('no google play services', error)
+    }
+  }
+
   render() {
     return(
       <Container>
+        <StatusBar
+        backgroundColor="transparent"
+        translucent/>
         <Image
         style={styles.backgroundImage}
         source={{uri: 'https://cdn.pixabay.com/photo/2016/01/29/15/30/car-1168158_960_720.jpg'}}
@@ -52,7 +62,7 @@ class BeforeLogin extends Component {
           />
           <View>
             <View style={styles.butonContainer}>
-              <Button style={styles.button} light block>
+              <Button style={styles.button} light block onPress={this._googleSignIn}>
                 <Text>Ingresa con Google</Text>
               </Button>
               <Button style={styles.button} light block>
@@ -110,11 +120,4 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(state, props) {
-  return {
-    ...props,
-    sesion: state.app.sesion
-  }
-}
-
-export default connect(mapStateToProps)(BeforeLogin)
+export default connect()(BeforeLogin)

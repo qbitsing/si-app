@@ -27,6 +27,7 @@ class Profile extends Component {
     return {
       tabBarOnPress: () => {
       const sesion = navigation.getParam('sesion')
+      console.log(sesion)
       if (sesion) {
         navigation.navigate('Profile')
       } else {
@@ -39,7 +40,6 @@ class Profile extends Component {
       }
     }
   }
-
   signOut = async () => {
     let x = await AsyncStorage.removeItem('sesion')
     const resetAction = StackActions.reset({
