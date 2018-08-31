@@ -5,6 +5,8 @@ import {
   Content,
   Icon
 } from 'native-base'
+import {connect} from 'react-redux'
+import getSaleQuery from '../../utils/queries/getAllSales'
 import CardComponent from './../../components/Card'
 import CategoriesHeader from './../../components/CategoriesHeader'
 
@@ -19,6 +21,15 @@ class Home extends Component {
   }
   goToDetail = (data) => {
     this.props.navigation.navigate('SaleDetail')
+  }
+  async componentDidMount () {
+    let data = await getSaleQuery()
+    data = data.json()
+    console.log(data)
+    this.props.dispatch({
+      type: 'SET_SALES',
+      payload: data.data
+    })
   }
   render() {
     const data = {
@@ -60,4 +71,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    sales: state.app.sales
+  }
+}
+
+export default connect(mapStateToProps)(Home)

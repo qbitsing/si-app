@@ -51,12 +51,12 @@ class Steeper extends Component {
     return {
       header: null,
       tabBarOnPress: () => {
-        // const sesion = navigation.getParam('sesion')
-        // if (sesion) {
-        //   navigation.navigate('Profile')
-        // } else {
+        const sesion = navigation.getParam('sesion')
+        if (sesion) {
+          navigation.navigate('Profile')
+        } else {
           navigation.navigate('newSale')
-        // }
+        }
       },
       tabBarIcon: ({focused, tintColor}) => {
         return <Icon name="add" style={{color: tintColor}}/>

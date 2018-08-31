@@ -17,17 +17,20 @@ class Main extends Component {
   componentDidMount = async () => {
     this.dispatch('SET_LOADER', true)
     BackHandler.addEventListener('hardwareBackPress', this.handleBack)
-    
     try {
+      console.log('start algorithm')
       let sesion = await AsyncStorage.getItem('sesion')
+      console.log(sesion)
       sesion = JSON.parse(sesion)
       this.dispatchNavigation('Profile', { sesion })
       this.dispatchNavigation('newSale', { sesion })
       this.dispatch('SET_SESION', sesion)
       let categories = await AsyncStorage.getItem('categories')
+      console.log(categories)
       if(!categories) {
         categories = await fetch('https://api.mercadolibre.com/sites/MLC/categories')
         categories = await categories.json()
+        console.log(categories)
         for ([i, categorie] of categories.entries()) {
           let categorieDetail = await fetch(`https://api.mercadolibre.com/categories/${categorie.id}`)
           categorieDetail = await categorieDetail.json()

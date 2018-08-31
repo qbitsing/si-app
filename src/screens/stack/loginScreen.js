@@ -120,8 +120,6 @@ class LoginScreen extends Component {
             <Text> Login </Text>
           </Button>
           <Text>¿Has olvidado tu contraseña?</Text>
-
-
         </Form>
       </Container>
     );

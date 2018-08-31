@@ -15,7 +15,8 @@ const initialState = {
       categorie: {},
       subcateogory: {}
     },
-    categories: []
+    categories: [],
+    sales: []
   }
 }
 
