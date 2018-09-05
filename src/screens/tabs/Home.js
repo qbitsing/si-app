@@ -19,9 +19,16 @@ class Home extends Component {
       }
     }
   }
+
   goToDetail = (data) => {
+    const commit = {
+      payload: data,
+      type: 'SET_ACTIVE_DETAIL'
+    }
+    this.props.dispatch(commit)
     this.props.navigation.navigate('SaleDetail')
   }
+
   async componentDidMount () {
     let data = await getSaleQuery()
     data = await data.json()
@@ -31,6 +38,7 @@ class Home extends Component {
       payload: data.data.sales
     })
   }
+
   render() {
     return (
       <Container style={styles.container}>
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     alignItems: 'flex-start',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   container: {
     flex: 1,

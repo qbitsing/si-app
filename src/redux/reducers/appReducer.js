@@ -18,6 +18,11 @@ function rootReducer(state = {}, action) {
         ...state,
         sales: payload
       }
+    case 'SET_ACTIVE_DETAIL':
+      return {
+        ...state,
+        activeDetail: payload
+      }
     case 'SET_NEWSALE':
       return { ...state, ...payload }
     case 'SET_LOADER':

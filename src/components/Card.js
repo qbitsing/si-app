@@ -12,7 +12,7 @@ import {
 } from 'native-base'
 function CardComponent (props) {
   const { data } = props
-  const defaultImage = 'https://picsum.photos/200/300'
+  const defaultImage = 'https://picsum.photos/200/300/?random'
   const source = {
     uri: data.image || defaultImage
   }
@@ -37,7 +37,7 @@ function CardComponent (props) {
             <Image style={styles.image} source={source} />
           </CardItem>
           <CardItem>
-            <View>
+            <View style={styles.info}>
               {bestBidderComponent}
               <Text note>{data.description}</Text>
             </View>
@@ -59,8 +59,7 @@ const styles = StyleSheet.create({
     height: 140
   },
   info: {
-    flex: 1,
-    paddingLeft: 20
+    height: 70
   },
   content: {
     flex: 3,

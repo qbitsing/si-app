@@ -8,6 +8,8 @@ import {
   Image,
   StatusBar,
 } from 'react-native'
+import {NavigationActions} from 'react-navigation'
+import {connect} from 'react-redux'
 import {Text,Container, Content, Icon} from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -17,45 +19,19 @@ class SaleDetail extends Component {
     this.state = {
       data: {}
     }
-    this.getData()
   }
 
-  async getData() {
-    const saleId = this.props.navigation.getParam('saleId', 0)
-    // MAKE REQUEST
-    let data = {
-      photos: [
-        'https://store.storeimages.cdn-apple.com/4666/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/x/iphone-x-silver-select-2017?wid=305&hei=358&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1515602510472',
-        'https://i.kinja-img.com/gawker-media/image/upload/s--FPy3RYSo--/c_scale,f_auto,fl_progressive,q_80,w_800/cur9iivisdrebdoigjna.jpg',
-        'https://icdn9.digitaltrends.com/image/apple-iphone-x-17-1500x1000.jpg',
-        'https://www.ordenadorpolitico.com/wp-content/uploads/2018/05/iphone-x-54.jpg'
-      ],
-      quantity: 3,
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate ducimus ad quidem, ullam exercitationem atque itaque aliquam, praesentium beatae consequuntur nisi totam suscipit repellendus a? Laudantium accusamus',
-      timeLeft: '4h',
-      bids: [
-        { name: 'nmrias', value: 1800000, date: '5 min' },
-        { name: 'appleco', value: 2000000, date: '60 min' },
-        { name: 'nmarias', value: 1820000, date: '20 min' },
-        { name: 'alkosto', value: 1920000, date: '50 min' },
-        { name: 'appleco', value: 2100000, date: '82 min' }
-      ]
-    }
-    this.setState({
-      data
-    })
+  goBack = () => {
+    this.props.navigation.goBack()
   }
-
   render() {
-    source1 = {
-      uri: 'https://store.storeimages.cdn-apple.com/4666/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/x/iphone-x-silver-select-2017?wid=305&hei=358&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1515602510472'
-    }
-    source2 = {
-      uri: 'https://icdn9.digitaltrends.com/image/apple-iphone-x-17-1500x1000.jpg'
-    }
-    source3 = {
-      uri: 'https://www.apple.com/v/iphone-x/e/images/meta/og.png?201803282100'
-    }
+    const data = this.props.activeDetail
+    const photos = [
+      'https://store.storeimages.cdn-apple.com/4666/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/x/iphone-x-silver-select-2017?wid=305&hei=358&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1515602510472',
+      'https://i.kinja-img.com/gawker-media/image/upload/s--FPy3RYSo--/c_scale,f_auto,fl_progressive,q_80,w_800/cur9iivisdrebdoigjna.jpg',
+      'https://icdn9.digitaltrends.com/image/apple-iphone-x-17-1500x1000.jpg',
+      'https://www.ordenadorpolitico.com/wp-content/uploads/2018/05/iphone-x-54.jpg'
+    ]
     return (
       <Container style={styles.wrapper}>
         <StatusBar
@@ -64,23 +40,21 @@ class SaleDetail extends Component {
         />
         <Content>
           <Swiper style={{height: 250, width: '100%'}}>
-            <View style={styles.slide1}>
-              <Image style={styles.image} source={source1} />
+          {
+            photos.map((uri, index) => 
+            <View key={index} style={styles.slide1}>
+              <Image style={styles.image} source={{
+                uri
+              }} />
             </View>
-            <View style={styles.slide1}>
-              <Image style={styles.image} source={source2} />
-            </View>
-            <View style={styles.slide1}>
-              <Image style={styles.image} source={source3} />
-            </View>
+            )
+          }
           </Swiper>
           <View style={styles.categoryContainer}>
-            <Text style={styles.category}>Categoría > Subcategoría > Marca</Text>
-            <Text note>Cierra en 10 horas</Text>
+            <Text style={styles.category}>Categoría > Subcategoría > {data.brand}</Text>
+            <Text note>Cierra en {data.time} horas</Text>
           </View>
-          <Text style={styles.description}>
-          El nuevo iPhone X es todo pantalla. Tiene Face ID, que convierte tu cara en tu contraseña, y el chip más potente usado en un smartphone hasta ahora
-          </Text>
+          <Text style={styles.description}>{data.description}</Text>
           <View style={styles.biddersTitleContent}>
             <Text style={styles.biddersTitle}>OFERTANTES</Text>
           </View>
@@ -178,4 +152,9 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SaleDetail
+const mapStateToProps = (state, props) => ({
+  ...props,
+  activeDetail: state.app.activeDetail
+})
+
+export default connect(mapStateToProps)(SaleDetail)
