@@ -12,9 +12,23 @@ import {
 } from 'native-base'
 function CardComponent (props) {
   const { data } = props
+  const defaultImage = 'https://picsum.photos/200/300'
   const source = {
-    uri: data.image
+    uri: data.image || defaultImage
   }
+
+  let bestBidderComponent
+
+  if (data.value_end) {
+    bestBidderComponent = (
+    <View>
+      <Text style={{fontSize: 16}}>{data.bestPrize}</Text>
+      <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
+    </View>)
+  } else {
+    bestBidderComponent = <Text style={{fontSize: 13}}>Aún no hay ofertas</Text>
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={props.pressed}>
@@ -24,10 +38,7 @@ function CardComponent (props) {
           </CardItem>
           <CardItem>
             <View>
-              <View>
-                <Text style={{fontSize: 16}}>{data.bestPrize}</Text>
-                <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
-              </View>
+              {bestBidderComponent}
               <Text note>{data.description}</Text>
             </View>
           </CardItem>

@@ -11,10 +11,10 @@ import CardComponent from './../../components/Card'
 import CategoriesHeader from './../../components/CategoriesHeader'
 
 class Home extends Component {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = () => {
     return {
       title: 'Inicio',
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({ tintColor}) => {
         return <Icon name="home" style={{color: tintColor}}/>
       }
     }
@@ -24,32 +24,22 @@ class Home extends Component {
   }
   async componentDidMount () {
     let data = await getSaleQuery()
-    data = data.json()
-    console.log(data)
+    data = await data.json()
+    console.log(data.data.sales)
     this.props.dispatch({
       type: 'SET_SALES',
-      payload: data.data
+      payload: data.data.sales
     })
   }
   render() {
-    const data = {
-      image: 'https://store.storeimages.cdn-apple.com/4666/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/x/iphone-x-silver-select-2017?wid=305&hei=358&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1515602510472',
-      timeToClose: '11h',
-      category: 'Tecnología',
-      subcategory: 'Celulares',
-      description: 'iPhone x con 128gb de almacenamiento y pantalla grande',
-      bestPrize: '$1000.000',
-      bestBider: 'nmarias',
-      quantity: 2
-    }
     return (
       <Container style={styles.container}>
         <Content>
           <CategoriesHeader/>
           <View style={styles.layout}>
-            <CardComponent pressed={() => this.goToDetail(data)} data={data}/>
-            <CardComponent pressed={() => this.goToDetail(data)} data={data}/>
-            <CardComponent pressed={() => this.goToDetail(data)} data={data}/>
+            {
+              this.props.sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
+            }
           </View>
         </Content>
       </Container>

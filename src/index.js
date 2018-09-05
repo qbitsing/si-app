@@ -26,11 +26,9 @@ class Main extends Component {
       this.dispatchNavigation('newSale', { sesion })
       this.dispatch('SET_SESION', sesion)
       let categories = await AsyncStorage.getItem('categories')
-      console.log(categories)
       if(!categories) {
         categories = await fetch('https://api.mercadolibre.com/sites/MLC/categories')
         categories = await categories.json()
-        console.log(categories)
         for ([i, categorie] of categories.entries()) {
           let categorieDetail = await fetch(`https://api.mercadolibre.com/categories/${categorie.id}`)
           categorieDetail = await categorieDetail.json()
