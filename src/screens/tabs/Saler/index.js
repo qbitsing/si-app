@@ -3,6 +3,18 @@ import {Container, Text, Icon, Tab, Tabs} from 'native-base'
 import Active from './active'
 import History from './history'
 import InProgress from './inProgress'
+import {createMaterialTopTabNavigator} from 'react-navigation'
+
+const RouteConfigs = {
+  Active,
+  History,
+  InProgress
+}
+
+const TabNavigatorConfig = {}
+
+const Navigator = createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig)
+
 
 class Saler extends Component {
   constructor(props) {
@@ -17,23 +29,8 @@ class Saler extends Component {
     }
   }
 
-
   render() {
-    return(
-      <Container>
-        <Tabs>
-          <Tab heading="Activas">
-            <Active />
-          </Tab>
-          <Tab heading="En Curso">
-            <InProgress />
-          </Tab>
-          <Tab heading="Histoiral">
-            <History />
-          </Tab>
-        </Tabs>
-      </Container>
-    )
+    return <Navigator/>
   }
 }
 

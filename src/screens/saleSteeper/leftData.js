@@ -12,16 +12,18 @@ import {
   Input,
   Textarea,
   Label,
-  View
+  View,
+  Icon
 } from 'native-base'
 import http from './../../utils/http'
 import mutation from './../../utils/mutations/createSale'
-import {StyleSheet, Alert} from 'react-native'
+import {StyleSheet, Alert, ScrollView, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 import Header from './../../components/SteeperHeader'
 import NumericInput from 'react-native-numeric-input'
 import {NavigationActions} from 'react-navigation'
-
+import ImagePicker from 'react-native-image-picker'
+import ThumbImage from '../../components/ThumbImage'
 
 class LeftData extends Component {
 
@@ -31,6 +33,7 @@ class LeftData extends Component {
       brand: null,
       description: null,
       quantity: null,
+      images: []
     }
   }
 
@@ -93,7 +96,33 @@ class LeftData extends Component {
     )
   }
 
+  handleShowImagePicker = () => {
+    const options = {
+      title: 'Seleccione una Imagen',
+      cancelButtonTitle: 'Cancelar',
+      takePhotoButtonTitle: 'Tomar Foto',
+      chooseFromLibraryButtonTitle: 'Seleccionar desde la galería',
+      mediaType: 'photo'
+    }
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.data) {
+        const objectImg = {
+          uri: `data:image/jpeg;base64,${response.data}`,
+          name: response.fileName
+        }
+        const wasUpload = this.state.images.filter((img) => img.name == objectImg.name).length > 0
+        if (!wasUpload) {
+          this.setState({
+            images: [...this.state.images, objectImg]
+          })
+          console.log(this.state)
+        }
+      }
+    })
+  }
+
   render() {
+
     return (
       <Container>
         <Header handleBack={this.handleBack} title='Descripción'/>
@@ -106,7 +135,7 @@ class LeftData extends Component {
             <Textarea 
             onChangeText={(e) => this.changueText('description', e)}
             style={styles.Textarea} 
-            rowSpan={5} bordered placeholder="Descripción" />
+            rowSpan={4} bordered placeholder="Descripción" />
             <View style={styles.Textarea}>
               <Text style={{marginBottom: 10}}>Cantidad</Text>
               <View>
@@ -117,6 +146,23 @@ class LeftData extends Component {
                 rightButtonBackgroundColor='#34495e' 
                 leftButtonBackgroundColor='#2c3e50'
                 />
+              </View>
+              <View style={styles.imageContainer}>
+                <ScrollView horizontal >
+                  {
+                    this.state.images.map((img, index) => (
+                      <ThumbImage key={index} uri={img.uri}/>
+                    ))
+                  }
+                  <View style={styles.btnAddContainer}>
+                    <TouchableOpacity onPress={this.handleShowImagePicker}>
+                      <View style={styles.addImageContainer}>
+                        <Icon name="camera" style={{color: '#000'}}/>
+                        <Text>Añadir Foto</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
               </View>
             </View>
           </Form>
@@ -139,6 +185,28 @@ class LeftData extends Component {
 }
 
 const styles = StyleSheet.create({
+  addImageContainer: {
+    width: 100,
+    height: 100,
+    borderColor: '#000',
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    borderRadius: 100,
+  },
+  btnAddContainer: {
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ff0000'
+  },
+  imageContainer: {
+    flex: 3,
+    height: 200,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   FooterButtons: {
     color: '#fff',
     fontSize: 14
