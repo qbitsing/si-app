@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, RefreshControl} from 'react-native'
 import {
   Container,
   Content,
@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import getSaleQuery from '../../utils/queries/getAllSales'
 import CardComponent from './../../components/Card'
 import CategoriesHeader from './../../components/CategoriesHeader'
+import PTRView from 'react-native-pull-to-refresh'
 
 class Home extends Component {
   static navigationOptions = () => {
@@ -28,7 +29,10 @@ class Home extends Component {
     this.props.dispatch(commit)
     this.props.navigation.navigate('SaleDetail')
   }
-
+  _refresh = () => new Promise((resolve) => {
+    console.log('is refreshing')
+    setTimeout(()=>{resolve()}, 2000)
+  })
   async componentDidMount () {
     let data = await getSaleQuery()
     data = await data.json()
@@ -38,18 +42,19 @@ class Home extends Component {
       payload: data.data.sales
     })
   }
-
   render() {
     return (
       <Container style={styles.container}>
-        <Content>
+        <PTRView onRefresh={this._refresh}>
           <CategoriesHeader/>
-          <View style={styles.layout}>
-            {
-              this.props.sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
-            }
-          </View>
-        </Content>
+          <Content>
+            <View style={styles.layout}>
+              {
+                this.props.sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
+              }
+            </View>
+          </Content>
+        </PTRView>
       </Container>
     )
   }
@@ -58,6 +63,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
+    minHeight: 300,
     flexDirection: 'row',
     padding: 10,
     alignItems: 'flex-start',
