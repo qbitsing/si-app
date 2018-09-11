@@ -10,6 +10,7 @@ import {
   CardItem,
   Text
 } from 'native-base'
+
 function CardComponent (props) {
   const { data } = props
   const defaultImage = 'https://picsum.photos/200/300/?random'

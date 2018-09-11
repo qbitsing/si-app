@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
-import {Text,Container, Content, Icon} from 'native-base'
+import {Text,Container, Content, Icon, Footer, FooterTab, Button} from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 
 class SaleDetail extends Component {
@@ -68,6 +68,13 @@ class SaleDetail extends Component {
             </View>
           </TouchableOpacity>
         </Content>
+        <Footer>
+          <FooterTab>
+            <Button full>
+              <Text>¡Pujar!</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
         <View style={styles.header}>
           <LinearGradient colors={['rgba(0,0,0,.5)', 'transparent']} style={styles.header}/>
           <View style={styles.headerBox}>
