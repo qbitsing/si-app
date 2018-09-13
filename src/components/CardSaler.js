@@ -1,67 +1,44 @@
 import React from 'react'
-import {Text, Card, CardItem, Icon, H3, Left, Button} from 'native-base'
+import {Text, Card, CardItem, H3} from 'native-base'
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native'
-import {copy, blueFacebook, blueTwitter} from '../colors'
 
 function CardSaler () {
     const data = {}
     const source = {
-        uri: ''
+        uri: 'https://http2.mlstatic.com/celular-libre-iphone-x-64gb-entrega-inmediata-D_NQ_NP_796192-MCO26287680141_112017-F.jpg'
       }
     return (
     <View>
-        <TouchableOpacity>
-          <Card>
-            <CardItem>
-              <Left>
-                <Text note>Cierra en {data.timeToClose}</Text>
-              </Left>
-            </CardItem>
-            <CardItem cardBody>
-              <View style={styles.body}>
-                <View>
-                  <Image style={styles.image} source={source}/>
-                </View>
-                <View style={styles.info}>
-                    <View>
-                        <Text>{data.category} > {data.subcategory}</Text>
-                        <Text note>{data.description}</Text>
-                        <Text>Cantidad: {data.quantity}</Text>
-                    </View>
-                    <View style={styles.content}>
-                      <H3>{data.bestPrize}</H3>
-                      <Text>{data.bestBider}</Text>
-                    </View>
-                </View>
+      <TouchableOpacity>
+        <Card>
+          <CardItem cardBody>
+            <View style={styles.body}>
+              <View>
+                <Image style={styles.image} source={source}/>
               </View>
-            </CardItem>
-            <CardItem>
-              <View style={styles.buttonsContainer}>
-                <View style={styles.row}>
-                  <Button transparent>
-                    <Icon type="FontAwesome" name="facebook" style={{color: blueFacebook}}/>
-                  </Button>
-                  <Button transparent>
-                    <Icon name="logo-twitter" style={{color: blueTwitter}}/>
-                  </Button>
-                </View>
-                <View>
-                  <Button transparent>
-                    <Icon name="clipboard" style={{color: copy}}/>
-                  </Button>
-                </View>
+              <View style={styles.info}>
+                  <View>
+                    <Text note>Subcategoría > {data.brand || 'brand'}</Text>
+                    <Text note>{data.description || 'Lorem ipsum dolor sit amet consectetur adipiscing elit, senectus turpis volutpat.'}</Text>
+                  </View>
+                  <View style={styles.content}>
+                    <H3>$1'800.000</H3>
+                    <Text>nmarias</Text>
+                  </View>
+                  <Text note>Cierra en 2h</Text>
               </View>
-            </CardItem>
-          </Card>
-        </TouchableOpacity>
-      </View>
+            </View>
+          </CardItem>
+        </Card>
+      </TouchableOpacity>
+    </View>
     )
 }
 
 const styles = StyleSheet.create({
     image: {
       flex: 1,
-      width: 130,
+      width: 150,
       height: 200
     },
     body: {
@@ -71,21 +48,13 @@ const styles = StyleSheet.create({
     },
     info: {
       flex: 1,
-      paddingLeft: 20
+      paddingLeft: 10,
+      paddingBottom: 10,
     },
     content: {
       flex: 3,
       alignItems: 'center',
       justifyContent: 'center'
-    },
-    row: {
-      flex: 1,
-      flexDirection: 'row'
-    },
-    buttonsContainer: {
-      flex: 1,
-      justifyContent: 'space-between',
-      flexDirection: 'row'
     }
   })
 

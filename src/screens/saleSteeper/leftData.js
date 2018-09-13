@@ -157,7 +157,7 @@ class LeftData extends Component {
                   <View style={styles.btnAddContainer}>
                     <TouchableOpacity onPress={this.handleShowImagePicker}>
                       <View style={styles.addImageContainer}>
-                        <Icon name="camera" style={{color: '#000'}}/>
+                        <Icon name="camera" style={{color: '#ccc'}}/>
                         <Text>Añadir Foto</Text>
                       </View>
                     </TouchableOpacity>
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   addImageContainer: {
     width: 100,
     height: 100,
-    borderColor: '#000',
+    borderColor: '#ccc',
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -199,7 +199,6 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ff0000'
   },
   imageContainer: {
     flex: 3,

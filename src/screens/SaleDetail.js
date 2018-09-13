@@ -8,7 +8,6 @@ import {
   Image,
   StatusBar,
 } from 'react-native'
-import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 import {Text,Container, Content, Icon, Footer, FooterTab, Button} from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
