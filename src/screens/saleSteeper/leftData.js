@@ -121,6 +121,12 @@ class LeftData extends Component {
     })
   }
 
+  onDelete = (image) => {
+    let images = Object.assign([], this.state.images)
+    images = images.filter(img => image.name != img.name)
+    this.setState({images})
+  }
+
   render() {
 
     return (
@@ -151,7 +157,7 @@ class LeftData extends Component {
                 <ScrollView horizontal >
                   {
                     this.state.images.map((img, index) => (
-                      <ThumbImage key={index} uri={img.uri}/>
+                      <ThumbImage key={index} delete={() => this.onDelete(img)} uri={img.uri}/>
                     ))
                   }
                   <View style={styles.btnAddContainer}>

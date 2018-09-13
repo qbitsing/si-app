@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
   container: {
     marginRight: 15,
     backgroundColor: 'transparent',
-    paddingTop: 10,
     width: 200,
     height: 200
   },
