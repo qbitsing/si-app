@@ -5,11 +5,11 @@ import {Container, Content} from 'native-base'
 class Active extends Component {
     render() {
         return (
-        <Container>
+          <Container>
             <Content>
-                <Card/>
+              <Card />
             </Content>
-        </Container>
+          </Container>
         )
     }
 }
