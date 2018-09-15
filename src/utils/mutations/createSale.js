@@ -12,7 +12,7 @@ mutation {
     uuid_subcategority: "${subcategory}"
     time: 1
     uuid_user: "${uuidUser}"
-    photos: "${JSON.stringify(photos)}"
+    photos: ${JSON.stringify(photos)}
     description: "${description}"
     quantity: ${quantity}
   }) {

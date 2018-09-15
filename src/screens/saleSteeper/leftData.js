@@ -43,15 +43,23 @@ class LeftData extends Component {
     this.setState(state)
   }
 
+  uploadImages = async () => {
+    const {images} = this.state
+    const photos = images.map(obj => obj.uri)
+    let res = await http('upload', { photos })
+    return res.json()
+  }
+
   handleCreate = async () => {
     let success = true
     let message = {}
+    const photos = (await this.uploadImages()).urls
+    console.log(photos)
     this.props.dispatch({
       type: 'SET_LOADER',
       payload: true
     })
-    const {brand, description, quantity, images} = this.state
-    const photos = images.map(obj => obj.uri)
+    const { brand, description, quantity } = this.state
     const query = mutation({
       brand,
       description,
@@ -64,6 +72,9 @@ class LeftData extends Component {
       let res = await http('mutation', query)
       res = await res.json()
       console.log(res)
+      if(res.errors) {
+        throw new Error(JSON.stringify(res.errors))
+      }
       message.title = 'Excelente'
       message.message = 'Subasta creada con éxito'
     } catch(e) {
@@ -98,7 +109,7 @@ class LeftData extends Component {
     )
   }
 
-  handleShowImagePicker = async () => {
+  handleShowImagePicker = () => {
     const options = {
       title: 'Seleccione una Imagen',
       cancelButtonTitle: 'Cancelar',
@@ -106,16 +117,15 @@ class LeftData extends Component {
       chooseFromLibraryButtonTitle: 'Seleccionar desde la galería',
       mediaType: 'photo'
     }
-    ImagePicker.showImagePicker(options, (response) => {
+    ImagePicker.showImagePicker(options, response => {
       if (response.data) {
         const objectImg = {
           uri: `data:image/jpeg;base64,${response.data}`,
           name: response.fileName
         }
 
-        const wasUpload = this.state.images.filter((img) => img.name == objectImg.name).length > 0
+        const wasUpload = this.state.images.filter(img => img.name == objectImg.name).length > 0
         if (!wasUpload) {
-          
           this.setState({
             images: [...this.state.images, objectImg]
           })

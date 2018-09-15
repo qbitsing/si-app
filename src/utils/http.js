@@ -1,16 +1,24 @@
 export default function(type, query) {
   let method
   let body
-  let developmentURL = 'http://localhost:3300/graphql'
-  let baseURL = 'https://api-si.herokuapp.com/graphql'
+  let baseURL = 'https://api-si.herokuapp.com/'
   if (type == 'query') {
     method = 'GET'
-    baseURL += `?query=${query}`
+    baseURL += `graphql?query=${query}`
   } else {
     method = 'POST'
-    body = JSON.stringify({query})
+    if (type === 'upload') {
+      baseURL += 'upload'
+      body = JSON.stringify({
+        ...query
+      })
+    }
+    else {
+      baseURL += 'graphql'
+      body = JSON.stringify({query})
+    }
   }
-  console.log(method, body)
+  console.log(body)
   return fetch(baseURL, {
     headers: {
       'Accept': 'application/json',
