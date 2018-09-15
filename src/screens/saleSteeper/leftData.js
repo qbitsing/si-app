@@ -50,18 +50,20 @@ class LeftData extends Component {
       type: 'SET_LOADER',
       payload: true
     })
-    const {brand, description, quantity} = this.state
+    const {brand, description, quantity, images} = this.state
+    const photos = images.map(obj => obj.uri)
     const query = mutation({
       brand,
       description,
       quantity,
       subcategory: this.props.newSale.subcategory.id,
-      photos: '',
+      photos,
       uuidUser: this.props.sesion.uuid
     })
     try {
       let res = await http('mutation', query)
       res = await res.json()
+      console.log(res)
       message.title = 'Excelente'
       message.message = 'Subasta creada con éxito'
     } catch(e) {
@@ -96,7 +98,7 @@ class LeftData extends Component {
     )
   }
 
-  handleShowImagePicker = () => {
+  handleShowImagePicker = async () => {
     const options = {
       title: 'Seleccione una Imagen',
       cancelButtonTitle: 'Cancelar',
@@ -110,12 +112,13 @@ class LeftData extends Component {
           uri: `data:image/jpeg;base64,${response.data}`,
           name: response.fileName
         }
+
         const wasUpload = this.state.images.filter((img) => img.name == objectImg.name).length > 0
         if (!wasUpload) {
+          
           this.setState({
             images: [...this.state.images, objectImg]
           })
-          console.log(this.state)
         }
       }
     })
@@ -128,6 +131,17 @@ class LeftData extends Component {
   }
 
   render() {
+    
+    const AddPhoto = (
+    <View style={styles.btnAddContainer}>
+      <TouchableOpacity onPress={this.handleShowImagePicker}>
+        <View style={styles.addImageContainer}>
+          <Icon name="camera" style={{color: '#ccc'}}/>
+          <Text>Añadir Foto</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+    )
 
     return (
       <Container>
@@ -160,14 +174,10 @@ class LeftData extends Component {
                       <ThumbImage key={index} delete={() => this.onDelete(img)} uri={img.uri}/>
                     ))
                   }
-                  <View style={styles.btnAddContainer}>
-                    <TouchableOpacity onPress={this.handleShowImagePicker}>
-                      <View style={styles.addImageContainer}>
-                        <Icon name="camera" style={{color: '#ccc'}}/>
-                        <Text>Añadir Foto</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
+                  {
+                    this.state.images.length < 6 && AddPhoto
+                  }
+                  
                 </ScrollView>
               </View>
             </View>

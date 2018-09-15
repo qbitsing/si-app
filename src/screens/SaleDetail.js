@@ -20,6 +20,15 @@ class SaleDetail extends Component {
     }
   }
 
+  handleBid = () => {
+    const {sesion} = this.props
+    if(sesion) {
+
+    } else {
+      this.props.navigation.navigate('BeforeLogin')
+    }
+  }
+
   goBack = () => {
     this.props.navigation.goBack()
   }
@@ -69,7 +78,7 @@ class SaleDetail extends Component {
         </Content>
         <Footer>
           <FooterTab>
-            <Button full>
+            <Button  onPress={this.handleBid} full>
               <Text>¡Pujar!</Text>
             </Button>
           </FooterTab>
@@ -160,7 +169,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  activeDetail: state.app.activeDetail
+  activeDetail: state.app.activeDetail,
+  sesion: state.app.sesion
 })
 
 export default connect(mapStateToProps)(SaleDetail)

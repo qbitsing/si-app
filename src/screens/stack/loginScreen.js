@@ -14,7 +14,7 @@ import {
   Label,
 } from 'native-base';
 import http from './../../utils/http'
-import loginQuery from './../../utils/queries/login'
+import loginQuery from '../../utils/mutations/login'
 import { connect } from 'react-redux'
 import {blueFacebook} from './../../colors'
 import {NavigationActions} from 'react-navigation'
@@ -54,7 +54,8 @@ class LoginScreen extends Component {
     const password = this.state.password
     let res = false
     try {
-      res = await http('query', loginQuery({email, password}))
+      const query = loginQuery({email, password})
+      res = await http('mutation', query)
       res = await res.json()
     } catch (e) {
       console.log(e)
@@ -63,13 +64,12 @@ class LoginScreen extends Component {
       const { data, errors } = res
       if (errors) console.log(errors)
       else {
-        const res = await AsyncStorage.setItem('sesion', JSON.stringify(data.singin))
         const sesion = data.singin
+        await AsyncStorage.setItem('sesion', JSON.stringify(sesion))
         this.props.dispatch({
           type: 'SET_SESION',
           payload: sesion
         })
-        console.log(sesion)
         this.setNavigationSesion('Profile', {sesion})
         this.setNavigationSesion('newSale', {sesion})
         this.props.navigation.navigate('Profile')
