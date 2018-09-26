@@ -27,7 +27,7 @@ function CardComponent(props) {
         <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
       </View>)
   } else {
-    bestBidderComponent = <Text style={{fontSize: 13}}>Aún no hay ofertas</Text>
+    bestBidderComponent = <Text style={{fontSize: 13, fontFamily: 'Poppins-Medium'}}>Aún no hay ofertas</Text>
   }
 
   return (
@@ -40,7 +40,7 @@ function CardComponent(props) {
           <CardItem>
             <View style={styles.info}>
               {bestBidderComponent}
-              <Text note>{data.description}</Text>
+              <Text note style={{fontFamily: 'Poppins-Regular'}}>{data.description}</Text>
             </View>
           </CardItem>
         </Card>

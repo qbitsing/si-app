@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react'
 import { connect } from 'react-redux'
-import { AsyncStorage, BackHandler } from 'react-native'
+import { AsyncStorage, BackHandler, View, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import AppNavigator from './app-navigator-with-state'
 import Loader from './components/loader'
+import Fonts from './utils/Fonts'
 
 class Main extends Component {
   handleBack = () => {

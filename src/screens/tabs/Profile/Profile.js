@@ -23,23 +23,7 @@ import {
 import {NavigationActions, StackActions} from 'react-navigation'
 
 class Profile extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      tabBarOnPress: () => {
-      const sesion = navigation.getParam('sesion')
-      console.log(sesion)
-      if (sesion) {
-        navigation.navigate('Profile')
-      } else {
-        navigation.navigate('BeforeLogin')
-      }
-      },
-      title: 'Perfil',
-      tabBarIcon: ({focused, tintColor}) => {
-        return <Icon name="person" style={{color: tintColor}}/>
-      }
-    }
-  }
+  
   signOut = async () => {
     let x = await AsyncStorage.removeItem('sesion')
     const resetAction = StackActions.reset({
@@ -59,7 +43,6 @@ class Profile extends Component {
   render() {
     let {sesion} = this.props.redux
     sesion = sesion === null ? {} : sesion
-    const {navigation} = this.props
     return (
       <Container>
         <Header>
