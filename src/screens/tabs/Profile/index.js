@@ -21,8 +21,8 @@ const customDrawerComponent = props => (
 			<DrawerItems {...props} />
 			<Ripple rippleDuration={600}>
 				<View style={styles.cerrarSesionItem}>
-					<Icon style={{color: "#e74c3c", marginRight: 25}} type='FontAwesome' name="sign-out" />
-					<Text style={{color: "#e74c3c", fontWeight: "600", fontSize: 14}} >Cerrar Sesion</Text>
+					<Icon style={{color: "#192a56", marginRight: 25}} type='FontAwesome' name="sign-out" />
+					<Text style={{color: "#192a56", fontWeight: "600", fontSize: 14}} >Cerrar Sesion</Text>
 				</View>
 			</Ripple>
 		</Content>
