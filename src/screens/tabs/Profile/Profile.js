@@ -11,15 +11,14 @@ import {
   Icon,
   Body,
   Right,
+  Left,
+  Title,
   Thumbnail,
   Header,
   Button,
 } from 'native-base';
-import {
-  StyleSheet,
-  AsyncStorage,
-  View
-} from 'react-native'
+import { StyleSheet,  AsyncStorage, View } from 'react-native'
+import { Poppins, PoppinsSemiBold } from '../../../utils/Fonts'
 import {NavigationActions, StackActions} from 'react-navigation'
 
 class Profile extends Component {
@@ -46,11 +45,14 @@ class Profile extends Component {
     return (
       <Container>
         <Header>
-          <Right>
-            <Button onPress={this.signOut}>
-              <Icon type='FontAwesome' name="sign-out"/>
+          <Left>
+            <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+              <Icon type='FontAwesome' name="bars"/>
             </Button>
-          </Right>
+          </Left>
+          <Body>
+            <Title></Title>
+          </Body>
         </Header>
         <Content style={{backgroundColor: '#fff'}}>
           <View style={styles.PhotoCard}>  
@@ -62,7 +64,7 @@ class Profile extends Component {
           <List style={{marginTop:0}}>
             <ListItem icon>
               <Body >
-                <Text style={{fontSize:17}}>{sesion.email}</Text>
+                <Text style={styles.ListItem}>{sesion.email}</Text>
               </Body>
               <Right>
                 <Icon style={{fontSize:20, color:'blue' }} name="plane"/>
@@ -70,7 +72,7 @@ class Profile extends Component {
             </ListItem>
             <ListItem icon>
               <Body >
-                <Text style={{fontSize:17}}>{sesion.email}</Text>
+                <Text style={styles.ListItem}>{sesion.email}</Text>
               </Body>
               <Right>
                 <Icon style={{fontSize:20, color:'blue' }} name="plane"/>
@@ -78,7 +80,7 @@ class Profile extends Component {
             </ListItem>
             <ListItem icon>
               <Body >
-                <Text style={{fontSize:17}}>{sesion.email}</Text>
+                <Text style={styles.ListItem}>{sesion.email}</Text>
               </Body>
               <Right>
                 <Icon style={{fontSize:20, color:'blue' }} name="plane"/>
@@ -105,7 +107,12 @@ const styles = StyleSheet.create({
   },
   name: {
     color:'white',
+    fontFamily: Poppins,
     fontSize:20
+  },
+  ListItem: {
+    fontSize: 17,
+    fontFamily: Poppins
   }
 })
 

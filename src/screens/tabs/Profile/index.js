@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {createDrawerNavigator, DrawerItems} from 'react-navigation'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
-import { Image, StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import { Image, StyleSheet, View, Text } from 'react-native'
 import { Icon, Container, Content, Header, Body} from 'native-base'
 import Ripple from 'react-native-material-ripple'
 
@@ -19,10 +19,10 @@ const customDrawerComponent = props => (
 		</Header>
 		<Content>
 			<DrawerItems {...props} />
-			<Ripple>
+			<Ripple rippleDuration={600}>
 				<View style={styles.cerrarSesionItem}>
-					<Icon type='FontAwesome' name="sign-out" />
-					<Text>Cerrar Sesion</Text>
+					<Icon style={{color: "#e74c3c", marginRight: 25}} type='FontAwesome' name="sign-out" />
+					<Text style={{color: "#e74c3c", fontWeight: "600", fontSize: 14}} >Cerrar Sesion</Text>
 				</View>
 			</Ripple>
 		</Content>
@@ -40,14 +40,19 @@ const routeConfig = {
 		screen: Profile,
 		name: 'Perfil',
 		navigationOptions: {
-			drawerIcon: (
-				<Icon type='FontAwesome' name="user"/>
+			drawerIcon: ({tintColor}) => (
+				<Icon style={{color: tintColor}} type='FontAwesome' name="user"/>
 			)
 		}
 	},
 	EditProfile: {
 		screen: EditProfile,
-		name: 'Editar Perfil'
+		name: 'Editar Perfil',
+		navigationOptions: {
+			drawerIcon: ({tintColor}) => (
+				<Icon style={{color: tintColor}} type='FontAwesome' name="edit"/>
+			)
+		}
 	}
 }
 
@@ -86,6 +91,10 @@ const styles = StyleSheet.create({
 	},
 	cerrarSesionItem: {
 		flex: 1,
+		paddingVertical: 10,
+		margin: 0,
+		paddingHorizontal: 16,
+		alignItems: 'center',
 		flexDirection: 'row'
 	},
 	headerDrawer: {

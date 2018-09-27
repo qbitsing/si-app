@@ -29,10 +29,12 @@ class Home extends Component {
     this.props.dispatch(commit)
     this.props.navigation.navigate('SaleDetail')
   }
+  
   _refresh = () => new Promise((resolve) => {
     console.log('is refreshing')
     setTimeout(()=>{resolve()}, 2000)
   })
+
   async componentDidMount () {
     let data = await getSaleQuery()
     data = await data.json()
