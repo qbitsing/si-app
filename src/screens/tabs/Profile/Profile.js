@@ -23,22 +23,6 @@ import {NavigationActions, StackActions} from 'react-navigation'
 
 class Profile extends Component {
   
-  signOut = async () => {
-    let x = await AsyncStorage.removeItem('sesion')
-    const resetAction = StackActions.reset({
-      index: 1,
-      actions: [
-        NavigationActions.navigate({ routeName: 'TabsNavigator' }),
-        NavigationActions.navigate({ routeName: 'BeforeLogin' })
-      ],
-    })
-    this.props.dispatch({
-      type: 'SET_SESION', 
-      payload: null
-    })
-    this.props.dispatch(resetAction)
-  }
-
   render() {
     let {sesion} = this.props.redux
     sesion = sesion === null ? {} : sesion

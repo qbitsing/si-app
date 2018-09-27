@@ -1,12 +1,29 @@
 import React, {Component} from 'react'
-import {createDrawerNavigator, DrawerItems} from 'react-navigation'
+import {createDrawerNavigator, DrawerItems, StackActions, NavigationActions} from 'react-navigation'
 import Profile from './Profile'
 import EditProfile from './EditProfile'
-import { Image, StyleSheet, View, Text } from 'react-native'
+import {connect} from 'react-redux'
+import { Image, StyleSheet, View, Text, AsyncStorage } from 'react-native'
 import { Icon, Container, Content, Header, Body} from 'native-base'
 import Ripple from 'react-native-material-ripple'
 
-const customDrawerComponent = props => (
+async function signOut (props) {
+	let x = await AsyncStorage.removeItem('sesion')
+    const resetAction = StackActions.reset({
+      index: 1,
+      actions: [
+        NavigationActions.navigate({ routeName: 'TabsNavigator' }),
+        NavigationActions.navigate({ routeName: 'BeforeLogin' })
+      ],
+    })
+    props.dispatch({
+      type: 'SET_SESION', 
+      payload: null
+    })
+    props.dispatch(resetAction)
+}
+
+const customDrawerComponent = connect()((props) => (
 	<Container>
 		<Header style={styles.headerDrawer}>
 			<Body>
@@ -19,7 +36,7 @@ const customDrawerComponent = props => (
 		</Header>
 		<Content>
 			<DrawerItems {...props} />
-			<Ripple rippleDuration={600}>
+			<Ripple rippleDuration={600} onPress={() => signOut(props)}>
 				<View style={styles.cerrarSesionItem}>
 					<Icon style={{color: "#192a56", marginRight: 25}} type='FontAwesome' name="sign-out" />
 					<Text style={{color: "#192a56", fontWeight: "600", fontSize: 14}} >Cerrar Sesion</Text>
@@ -27,7 +44,7 @@ const customDrawerComponent = props => (
 			</Ripple>
 		</Content>
 	</Container>
-);
+));
 
 const drawerConfig = {
 	drawerOpenRoute: 'DrawerOpen',
