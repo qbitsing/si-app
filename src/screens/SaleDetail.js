@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Swiper from 'react-native-swiper'
-import http from '../utils/http'
+import { Poppins, PoppinsLight, PoppinsSemiBold, PoppinsMedium } from '../utils/Fonts'
+
 import {
   StyleSheet,
   TouchableOpacity,
@@ -60,7 +61,7 @@ class SaleDetail extends Component {
           </Swiper>
           <View style={styles.categoryContainer}>
             <Text style={styles.category}>Categoría > Subcategoría > {data.brand}</Text>
-            <Text note>Cierra en {data.time} horas</Text>
+            <Text note style={{fontFamily: PoppinsLight }}>Cierra en {data.time} horas</Text>
           </View>
           <Text style={styles.description}>{data.description}</Text>
           <View style={styles.biddersTitleContent}>
@@ -71,7 +72,7 @@ class SaleDetail extends Component {
               <Text style={styles.category}>$1.800.000</Text>
               <View style={styles.info}>
                 <Text style={styles.name}>nmarias</Text>
-                <Text note>hace 50m</Text>
+                <Text note style={{fontFamily: PoppinsLight}}>hace 50m</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -79,7 +80,7 @@ class SaleDetail extends Component {
         <Footer>
           <FooterTab>
             <Button  onPress={this.handleBid} full>
-              <Text>¡Pujar!</Text>
+              <Text style={{fontFamily: PoppinsSemiBold}}>¡Pujar!</Text>
             </Button>
           </FooterTab>
         </Footer>
@@ -114,8 +115,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   name: {
-    fontWeight: 'bold',
-    color: 'orange'
+    color: 'orange',
+    fontFamily: PoppinsMedium
   },
   header: {
     height: 80,
@@ -138,13 +139,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#3498db'
   },
   biddersTitle: {
-    fontWeight: 'bold',
     color: '#fff',
+    fontFamily: PoppinsSemiBold,
     textAlign: 'center'
   },
   description: {
     fontSize: 14,
     padding: 10,
+    fontFamily: Poppins,
     color: 'grey'
   },
   categoryContainer: {
@@ -152,9 +154,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   category: {
-    fontWeight: 'bold',
     color: '#222',
-    fontSize: 16,
+    fontFamily: PoppinsMedium
   },
   image: {
     width: '100%',

@@ -1,15 +1,7 @@
 import React from 'react'
-import {
-  Image,
-  TouchableOpacity,
-  View,
-  StyleSheet
-} from 'react-native'
-import {
-  Card,
-  CardItem,
-  Text
-} from 'native-base'
+import { Image, TouchableOpacity, View, StyleSheet } from 'react-native'
+import { Card, CardItem, Text } from 'native-base'
+import {Poppins} from '../utils/Fonts'
 
 function CardComponent(props) {
   const { data } = props
@@ -27,7 +19,7 @@ function CardComponent(props) {
         <Text style={{fontSize: 13, lineHeight: 13}}>{data.bestBider}</Text>
       </View>)
   } else {
-    bestBidderComponent = <Text style={{fontSize: 13, fontFamily: 'Poppins-Medium'}}>Aún no hay ofertas</Text>
+    bestBidderComponent = <Text style={{fontSize: 13, fontFamily: Poppins}}>Aún no hay ofertas</Text>
   }
 
   return (
@@ -40,7 +32,7 @@ function CardComponent(props) {
           <CardItem>
             <View style={styles.info}>
               {bestBidderComponent}
-              <Text note style={{fontFamily: 'Poppins-Regular'}}>{data.description}</Text>
+              <Text note style={{fontFamily: Poppins}}>{data.description}</Text>
             </View>
           </CardItem>
         </Card>
