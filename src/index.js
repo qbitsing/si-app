@@ -4,11 +4,9 @@ import { AsyncStorage, BackHandler, View, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import AppNavigator from './app-navigator-with-state'
 import Loader from './components/loader'
-import Fonts from './utils/Fonts'
 
 class Main extends Component {
   handleBack = () => {
-    console.log(AppNavigator)
     this.props.dispatch(NavigationActions.back())
     return true
   }
@@ -19,7 +17,6 @@ class Main extends Component {
     this.dispatch('SET_LOADER', true)
     BackHandler.addEventListener('hardwareBackPress', this.handleBack)
     try {
-      console.log('start algorithm')
       let sesion = await AsyncStorage.getItem('sesion')
       console.log(sesion)
       sesion = JSON.parse(sesion)
@@ -41,7 +38,6 @@ class Main extends Component {
       }
       this.dispatch('SET_CATEGORIES', {categories})
     } catch (e) {
-      console.log(e)
     }
     this.dispatch('SET_LOADER', false)
   }

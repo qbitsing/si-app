@@ -6,6 +6,7 @@ mutation {
     city
     phone
     document
+    username
     name
   }
 }

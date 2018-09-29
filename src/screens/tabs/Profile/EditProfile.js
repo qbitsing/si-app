@@ -1,9 +1,38 @@
 import React, {Component} from 'react'
 import {Text, View, StyleSheet, TextInput, Button, StatusBar} from 'react-native'
 import {Container, Content, Icon, Thumbnail} from 'native-base'
-import {PoppinsSemiBold, PoppinsBold} from '../../../utils/Fonts'
+import {PoppinsSemiBold, PoppinsBold, PoppinsMedium} from '../../../utils/Fonts'
 import {gray, gray_1, blueTwitter} from '../../../colors'
+import {connect} from 'react-redux'
+
 class EditProfile extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      email: null,
+      phone: null,
+      username: null,
+      document: null,
+      name: null,
+      city: null,
+      lastSesion: null
+    }
+  }
+
+  changeState = (type, value) => {
+    let obj = {}
+    obj[type] = value
+    this.setState(obj)
+  }
+
+  componentDidMount () {
+    const lastSesion = this.props.sesion
+    const state = {
+      ...lastSesion,
+      lastSesion
+    }
+    this.setState(state)
+  }
   render() {
     return (
       <Container>
@@ -22,13 +51,28 @@ class EditProfile extends Component {
               <Button title="Cambiar Foto" style={styles.buttonChangePhoto} color={blueTwitter} />
             </View>
             <View style={styles.inputsInHeading}>
-              <TextInput placeholder="Username." style={styles.basicInput} />
-              <TextInput placeholder="Teléfono." keyboardType='phone-pad' style={styles.basicInput} />
+              <TextInput placeholder="Username." style={styles.basicInput}
+              value={this.state.username} 
+              onChangeText={text => this.changeState('username', text)} />
+
+              <TextInput placeholder="Teléfono." keyboardType='phone-pad' style={styles.basicInput}
+               value={this.state.phone} 
+               onChangeText={text => this.changeState('phone', text)} />
+
             </View>
           </View>
-          <TextInput placeholder="Nombre." style={styles.basicInput} />
-          <TextInput placeholder="Email." editable={false} keyboardType='email-address' style={styles.basicInput} />
-          <TextInput placeholder="Ciudad." style={styles.basicInput} />
+
+          <TextInput placeholder="Nombre." style={styles.basicInput}
+          value={this.state.name} 
+          onChangeText={text => this.changeState('name', text)} />
+
+          <TextInput placeholder="Email." editable={false} keyboardType='email-address' 
+          style={styles.disabled} value={this.state.email} />
+
+          <TextInput placeholder="Ciudad." style={styles.basicInput} 
+          value={this.state.city} 
+          onChangeText={text => this.changeState('city', text)} />
+
           <View style={styles.separation}>
             <Button color={blueTwitter} style={styles.buttonChangePhoto} title='Cambiar Contraseña'/>
           </View>
@@ -43,10 +87,14 @@ class EditProfile extends Component {
 
 const styles = StyleSheet.create({
   basicInput: {
-    fontFamily: PoppinsSemiBold,
+    fontFamily: PoppinsMedium,
     color: gray_1,
     fontSize: 18,
     marginBottom: 10
+  },
+  disabled: {
+    ...styles.basicInput,
+    color: gray
   },
   formStyles: {
     paddingHorizontal: 20
@@ -89,4 +137,12 @@ const styles = StyleSheet.create({
     padding: 20,
   }
 })
-export default EditProfile
+
+function mapStateToProps (state, props) {
+  return {
+    ...props,
+    sesion: state.app.sesion
+  }
+}
+
+export default connect(mapStateToProps)(EditProfile)
