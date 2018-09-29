@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, TextInput, Button, StatusBar} from 'react-native'
+import {Text, View, StyleSheet, TextInput, Button, StatusBar, Animated, Easing} from 'react-native'
 import {Container, Content, Icon, Thumbnail} from 'native-base'
-import {PoppinsSemiBold, PoppinsBold, PoppinsMedium} from '../../../utils/Fonts'
-import {gray, gray_1, blueTwitter} from '../../../colors'
+import {PoppinsBold, PoppinsMedium} from '../../../utils/Fonts'
+import {gray, gray_1, blueTwitter, blueFacebook} from '../../../colors'
+import FAB from 'react-native-fab'
 import {connect} from 'react-redux'
 
 class EditProfile extends Component {
@@ -15,7 +16,8 @@ class EditProfile extends Component {
       document: null,
       name: null,
       city: null,
-      lastSesion: null
+      lastSesion: null,
+      visibleFab: true,
     }
   }
 
@@ -25,6 +27,12 @@ class EditProfile extends Component {
     this.setState(obj)
   }
 
+  fabClick = () => {
+    this.setState({
+      visibleFab: !this.state.visibleFab
+    })
+  }
+ 
   componentDidMount () {
     const lastSesion = this.props.sesion
     const state = {
@@ -33,7 +41,9 @@ class EditProfile extends Component {
     }
     this.setState(state)
   }
+
   render() {
+
     return (
       <Container>
         <StatusBar
@@ -67,7 +77,7 @@ class EditProfile extends Component {
           onChangeText={text => this.changeState('name', text)} />
 
           <TextInput placeholder="Email." editable={false} keyboardType='email-address' 
-          style={styles.disabled} value={this.state.email} />
+          style={styles.basicInput} value={this.state.email} />
 
           <TextInput placeholder="Ciudad." style={styles.basicInput} 
           value={this.state.city} 
@@ -80,6 +90,8 @@ class EditProfile extends Component {
             <Button color={blueTwitter} style={styles.buttonChangePhoto} title='Activar modo proveedor'/>
           </View>
         </Content>
+          <FAB visible={this.state.visibleFab} onClickAction={this.fabClick} iconTextColor="#fff"
+          buttonColor={blueFacebook} iconTextComponent={<Icon type="FontAwesome" name="check" />} />
       </Container>
     )
   }
@@ -92,9 +104,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10
   },
-  disabled: {
-    ...styles.basicInput,
-    color: gray
+  iconFab: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   formStyles: {
     paddingHorizontal: 20
@@ -111,6 +124,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 140,
     paddingRight: 10,
+    marginBottom: 10
   },
   photo: {
     marginBottom: 15
