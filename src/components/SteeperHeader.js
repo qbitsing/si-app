@@ -7,6 +7,7 @@ import {
   Button,
   Body
 } from 'native-base'
+import {PoppinsMedium} from '../utils/Fonts'
 
 function SteeperHeader(props) {
   return (
@@ -20,7 +21,7 @@ function SteeperHeader(props) {
         </Button>
       </Left>
       <Body>
-        <Title style={{fontSize: 14}}>{props.title}</Title>
+        <Title style={{fontSize: 14, fontFamily: PoppinsMedium}}>{props.title}</Title>
       </Body>
     </Header>
   )

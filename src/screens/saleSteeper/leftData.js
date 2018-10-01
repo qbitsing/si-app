@@ -7,23 +7,18 @@ import {
   Text,
   Left,
   Button,
-  Form,
-  Item,
-  Input,
-  Textarea,
-  Label,
-  View,
   Icon
 } from 'native-base'
 import http from './../../utils/http'
 import mutation from './../../utils/mutations/createSale'
-import {StyleSheet, Alert, ScrollView, TouchableOpacity} from 'react-native'
+import {StyleSheet, Alert, ScrollView, TouchableOpacity, TextInput, View} from 'react-native'
 import {connect} from 'react-redux'
+import {gray_1, gray} from '../../colors'
 import Header from './../../components/SteeperHeader'
-import NumericInput from 'react-native-numeric-input'
 import {NavigationActions} from 'react-navigation'
 import ImagePicker from 'react-native-image-picker'
 import ThumbImage from '../../components/ThumbImage'
+import {PoppinsMedium, PoppinsSemiBold, Poppins} from '../../utils/Fonts'
 
 class LeftData extends Component {
 
@@ -140,14 +135,13 @@ class LeftData extends Component {
     this.setState({images})
   }
 
-  render() {
-    
+  render() {   
     const AddPhoto = (
     <View style={styles.btnAddContainer}>
       <TouchableOpacity onPress={this.handleShowImagePicker}>
         <View style={styles.addImageContainer}>
-          <Icon name="camera" style={{color: '#ccc'}}/>
-          <Text>Añadir Foto</Text>
+          <Icon name="camera" style={{color: gray, fontSize: 36}}/>
+          <Text style={styles.addPhotoText}>Añadir Foto</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -156,42 +150,33 @@ class LeftData extends Component {
     return (
       <Container>
         <Header handleBack={this.handleBack} title='Descripción'/>
-        <Content>
-          <Form style={styles.Form}>
-            <Item floatingLabel>
-              <Label>Marca</Label>
-              <Input onChangeText={(e) => this.changueText('brand', e)} />
-            </Item>
-            <Textarea 
-            onChangeText={(e) => this.changueText('description', e)}
-            style={styles.Textarea} 
-            rowSpan={4} bordered placeholder="Descripción" />
-            <View style={styles.Textarea}>
-              <Text style={{marginBottom: 10}}>Cantidad</Text>
-              <View>
-                <NumericInput
-                onChange={value => this.changueText('quantity' ,value)}
-                rounded
-                iconStyle={{ color: 'white' }}
-                rightButtonBackgroundColor='#34495e' 
-                leftButtonBackgroundColor='#2c3e50'
-                />
-              </View>
-              <View style={styles.imageContainer}>
-                <ScrollView horizontal >
-                  {
-                    this.state.images.map((img, index) => (
-                      <ThumbImage key={index} delete={() => this.onDelete(img)} uri={img.uri}/>
-                    ))
-                  }
-                  {
-                    this.state.images.length < 6 && AddPhoto
-                  }
-                  
-                </ScrollView>
-              </View>
+        <Content style={styles.Form}>
+            <TextInput placeholder="Marca" style={styles.basicInput}
+            onChangeText={e => this.changueText('brand', e)} />
+            <TextInput
+              multiline={true}
+              placeholder="Descripción"
+              maxLength={3}
+              numberOfLines={3}
+              style={styles.basicInput}
+              onChangeText={e => this.changueText('description', e)}
+              />
+            <TextInput placeholder="Cantidad" style={styles.basicInput}
+            keyboardType='number-pad'
+            onChangeText={e => this.changueText('quantity', e)} />
+            <Text style={styles.subTitle}>Fotos</Text>
+            <View style={styles.imageContainer}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+                {
+                  this.state.images.map((img, index) => (
+                    <ThumbImage key={index} delete={() => this.onDelete(img)} uri={img.uri}/>
+                  ))
+                }
+                {
+                  this.state.images.length < 6 && AddPhoto
+                } 
+              </ScrollView>
             </View>
-          </Form>
         </Content>
         <Footer style={{backgroundColor: '#34495e'}}>
           <Left>
@@ -211,11 +196,22 @@ class LeftData extends Component {
 }
 
 const styles = StyleSheet.create({
+  basicInput: {
+    fontFamily: PoppinsMedium,
+    color: gray_1,
+    fontSize: 18,
+  },
+  subTitle: {
+    marginVertical: 10,
+    color: gray,
+    fontSize: 25,
+    fontFamily: PoppinsMedium
+  },
   addImageContainer: {
-    width: 100,
-    height: 100,
-    borderColor: '#ccc',
-    borderWidth: 1,
+    width: 130,
+    height: 130,
+    borderColor: gray,
+    borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
     alignContent: 'center',
@@ -234,15 +230,16 @@ const styles = StyleSheet.create({
   },
   FooterButtons: {
     color: '#fff',
-    fontSize: 14
+    fontSize: 14,
+    fontFamily: PoppinsMedium
+  },
+  addPhotoText: {
+    fontFamily: PoppinsMedium,
+    color: gray,
+    fontSize: 18
   },
   Form: {
-    marginHorizontal: 10,
-    marginRight: 15
-  },
-  Textarea: {
-    marginLeft: 10,
-    marginTop: 10
+    marginHorizontal: 15,
   }
 })
 

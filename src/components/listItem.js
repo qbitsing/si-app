@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text
 } from 'react-native'
+import {Poppins} from '../utils/Fonts'
 
 function listItem(props) {
   const {item} = props
@@ -35,6 +36,8 @@ const styles = StyleSheet.create({
     padding: 13
   },
   text: {
+    fontFamily: Poppins,
+    fontSize: 18,
     color: 'gray'
   }
 })
