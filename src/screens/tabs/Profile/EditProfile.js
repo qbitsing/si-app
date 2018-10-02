@@ -5,6 +5,7 @@ import {PoppinsBold, PoppinsMedium} from '../../../utils/Fonts'
 import {gray, gray_1, blueTwitter, blueFacebook} from '../../../colors'
 import FAB from 'react-native-fab'
 import {connect} from 'react-redux'
+import ImagePicker from 'react-native-image-picker'
 
 class EditProfile extends Component {
   constructor (props) {

@@ -16,9 +16,9 @@ import {connect} from 'react-redux'
 import {gray_1, gray} from '../../colors'
 import Header from './../../components/SteeperHeader'
 import {NavigationActions} from 'react-navigation'
-import ImagePicker from 'react-native-image-picker'
 import ThumbImage from '../../components/ThumbImage'
-import {PoppinsMedium, PoppinsSemiBold, Poppins} from '../../utils/Fonts'
+import { PoppinsMedium } from '../../utils/Fonts'
+import HandleImagePicker from '../../utils/showImagePicker'
 
 class LeftData extends Component {
 
@@ -104,29 +104,31 @@ class LeftData extends Component {
     )
   }
 
-  handleShowImagePicker = () => {
-    const options = {
-      title: 'Seleccione una Imagen',
-      cancelButtonTitle: 'Cancelar',
-      takePhotoButtonTitle: 'Tomar Foto',
-      chooseFromLibraryButtonTitle: 'Seleccionar desde la galería',
-      mediaType: 'photo'
-    }
-    ImagePicker.showImagePicker(options, response => {
-      if (response.data) {
-        const objectImg = {
-          uri: `data:image/jpeg;base64,${response.data}`,
-          name: response.fileName
-        }
+  handleShowImagePicker = async () => {
+    let result = await HandleImagePicker()
+    console.log(result)
+    // const options = {
+    //   title: 'Seleccione una Imagen',
+    //   cancelButtonTitle: 'Cancelar',
+    //   takePhotoButtonTitle: 'Tomar Foto',
+    //   chooseFromLibraryButtonTitle: 'Seleccionar desde la galería',
+    //   mediaType: 'photo'
+    // }
+    // ImagePicker.showImagePicker(options, response => {
+    //   if (response.data) {
+    //     const objectImg = {
+    //       uri: `data:image/jpeg;base64,${response.data}`,
+    //       name: response.fileName
+    //     }
 
-        const wasUpload = this.state.images.filter(img => img.name == objectImg.name).length > 0
-        if (!wasUpload) {
-          this.setState({
-            images: [...this.state.images, objectImg]
-          })
-        }
-      }
-    })
+    //     const wasUpload = this.state.images.filter(img => img.name == objectImg.name).length > 0
+    //     if (!wasUpload) {
+    //       this.setState({
+    //         images: [...this.state.images, objectImg]
+    //       })
+    //     }
+    //   }
+    // })
   }
 
   onDelete = (image) => {
