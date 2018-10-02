@@ -5,7 +5,7 @@ import {PoppinsBold, PoppinsMedium} from '../../../utils/Fonts'
 import {gray, gray_1, blueTwitter, blueFacebook} from '../../../colors'
 import FAB from 'react-native-fab'
 import {connect} from 'react-redux'
-import ImagePicker from 'react-native-image-picker'
+import showImagePicker from '../../../utils/showImagePicker'
 
 class EditProfile extends Component {
   constructor (props) {
@@ -16,9 +16,18 @@ class EditProfile extends Component {
       username: null,
       document: null,
       name: null,
+      image: {},
       city: null,
       lastSesion: null,
-      visibleFab: true,
+      visibleFab: true
+    }
+  }
+
+  handleChangeImage = async () => {
+    const result = await showImagePicker()
+    if(result) {
+      const image = result
+      this.setState({image})
     }
   }
 
@@ -44,7 +53,10 @@ class EditProfile extends Component {
   }
 
   render() {
-
+    let source = {}
+    if (this.state.image.uri) {
+      source.uri = this.state.image.uri
+    } else source.uri = 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=350'
     return (
       <Container>
         <StatusBar
@@ -58,8 +70,8 @@ class EditProfile extends Component {
         <Content style={styles.formStyles}>
           <View style={styles.heading}>
             <View style={styles.photoSection}>
-              <Thumbnail large source={{uri: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=350'}} style={styles.photo} />
-              <Button title="Cambiar Foto" style={styles.buttonChangePhoto} color={blueTwitter} />
+              <Thumbnail large source={source} style={styles.photo} />
+              <Button title="Cambiar Foto" onPress={this.handleChangeImage} style={styles.buttonChangePhoto} color={blueTwitter} />
             </View>
             <View style={styles.inputsInHeading}>
               <TextInput placeholder="Username." style={styles.basicInput}
