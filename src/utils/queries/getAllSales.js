@@ -2,16 +2,18 @@ import http from '../http'
 const query = `
 {
     sales {
-        uuid
-        uuid_subcategority
-        time
-        quantity
-        photos
-        value_end
-        description
-        state
+        _id
         brand
-      }
+        category
+        subcategory
+        quantity
+        value_end
+        time
+        description
+        photos
+        state
+        quantity
+    } 
 }
 `
 export default () => http('query', query)

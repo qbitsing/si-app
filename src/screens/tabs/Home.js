@@ -45,7 +45,6 @@ class Home extends Component {
     })
   }
   render() {
-    let sales = []
     return (
       <Container style={styles.container}>
         <PTRView onRefresh={this._refresh}>
@@ -53,7 +52,7 @@ class Home extends Component {
           <Content>
             <View style={styles.layout}>
               {
-                sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
+                // this.props.sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
               }
             </View>
           </Content>

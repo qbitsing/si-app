@@ -19,6 +19,8 @@ import {NavigationActions} from 'react-navigation'
 import ThumbImage from '../../components/ThumbImage'
 import { PoppinsMedium } from '../../utils/Fonts'
 import HandleImagePicker from '../../utils/showImagePicker'
+import ModalPicker from 'react-native-modal-picker'
+
 
 class LeftData extends Component {
 
@@ -28,7 +30,11 @@ class LeftData extends Component {
       brand: null,
       description: null,
       quantity: null,
-      images: []
+      images: [],
+      modal: {
+        label: '1 día',
+        key: 1
+      }
     }
   }
 
@@ -122,7 +128,15 @@ class LeftData extends Component {
     this.setState({images})
   }
 
-  render() {   
+  render() {
+    const dataDays =[
+      { key: 0, section: true, label: '¿Cuantos queres que dure tu subasta?' },
+      { key: 1, label: '1 día' },
+      { key: 3, label: '3 días' },
+      { key: 7, label: '7 días' },
+      { key: 15, label: '15 días' },
+      { key: 30, label: '30 días' },
+    ]
     const AddPhoto = (
     <View style={styles.btnAddContainer}>
       <TouchableOpacity onPress={this.handleShowImagePicker}>
@@ -133,7 +147,6 @@ class LeftData extends Component {
       </TouchableOpacity>
     </View>
     )
-
     return (
       <Container>
         <Header handleBack={this.handleBack} title='Descripción'/>
@@ -151,6 +164,12 @@ class LeftData extends Component {
             <TextInput placeholder="Cantidad" style={styles.basicInput}
             keyboardType='number-pad'
             onChangeText={e => this.changueText('quantity', e)} />
+            <Text style={styles.subTitle}>Días</Text>
+            <ModalPicker
+              data={dataDays}
+              initValue="1 día"
+              onChange={(modal)=>{ this.setState({modal})}} />
+              
             <Text style={styles.subTitle}>Fotos</Text>
             <View style={styles.imageContainer}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} >
@@ -187,6 +206,15 @@ const styles = StyleSheet.create({
     fontFamily: PoppinsMedium,
     color: gray_1,
     fontSize: 18,
+  },
+  pickerInput: {
+    fontFamily: PoppinsMedium,
+    color: gray_1,
+    fontSize: 18,
+    borderWidth:1,
+    borderColor:'#ccc',
+    padding:10,
+    height:30
   },
   subTitle: {
     marginVertical: 10,

@@ -4,28 +4,31 @@ export default ({
   photos,
   description,
   quantity,
-  uuidUser
+  uuidUser,
+  category
 }) => `
 mutation {
   createSale(sale: {
     brand: "${brand}"
-    uuid_subcategority: "${subcategory}"
+    category: "${category}"
+    subcategority: "${subcategory}"
     time: 1
-    uuid_user: "${uuidUser}"
+    user: "${uuidUser}"
     photos: ${JSON.stringify(photos)}
     description: "${description}"
     quantity: ${quantity}
   }) {
-    uuid
+    _id
     brand
-    uuid_subcategority
-    time
-    state
-    value_end
+    category
+    subcategory
     quantity
-    uuid_user
-    photos
+    value_end
+    time
     description
+    photos
+    state
+    quantity
   }
 }
 `

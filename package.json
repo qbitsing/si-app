@@ -22,6 +22,7 @@
     "react-native-image-picker": "0.26.10",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-material-ripple": "^0.8.0",
+    "react-native-modal-picker": "0.0.16",
     "react-native-numeric-input": "^1.3.1",
     "react-native-pull-to-refresh": "^2.1.3",
     "react-native-stager": "^1.0.0",

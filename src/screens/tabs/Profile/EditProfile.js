@@ -81,10 +81,9 @@ class EditProfile extends Component {
               <TextInput placeholder="Teléfono." keyboardType='phone-pad' style={styles.basicInput}
                value={this.state.phone} 
                onChangeText={text => this.changeState('phone', text)} />
-
             </View>
           </View>
-
+          
           <TextInput placeholder="Nombre." style={styles.basicInput}
           value={this.state.name} 
           onChangeText={text => this.changeState('name', text)} />
