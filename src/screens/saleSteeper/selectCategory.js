@@ -15,7 +15,7 @@ class CategoriesSelection extends Component {
     this.props.dispatch({
       type: 'SET_NEWSALE_ITEM',
       payload: {
-        categorie: item
+        category: item
       }
     })
     this.props.navigation.navigate('SubCategorieSelect')

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Text, View, StyleSheet, TextInput, Button, StatusBar, Animated, Easing} from 'react-native'
+import {Text, View, StyleSheet, TextInput, Button, StatusBar, TouchableOpacity} from 'react-native'
 import {Container, Content, Icon, Thumbnail} from 'native-base'
 import {PoppinsBold, PoppinsMedium} from '../../../utils/Fonts'
 import {gray, gray_1, blueTwitter, blueFacebook} from '../../../colors'
@@ -44,19 +44,27 @@ class EditProfile extends Component {
   }
  
   componentDidMount () {
-    const lastSesion = this.props.sesion
+    let lastSesion = this.props.sesion
+    if (lastSesion.image) {
+      lastSesion.image = {
+        uri: lastSesion. image
+      }
+    }
     const state = {
       ...lastSesion,
       lastSesion
     }
     this.setState(state)
   }
-
+  goBack = () => {
+    console.log('you try to back')
+    this.props.navigation.goBack()
+  }
   render() {
     let source = {}
     if (this.state.image.uri) {
       source.uri = this.state.image.uri
-    } else source.uri = 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=350'
+    } else source = require('../../../assets/images/profile.png')
     return (
       <Container>
         <StatusBar
@@ -64,7 +72,9 @@ class EditProfile extends Component {
           barStyle="dark-content"
         />
         <View style={styles.header}>
-          <Icon style={styles.headerIcon} type="FontAwesome" name="chevron-left" />
+          <TouchableOpacity onPress={this.goBack}>
+            <Icon style={styles.headerIcon} type="FontAwesome" name="chevron-left" />
+          </TouchableOpacity>
           <Text style={styles.headerTitle}>Editar Perfil</Text>
         </View>
         <Content style={styles.formStyles}>
@@ -95,9 +105,9 @@ class EditProfile extends Component {
           value={this.state.city} 
           onChangeText={text => this.changeState('city', text)} />
 
-          <View style={styles.separation}>
+          {/* <View style={styles.separation}>
             <Button color={blueTwitter} style={styles.buttonChangePhoto} title='Cambiar Contraseña'/>
-          </View>
+          </View> */}
           <View style={styles.separation}>
             <Button color={blueTwitter} style={styles.buttonChangePhoto} title='Activar modo proveedor'/>
           </View>

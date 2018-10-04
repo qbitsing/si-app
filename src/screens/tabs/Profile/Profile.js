@@ -1,31 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  Text,
-  Container,
-  Content,
-  Tab,
-  Tabs,
-  List,
-  ListItem,
-  Icon,
-  Body,
-  Right,
-  Left,
-  Title,
-  Thumbnail,
-  Header,
-  Button,
-} from 'native-base';
-import { StyleSheet,  AsyncStorage, View } from 'react-native'
-import { Poppins, PoppinsSemiBold } from '../../../utils/Fonts'
-import {NavigationActions, StackActions} from 'react-navigation'
+import { Text, Container, Content, Tab, Tabs, List, ListItem, Icon, Body, Right, Left, Title, Thumbnail, Header, Button } from 'native-base';
+import { StyleSheet, View } from 'react-native'
+import { Poppins } from '../../../utils/Fonts'
 
 class Profile extends Component {
   
   render() {
     let {sesion} = this.props.redux
     sesion = sesion === null ? {} : sesion
+    let image
+    if (sesion.image) {
+      image = {
+        uri: sesion.image
+      }
+    } else image = require('../../../assets/images/profile.png')
     return (
       <Container>
         <Header>
@@ -41,7 +30,7 @@ class Profile extends Component {
         <Content style={{backgroundColor: '#fff'}}>
           <View style={styles.PhotoCard}>  
               <Text style={styles.name}>{sesion.name}</Text>
-              <Thumbnail style={{height:100,width:100, borderRadius:100}} source={{uri: 'http://cdn.revistagq.com/uploads/images/thumbs/201501/brad_pitt_8257_645x485.jpg'}} />
+              <Thumbnail style={{height:100,width:100, borderRadius:100}} source={image} />
           </View>
         <Tabs initialPage={0}>
           <Tab heading="INFORMACION">

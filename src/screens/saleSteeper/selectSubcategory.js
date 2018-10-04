@@ -22,7 +22,7 @@ class CategoriesSelection extends Component {
   handleBack = () => this.props.navigation.goBack()
 
   render () {
-    const {name, children_categories} = this.props.newSale.categorie
+    const {name, children_categories} = this.props.newSale.category
     return (
       <Container style={{backgroundColor: 'white'}}>
         <Header handleBack={this.handleBack} title={name}/>

@@ -5,10 +5,10 @@ const query = `
         _id
         brand
         category
-        subcategory
         quantity
         value_end
-        time
+        endTime
+        creationTime
         description
         photos
         state

@@ -1,7 +1,7 @@
 export default ({email, password}) => `
 mutation {
   singin(email: "${email}", password: "${password}"){
-    uuid
+    _id
     email
     city
     phone

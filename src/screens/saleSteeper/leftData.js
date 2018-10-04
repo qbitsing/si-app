@@ -21,7 +21,6 @@ import { PoppinsMedium } from '../../utils/Fonts'
 import HandleImagePicker from '../../utils/showImagePicker'
 import ModalPicker from 'react-native-modal-picker'
 
-
 class LeftData extends Component {
 
   constructor() {
@@ -54,7 +53,7 @@ class LeftData extends Component {
   handleCreate = async () => {
     let success = true
     let message = {}
-    const photos = (await this.uploadImages()).urls
+    const photos = this.state.images.map(obj => obj.uri)
     console.log(photos)
     this.props.dispatch({
       type: 'SET_LOADER',
@@ -65,9 +64,11 @@ class LeftData extends Component {
       brand,
       description,
       quantity,
+      time: this.state.modal.key,
       subcategory: this.props.newSale.subcategory.id,
+      category: this.props.newSale.category.id,
       photos,
-      uuidUser: this.props.sesion.uuid
+      uuidUser: this.props.sesion._id
     })
     try {
       let res = await http('mutation', query)
@@ -118,6 +119,7 @@ class LeftData extends Component {
         this.setState({
           images: [...this.state.images, result]
         })
+        console.log(this.state.images)
       }
     }
   }
@@ -156,7 +158,7 @@ class LeftData extends Component {
             <TextInput
               multiline={true}
               placeholder="Descripción"
-              maxLength={3}
+              maxLength={600}
               numberOfLines={3}
               style={styles.basicInput}
               onChangeText={e => this.changueText('description', e)}

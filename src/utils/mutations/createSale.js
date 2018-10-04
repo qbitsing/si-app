@@ -5,14 +5,15 @@ export default ({
   description,
   quantity,
   uuidUser,
-  category
+  category,
+  time
 }) => `
 mutation {
   createSale(sale: {
     brand: "${brand}"
     category: "${category}"
     subcategority: "${subcategory}"
-    time: 1
+    time: ${time}
     user: "${uuidUser}"
     photos: ${JSON.stringify(photos)}
     description: "${description}"
@@ -21,10 +22,10 @@ mutation {
     _id
     brand
     category
-    subcategory
     quantity
     value_end
-    time
+    endTime
+    creationTime
     description
     photos
     state
