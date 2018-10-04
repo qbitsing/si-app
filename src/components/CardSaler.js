@@ -2,15 +2,17 @@ import React from 'react'
 import {Text, Card, CardItem, H3} from 'native-base'
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native'
 import {Poppins, PoppinsMedium, PoppinsThin, PoppinsBold} from '../utils/Fonts'
-import LinearGradient from 'react-native-linear-gradient'
 
+// rgba(22, 160, 133,.9)
+
+// rgba(211, 84, 0, .9)
 function CardSaler(props) {
     const data = {}
     const source = {
         uri: 'https://http2.mlstatic.com/celular-libre-iphone-x-64gb-entrega-inmediata-D_NQ_NP_796192-MCO26287680141_112017-F.jpg'
       }
     return (
-      <View>
+      <View style={{marginBottom: 10}}>
         <TouchableOpacity>
           <Card>
             <CardItem cardBody>
@@ -18,7 +20,7 @@ function CardSaler(props) {
                 <View>
                   <Image style={styles.image} source={source} />
                   <View style={styles.contentGradient}>
-                    <Text style={styles.state}>ACTIVA</Text>
+                    <Text style={styles.state}>INACTIVA</Text>
                   </View>
                 </View>
                 <View style={styles.info}>
@@ -43,7 +45,7 @@ function CardSaler(props) {
 const styles = StyleSheet.create({
     state: {
       fontFamily: PoppinsBold,
-      color: 'rgba(255,255,255,.7)'
+      color: '#fff'
     },
     contentGradient: {
       position: 'absolute',
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
       left:0,
       right: 0,
       alignItems: 'center',
-      backgroundColor: 'rgba(0,0,0,.7)'
+      backgroundColor: 'rgba(211, 84, 0, .9)'
     },
     gradient: {
       height: 60,

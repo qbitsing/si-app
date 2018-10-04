@@ -1,12 +1,22 @@
 import React, {Component} from 'react'
-import {Container, Text, Icon, Tab, Tabs} from 'native-base'
+import {Icon} from 'native-base'
 import Active from './active'
 import History from './history'
 import {createMaterialTopTabNavigator} from 'react-navigation'
 
 const RouteConfigs = {
-  Active,
-  History
+  Active: {
+    screen: Active,
+    navigationOptions: {
+      title: 'Activas'
+    }
+  },
+  History: {
+    screen: History,
+    navigationOptions: {
+      title: 'Finalizadas'
+    }
+  },
 }
 
 const TabNavigatorConfig = {}

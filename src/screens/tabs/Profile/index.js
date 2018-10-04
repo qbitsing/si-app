@@ -39,7 +39,7 @@ const customDrawerComponent = connect()((props) => (
 			<Ripple rippleDuration={600} onPress={() => signOut(props)}>
 				<View style={styles.cerrarSesionItem}>
 					<Icon style={{color: "#192a56", marginRight: 25}} type='FontAwesome' name="sign-out" />
-					<Text style={{color: "#192a56", fontWeight: "600", fontSize: 14}} >Cerrar Sesion</Text>
+					<Text style={{color: "#192a56", fontWeight: "600", fontSize: 14}} >Cerrar sesion</Text>
 				</View>
 			</Ripple>
 		</Content>
@@ -55,8 +55,8 @@ const drawerConfig = {
 const routeConfig = {
 	Perfil: {
 		screen: Profile,
-		name: 'Perfil',
 		navigationOptions: {
+			title: 'Perfil',
 			drawerIcon: ({tintColor}) => (
 				<Icon style={{color: tintColor}} type='FontAwesome' name="user"/>
 			)
@@ -64,8 +64,8 @@ const routeConfig = {
 	},
 	EditProfile: {
 		screen: EditProfile,
-		name: 'Editar Perfil',
 		navigationOptions: {
+			title: 'Editar perfil',
 			drawerIcon: ({tintColor}) => (
 				<Icon style={{color: tintColor}} type='FontAwesome' name="edit"/>
 			)
