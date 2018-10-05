@@ -1,6 +1,6 @@
 # si-app
 
-The react native aplication of the inverse subast.
+The react native aplication of the inverse auction.
 
 ## Runing the Project  
 

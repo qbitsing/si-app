@@ -58,7 +58,7 @@ class Steeper extends Component {
           navigation.navigate('newSale')
         }
       },
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({tintColor}) => {
         return <Icon name="add" style={{color: tintColor}}/>
       }
     }

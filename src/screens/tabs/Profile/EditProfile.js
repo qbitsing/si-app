@@ -57,7 +57,6 @@ class EditProfile extends Component {
     this.setState(state)
   }
   goBack = () => {
-    console.log('you try to back')
     this.props.navigation.goBack()
   }
   render() {

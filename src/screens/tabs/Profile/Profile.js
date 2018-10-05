@@ -1,10 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Text, Container, Icon, Body, Left, Title, Thumbnail, Header, Button } from 'native-base';
-import { StyleSheet, View } from 'react-native'
-import { Poppins } from '../../../utils/Fonts'
+import { Text, Container, Icon, Body, Left, Thumbnail, Header,  Right } from 'native-base';
+import { StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native'
+import { Poppins, PoppinsMedium } from '../../../utils/Fonts'
 import TabNavigator from './ProfileTabs'
+import {StackActions, NavigationActions} from 'react-navigation'
+
 class Profile extends Component {
+
+  signOut = async () => {
+    let x = await AsyncStorage.removeItem('sesion')
+      const resetAction = StackActions.reset({
+        index: 1,
+        actions: [
+          NavigationActions.navigate({ routeName: 'TabsNavigator' }),
+          NavigationActions.navigate({ routeName: 'BeforeLogin' })
+        ],
+      })
+      this.props.dispatch({
+        type: 'SET_SESION', 
+        payload: null
+      })
+      this.props.dispatch(resetAction)
+  }
+
   render() {
     let {sesion} = this.props.redux
     sesion = sesion === null ? {} : sesion
@@ -18,13 +37,14 @@ class Profile extends Component {
       <Container>
         <Header>
           <Left>
-            <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-              <Icon type='FontAwesome' name="bars"/>
-            </Button>
+            <Text style={styles.title}>Perfil</Text>
           </Left>
-          <Body>
-            <Title></Title>
-          </Body>
+          <Body />
+          <Right>
+            <TouchableOpacity onPress={this.signOut}>
+              <Icon style={{color: '#fff'}} type='FontAwesome' name="sign-out"/>
+            </TouchableOpacity>
+          </Right>
         </Header>
         <View style={styles.PhotoCard}>  
             <Text style={styles.name}>{sesion.name}</Text>
@@ -48,6 +68,11 @@ const styles = StyleSheet.create({
     fontFamily: Poppins,
     fontSize:20
   },
+  title: {
+    fontFamily: PoppinsMedium,
+    color: '#fff',
+    fontSize: 20,
+  }
 })
 
 function mapStateToProps(state, props) {
