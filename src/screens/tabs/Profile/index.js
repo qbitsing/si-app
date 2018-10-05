@@ -12,7 +12,7 @@ const drawerConfig = {
 	}
 }
 const routeConfig = {
-	Profile,
+	Pro: Profile,
 	EditProfile,
 }
 

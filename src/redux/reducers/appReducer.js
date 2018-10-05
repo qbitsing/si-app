@@ -23,6 +23,8 @@ function rootReducer(state = {}, action) {
         ...state,
         activeDetail: payload
       }
+    case 'SET_PROFILE_NAVIGATION':
+      return {...state, profileNavigation: payload}
     case 'SET_NEWSALE':
       return { ...state, ...payload }
     case 'SET_LOADER':

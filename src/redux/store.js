@@ -17,7 +17,8 @@ const initialState = {
     },
     categories: [],
     sales: [],
-    activeDetail: {}
+    activeDetail: {},
+    profileNavigation: {}
   }
 }
 

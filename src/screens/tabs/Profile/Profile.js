@@ -23,7 +23,13 @@ class Profile extends Component {
       })
       this.props.dispatch(resetAction)
   }
-
+  componentDidMount() {
+    const action = {
+      type: 'SET_PROFILE_NAVIGATION',
+      payload: this.props.navigation
+    }
+    this.props.dispatch(action)
+  }
   render() {
     let {sesion} = this.props.redux
     sesion = sesion === null ? {} : sesion

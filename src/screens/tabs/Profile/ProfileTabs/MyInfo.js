@@ -11,10 +11,7 @@ class MyInfo extends Component {
 
     capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
     goToEdit = () => {
-      const pushAction = StackActions.push({
-        action: NavigationActions.navigate({ routeName: 'MySales' }),
-      })
-      console.log(this.props.navigation.navigate('Profile', {},  NavigationActions.navigate({ routeName: 'EditProfile' })))
+     console.log(this.props.parentNavigator.navigate('EditProfile'))
     }
     render () {
       let  {sesion} = this.props
@@ -73,7 +70,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, props) {
   return {
     ...props,
-    sesion: state.app.sesion
+    sesion: state.app.sesion,
+    parentNavigator: state.app.profileNavigation
   }
 }
 
