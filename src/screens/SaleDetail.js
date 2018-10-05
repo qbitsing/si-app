@@ -12,19 +12,23 @@ import {
 import {connect} from 'react-redux'
 import {Text,Container, Content, Icon, Footer, FooterTab, Button} from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
+import Prompt from 'react-native-prompt'
 
 class SaleDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {}
+      data: {},
+      promptVisible: false
     }
   }
 
   handleBid = () => {
     const {sesion} = this.props
     if(sesion) {
-
+      this.setState({
+        promptVisible: true
+      })
     } else {
       this.props.navigation.navigate('BeforeLogin')
     }
@@ -92,6 +96,12 @@ class SaleDetail extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        <Prompt
+            title="¿Cuanto valor le das a este producto?"
+            placeholder="$1'000.000"
+            visible={this.state.promptVisible}
+            onCancel={() => this.setState({ promptVisible: false, message: "You cancelled" })}
+            onSubmit={(value) => this.setState({ promptVisible: false, message: `You said "${value}"` })}/>
       </Container>
     )
   }

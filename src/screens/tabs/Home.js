@@ -38,6 +38,7 @@ class Home extends Component {
   async componentDidMount () {
     let data = await getSaleQuery()
     data = await data.json()
+    console.log(data)
     console.log(data.data.sales)
     this.props.dispatch({
       type: 'SET_SALES',
