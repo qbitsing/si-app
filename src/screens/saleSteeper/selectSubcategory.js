@@ -22,12 +22,12 @@ class CategoriesSelection extends Component {
   handleBack = () => this.props.navigation.goBack()
 
   render () {
-    const {name, children_categories} = this.props.newSale.category
+    const {name, subcategories} = this.props.newSale.category
     return (
       <Container style={{backgroundColor: 'white'}}>
         <Header handleBack={this.handleBack} title={name}/>
         <Content>
-          <List dataArray={children_categories} 
+          <List dataArray={subcategories} 
           renderRow={(item) => <ListItem select={this.next} item={item}/>}>
           </List>
         </Content>

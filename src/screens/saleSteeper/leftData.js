@@ -54,7 +54,6 @@ class LeftData extends Component {
     let success = true
     let message = {}
     const photos = this.state.images.map(obj => obj.uri)
-    console.log(photos)
     this.props.dispatch({
       type: 'SET_LOADER',
       payload: true
@@ -65,8 +64,8 @@ class LeftData extends Component {
       description,
       quantity,
       time: this.state.modal.key,
-      subcategory: this.props.newSale.subcategory.id,
-      category: this.props.newSale.category.id,
+      subcategory: this.props.newSale.subcategory._id,
+      category: this.props.newSale.category._id,
       photos,
       uuidUser: this.props.sesion._id
     })
@@ -151,7 +150,7 @@ class LeftData extends Component {
     )
     return (
       <Container>
-        <Header handleBack={this.handleBack} title='Descripción'/>
+        <Header handleBack={this.handleBack} title={this.props.newSale.subcategory.name}/>
         <Content style={styles.Form}>
             <TextInput placeholder="Marca" style={styles.basicInput}
             onChangeText={e => this.changueText('brand', e)} />

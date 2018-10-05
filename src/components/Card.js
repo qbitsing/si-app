@@ -5,6 +5,7 @@ import {Poppins} from '../utils/Fonts'
 
 function CardComponent(props) {
   const { data } = props
+  console.log(data)
   const defaultImage = 'https://picsum.photos/200/300/?random'
   const source = {
     uri: data.image || defaultImage

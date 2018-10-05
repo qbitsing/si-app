@@ -52,7 +52,7 @@ class Home extends Component {
           <Content>
             <View style={styles.layout}>
               {
-                // this.props.sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
+                this.props.sales.map((sale, index) => <CardComponent key={index} pressed={() => this.goToDetail(sale)} data={sale}/>)
               }
             </View>
           </Content>

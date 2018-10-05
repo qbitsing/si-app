@@ -4,6 +4,8 @@ import { AsyncStorage, BackHandler, View, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import AppNavigator from './app-navigator-with-state'
 import Loader from './components/loader'
+import http from './utils/http';
+import query from './utils/queries/getCategories'
 
 class Main extends Component {
   handleBack = () => {
@@ -25,17 +27,13 @@ class Main extends Component {
       this.dispatch('SET_SESION', sesion)
       let categories = await AsyncStorage.getItem('categories')
       if(!categories) {
-        categories = await fetch('https://api.mercadolibre.com/sites/MLC/categories')
-        categories = await categories.json()
-        for ([i, categorie] of categories.entries()) {
-          let categorieDetail = await fetch(`https://api.mercadolibre.com/categories/${categorie.id}`)
-          categorieDetail = await categorieDetail.json()
-          categories[i] = categorieDetail
-        }
+        categories = await http('query', query)
+        categories = (await categories.json()).data.categories
         await AsyncStorage.setItem('categories', JSON.stringify(categories))
       } else {
         categories = JSON.parse(categories)
       }
+      console.log(categories)
       this.dispatch('SET_CATEGORIES', {categories})
     } catch (e) {
     }
